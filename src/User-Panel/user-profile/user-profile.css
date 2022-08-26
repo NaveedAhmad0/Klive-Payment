@@ -1,0 +1,54 @@
+.user-profile-inputs {
+
+    padding: 1rem 0rem;
+    
+}
+
+.SideBar{
+    width: 25% !important;
+}
+
+.UserProfileForm{
+    /* margin: auto !important; */
+    width: 75% !important;
+}
+.user-profile-label {
+
+    margin-left: 1.5rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.user-profile-inputs-design {
+
+
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+
+.user-profile-inputs-design::placeholder {
+
+    color: black !important;
+}
+
+.btn-agree {
+
+    width: 100%;
+    background-color: #21B967;
+    color: white;
+    border-radius: 2rem !important;
+}
+
+.user-profile-pic {
+
+    width: 15rem;
+}
+.user-profile-design {
+
+    text-align: center;
+}
+
+.user-id {
+
+    color: #7C12F6;
+}

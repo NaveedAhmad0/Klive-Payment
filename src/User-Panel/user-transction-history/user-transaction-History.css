@@ -1,0 +1,49 @@
+.user-tranaction-inputs {
+
+    padding: 1rem 0rem;
+    
+}
+.UserTransaction{
+    width: 75%;
+}
+
+.user-tranaction-inputs-design {
+
+
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+
+.user-tranaction-inputs-design::placeholder {
+
+    color: black !important;
+}
+
+.btn-tranaction {
+
+    width: 100%;
+    background-color: #21B967;
+    color: white;
+    border-radius: 2rem !important;
+    height: 3rem !important;
+}
+
+.user-tranaction-inputs-search {
+
+    height: 0%;
+}
+.fasearch { 
+    position: absolute;
+    top: 35px;
+    left: auto;
+    right: 30px;
+    color: #771AF7;
+}
+
+.tranaction-heading {
+
+    color: #743BF8;
+    font-weight: 700;
+    text-transform: capitalize;
+
+}

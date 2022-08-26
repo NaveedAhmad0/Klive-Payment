@@ -1,0 +1,159 @@
+
+.transaction-heading h3 {
+
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.tranasction-body {
+
+    
+    width: 85%;
+}
+
+.dashboard-table-heading tr th {
+
+    text-align: inherit;
+    padding: 10px 25px;
+    background-color: #5D43F8;
+    border:none!important;
+    color: #FFFFFF;
+    font-size: 0.9rem;
+}
+
+.trans-id {
+
+    font-weight: normal;
+}
+
+.user-table-data {
+
+    background-color: #F5F4FF;
+}
+
+
+#transforminput.trans-form {
+    border: none !important;
+    padding: 0;
+    border-radius: 2rem;
+    width: 75% !important;
+}
+   
+#transforminput.trans-form {
+     
+
+     padding: 9px 4px 9px 40px;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+    background-color: #F6F7FB;
+}
+
+.pagination .transaction-pagination a {
+
+    border: none;
+    background-color: #F5F4FF;
+    color: #5D43F8;
+}
+ 
+.transaction-pagination-number {
+
+    background-color: #5D43F8;
+}
+
+.transaction-dropdown-toggle {
+
+    background-color: #5D43F8 !important;
+    border: none !important;
+    color: white !important;
+    width: 5rem !important;
+    height: 2rem !important;
+
+}
+
+.pagination-top {
+
+    margin-top: 0 !important;
+}
+.transaction-dropdown-toggle::after {
+
+    margin-left: 2rem !important;
+
+}
+.user-withdraw-available {
+    
+    color:  #5D43F8;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.user-withdraw-available-usd {
+    
+    font-weight: 800;
+}
+
+.span-usd {
+
+    font-weight: normal;
+}
+
+.user-withdraw-current {
+    
+    color:  #2FCDFF;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.user-withdraw-current-usd {
+    
+    font-weight: 800;
+}
+
+.span-usd {
+
+    font-weight: normal;
+}
+.btn-request-withdrawal {
+
+    background-color: #21B967;
+    color: white;
+    text-transform: capitalize;
+    height: 4rem;
+    border-radius: 35px !important;
+    width: 14rem;
+    font-weight: 600;
+}
+
+.dropdown-space {
+
+    margin: 0px 32px;
+    color: #5D43F8;
+}
+
+.btn-user-withdraw-pending {
+
+    height: 2rem !important;
+    background-color: #F3DB00 !important;
+    color: #FFFFFF !important;
+    text-transform: capitalize !important;
+}
+
+.btn-user-withdraw-sucess {
+
+    height: 2rem !important;
+    background-color: #2FCDFF !important;
+    color: #FFFFFF !important;
+    text-transform: capitalize !important;
+}
+
+.btn-user-withdraw-cancel {
+
+    height: 2rem !important;
+    background-color:#BEBABB !important;
+    color: #FFFFFF !important;
+    text-transform: capitalize !important;
+}
+
+.user-withdraw-card {
+
+    border: none !important;
+    border-radius: 1rem !important;
+}

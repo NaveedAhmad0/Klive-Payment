@@ -1,0 +1,34 @@
+.hoverbutton:hover{
+    background-color: #8261F9;
+   color: white;
+   width: 100%;
+   border-left: 5px solid white;
+}
+.ihLnEL {
+    list-style: none;
+    margin: 15px 0px !important;
+}
+.dropdown:hover {
+    display: block !important;
+  }
+  
+.scroll {
+    /* width: 200px;
+    height: 400px;
+     background: red; */
+    overflow: auto;
+ }
+ .scroll::-webkit-scrollbar {
+     width: 12px;
+     height: 50%;
+ }
+ 
+ .scroll::-webkit-scrollbar-track {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+     border-radius: 10px;
+ }
+ 
+ .scroll::-webkit-scrollbar-thumb {
+     border-radius: 10px;
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+ }

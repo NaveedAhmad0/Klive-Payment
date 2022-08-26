@@ -1,0 +1,51 @@
+.user-deposits-inputs {
+
+    padding: 1rem 0rem;
+    
+}
+
+
+.user-profile-label {
+
+    margin-left: 1.5rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.user-deposits-inputs-design {
+
+
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+
+.user-deposits-inputs-design::placeholder {
+
+    color: black !important;
+}
+
+.btn-deposit {
+
+    width: 100%;
+    background-color: #21B967;
+    color: white;
+    border-radius: 2rem !important;
+    height: 3rem !important;
+}
+
+.user-deposits-inputs-search {
+
+    height: 0%;
+}
+.fasearch1 { 
+    /* position:absolute;
+    top: 40px;
+    left: 1; */
+    /* right: 40px; */
+    color: #771AF7;
+
+}
+    
+ 
+  
+ 
