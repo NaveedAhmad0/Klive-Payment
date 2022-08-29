@@ -1,25 +1,11 @@
 import React from "react";
-import { ProgressBar, Dropdown } from "react-bootstrap";
-import GaugeChart from "react-gauge-chart";
-import { VectorMap } from "react-jvectormap";
+
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { Form } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 
 const { SearchBar } = Search;
-const mapData = {
-	CN: 100000,
-	IN: 9900,
-	SA: 86,
-	EG: 70,
-	SE: 0,
-	FI: 0,
-	FR: 0,
-	US: 20,
-};
 
 // import DatePicker from 'react-datepicker';
 // import { Dropdown } from 'react-bootstrap';
@@ -118,7 +104,7 @@ const options = {
 
 	disablePageTitle: true,
 };
-const UserTable = () => {
+const AdminTable = () => {
 	return (
 		<div className="row">
 			<div className="col-md-12">
@@ -145,6 +131,7 @@ const UserTable = () => {
 												<hr />
 												<BootstrapTable
 													{...props.baseProps}
+													headerClasses={{ backgroundColor: "red" }}
 													pagination={paginationFactory(options)}
 												/>
 											</div>
@@ -163,4 +150,4 @@ const UserTable = () => {
 	);
 };
 
-export default UserTable;
+export default AdminTable;

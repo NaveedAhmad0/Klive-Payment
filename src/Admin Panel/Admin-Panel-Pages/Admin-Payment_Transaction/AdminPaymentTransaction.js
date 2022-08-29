@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 // import { Line, Doughnut, Bar, Radar } from 'react-chartjs-2';
-import { Line, Bar, Radar } from "react-chartjs-2";
 
-import { ProgressBar, Dropdown } from "react-bootstrap";
-import GaugeChart from "react-gauge-chart";
-import { VectorMap } from "react-jvectormap";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { Form } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import UserForm from "../../User-Panel-Components/User-Panel-Form/User-Form";
-import UserTable from "../../User-Panel-Components/User-Panel-Table/UserTable";
 
-export class UserPaymentTransaction extends Component {
+import AdminForm from "../../Admin-Panel-Components/Admin-Panel-Form/Admin-Form";
+import AdminTable from "../../Admin-Panel-Components/Admin-Panel-Table/AdminTable";
+
+export class AdminPaymentTransaction extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -41,10 +33,10 @@ export class UserPaymentTransaction extends Component {
 					</div>
 				</div>
 
-				<UserForm />
-				<UserTable />
+				<AdminForm />
+				<AdminTable />
 			</div>
 		);
 	}
 }
-export default UserPaymentTransaction;
+export default AdminPaymentTransaction;

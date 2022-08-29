@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const UserMerchantProfile = () => {
+const AdminMerchantProfile = () => {
 	return (
 		<>
 			<h2 className="text-primary bw-bold">Merchant Profile</h2>
@@ -84,4 +84,4 @@ const UserMerchantProfile = () => {
 	);
 };
 
-export default UserMerchantProfile;
+export default AdminMerchantProfile;

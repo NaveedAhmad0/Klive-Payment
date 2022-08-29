@@ -1,26 +1,13 @@
 import React, { Component } from "react";
 // import { Line, Doughnut, Bar, Radar } from 'react-chartjs-2';
-import { Line, Bar, Radar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
-import { ProgressBar, Dropdown } from "react-bootstrap";
-import GaugeChart from "react-gauge-chart";
-import { VectorMap } from "react-jvectormap";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
 const { SearchBar } = Search;
-const mapData = {
-	CN: 100000,
-	IN: 9900,
-	SA: 86,
-	EG: 70,
-	SE: 0,
-	FI: 0,
-	FR: 0,
-	US: 20,
-};
 
 // import DatePicker from 'react-datepicker';
 // import { Dropdown } from 'react-bootstrap';
@@ -104,7 +91,7 @@ const options = {
 	disablePageTitle: true,
 };
 
-export class UserDashboard extends Component {
+export class AdminDashboard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -934,32 +921,6 @@ export class UserDashboard extends Component {
 		gradientBar6.addColorStop(1, "rgba(255, 255, 255, 0.01)");
 		gradientBar6.addColorStop(0, "#14c671");
 
-		const visitData = {
-			labels: [
-				"Day 1",
-				"Day 2",
-				"Day 3",
-				"Day 4",
-				"Day 5",
-				"Day 6",
-				"Day 7",
-				"Day 8",
-				"Day 9",
-				"Day 10",
-				"Day 11",
-				"Day 12",
-				"Day 13",
-			],
-			datasets: [
-				{
-					label: "Profit",
-					data: [7, 6, 9, 7, 8, 6, 8, 5, 7, 8, 6, 7, 7],
-					borderColor: "#6d7cfc",
-					borderWidth: 3,
-					fill: true,
-				},
-			],
-		};
 		const impressionData = {
 			labels: [
 				"Day 1",
@@ -1111,26 +1072,7 @@ export class UserDashboard extends Component {
 				},
 			],
 		};
-		const totaltransactionData = {
-			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-			datasets: [
-				{
-					label: "Sessions",
-					data: [320, 280, 300, 280, 300, 270, 350],
-					borderColor: "#fa394e",
-					borderWidth: 0,
-					pointBackgroundColor: "#fa394e",
-					pointRadius: 7,
-					pointBorderWidth: 3,
-					pointBorderColor: "#fff",
-					pointHoverRadius: 7,
-					pointHoverBackgroundColor: "#fa394e",
-					pointHoverBorderColor: "#fa394e",
-					pointHoverBorderWidth: 2,
-					pointHitRadius: 7,
-				},
-			],
-		};
+
 		this.setState({
 			impressionChartData: impressionData,
 			conversionChartData: conversionData,
@@ -1413,4 +1355,4 @@ export class UserDashboard extends Component {
 		);
 	}
 }
-export default UserDashboard;
+export default AdminDashboard;

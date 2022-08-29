@@ -3,10 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import Spinner from "../app/shared/Spinner";
 
-const UserDashboard = lazy(() =>
-	import("../User Panel/User-Panel-Pages/User-Dashboard/UserDashboard")
-);
-
 const Buttons = lazy(() => import("./basic-ui/Buttons"));
 const Dropdowns = lazy(() => import("./basic-ui/Dropdowns"));
 
@@ -26,40 +22,43 @@ const Register1 = lazy(() => import("./user-pages/Register"));
 
 // USER PANEL IMPORTS
 
-const UserTransaction = lazy(() =>
+const AdminDashboard = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Admin-Dashboard/AdminDashboard")
+);
+const AdminTransaction = lazy(() =>
 	import(
-		"../User Panel/User-Panel-Pages/User-Payment_Transaction/UserPaymentTransaction"
+		"../Admin Panel/Admin-Panel-Pages/Admin-Payment_Transaction/AdminPaymentTransaction"
 	)
 );
-const UserSettlementReport = lazy(() =>
+const AdminSettlementReport = lazy(() =>
 	import(
-		"../User Panel/User-Panel-Pages/User-Settlement-Report/UserSettlementReport"
+		"../Admin Panel/Admin-Panel-Pages/Admin-Settlement-Report/AdminSettlementReport"
 	)
 );
-const UserVoid = lazy(() =>
-	import("../User Panel/User-Panel-Pages/Void/UserVoid")
+const AdminVoid = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Void/AdminVoid")
 );
-const UserRefund = lazy(() =>
-	import("../User Panel/User-Panel-Pages/Refund/UserRefund")
+const AdminRefund = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Refund/AdminRefund")
 );
-const UserProfile = lazy(() =>
-	import("../User Panel/User-Panel-Pages/User-Profile/UserProfile")
+const AdminProfile = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Admin-Profile/AdminProfile")
 );
-const UserChangePassword = lazy(() =>
+const AdminChangePassword = lazy(() =>
 	import(
-		"../User Panel/User-Panel-Pages/User-Change-Password/UserChangePassword"
+		"../Admin Panel/Admin-Panel-Pages/Admin-Change-Password/AdminChangePassword"
 	)
 );
-const UserMerchantProfile = lazy(() =>
+const AdminMerchantProfile = lazy(() =>
 	import(
-		"../User Panel/User-Panel-Pages/UserPanel-Merchant-profile/UserMerchantProfile"
+		"../Admin Panel/Admin-Panel-Pages/AdminPanel-Merchant-profile/AdminMerchantProfile"
 	)
 );
-const UserManageUser = lazy(() =>
-	import("../User Panel/User-Panel-Pages/User-Manage-users/UsersManageUser")
+const AdminManageUser = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Admin-Manage-users/AdminManageUser")
 );
-const UserManageRole = lazy(() =>
-	import("../User Panel/User-Panel-Pages/User-Manage-Role/UserManageRole")
+const AdminManageRole = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Admin-Manage-Role/AdminManageRole")
 );
 
 class AppRoutes extends Component {
@@ -67,7 +66,7 @@ class AppRoutes extends Component {
 		return (
 			<Suspense fallback={<Spinner />}>
 				<Switch>
-					<Route exact path="/user/dashboard" component={UserDashboard} />
+					<Route exact path="/admin/dashboard" component={AdminDashboard} />
 
 					<Route path="/basic-ui/buttons" component={Buttons} />
 					<Route path="/basic-ui/dropdowns" component={Dropdowns} />
@@ -86,36 +85,36 @@ class AppRoutes extends Component {
 					<Route path="/user-pages/login-1" component={Login} />
 					<Route path="/user-pages/register-1" component={Register1} />
 
-					{/*------------------------- USER PANEL ROUTES -------------------------- */}
+					{/*------------------------- ADMIN PANEL ROUTES -------------------------- */}
 
 					<Route
-						path="/user/UserPaymentTransaction"
-						component={UserTransaction}
+						path="/admin/AdminPaymentTransaction"
+						component={AdminTransaction}
 					/>
 					<Route
-						path="/user/UserSettlementReport"
-						component={UserSettlementReport}
+						path="/admin/AdminSettlementReport"
+						component={AdminSettlementReport}
 					/>
-					<Route path="/user/UserVoid" component={UserVoid} />
-					<Route path="/user/UserRefund" component={UserRefund} />
-					<Route path="/user/UserProfile" component={UserProfile} />
+					<Route path="/admin/AdminVoid" component={AdminVoid} />
+					<Route path="/admin/AdminRefund" component={AdminRefund} />
+					<Route path="/admin/AdminProfile" component={AdminProfile} />
 					<Route
-						path="/user/UserChangePassword"
-						component={UserChangePassword}
+						path="/admin/AdminChangePassword"
+						component={AdminChangePassword}
 					/>
 					<Route
-						path="/user/UserMerchantProfile"
-						component={UserMerchantProfile}
+						path="/admin/AdminMerchantProfile"
+						component={AdminMerchantProfile}
 					/>
-					<Route path="/user/UserManageUser" component={UserManageUser} />
-					<Route path="/user/UserManageRole" component={UserManageRole} />
+					<Route path="/admin/AdminManageUser" component={AdminManageUser} />
+					<Route path="/admin/AdminManageRole" component={AdminManageRole} />
 
 					{/*---------------------------- ERROR PAGE ------------------ */}
 
 					<Route path="/error-pages/error-404" component={Error404} />
 					<Route path="/error-pages/error-500" component={Error500} />
 
-					<Redirect to="/dashboard" />
+					<Redirect to="/admin/dashboard" />
 				</Switch>
 			</Suspense>
 		);

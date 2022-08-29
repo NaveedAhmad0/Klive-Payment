@@ -1,6 +1,5 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 const ProfileComponent = () => {
 	return (
 		<div className="col-12 grid-margin">

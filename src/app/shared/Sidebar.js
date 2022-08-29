@@ -128,7 +128,7 @@ class Sidebar extends Component {
 						className={
 							this.isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 						}>
-						<Link className="nav-link" to="/user/dashboard">
+						<Link className="nav-link" to="/admin/dashboard">
 							<i className="mdi mdi-television menu-icon"></i>
 							<span className="menu-title">
 								<Trans>Dashboard</Trans>
@@ -163,7 +163,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserPaymentTransaction">
+										to="/admin/AdminPaymentTransaction">
 										<Trans>Payment Transaction</Trans>
 									</Link>
 								</li>
@@ -175,7 +175,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserSettlementReport">
+										to="/admin/AdminSettlementReport">
 										<Trans>Settlement Report</Trans>
 									</Link>
 								</li>
@@ -188,11 +188,11 @@ class Sidebar extends Component {
 						}>
 						<div
 							className={
-								this.state.UserProfileMenuOpen
+								this.state.AdminProfileMenuOpen
 									? "nav-link menu-expanded"
 									: "nav-link"
 							}
-							onClick={() => this.toggleMenuState("UserProfileMenuOpen")}
+							onClick={() => this.toggleMenuState("AdminProfileMenuOpen")}
 							data-toggle="collapse">
 							<i className="mdi mdi-crosshairs-gps menu-icon"></i>
 							<span className="menu-title">
@@ -200,7 +200,7 @@ class Sidebar extends Component {
 							</span>
 							<i className="menu-arrow"></i>
 						</div>
-						<Collapse in={this.state.UserProfileMenuOpen}>
+						<Collapse in={this.state.AdminProfileMenuOpen}>
 							<ul className="nav flex-column sub-menu">
 								<li className="nav-item">
 									{" "}
@@ -210,7 +210,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserProfile">
+										to="/admin/AdminProfile">
 										<Trans>User Profile</Trans>
 									</Link>
 								</li>
@@ -222,7 +222,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserChangePassword">
+										to="/admin/AdminChangePassword">
 										<Trans>Change Password</Trans>
 									</Link>
 								</li>
@@ -257,7 +257,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserVoid">
+										to="/admin/AdminVoid">
 										<Trans>Void</Trans>
 									</Link>
 								</li>
@@ -269,7 +269,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserRefund">
+										to="/admin/AdminRefund">
 										<Trans>Refund</Trans>
 									</Link>
 								</li>
@@ -278,9 +278,11 @@ class Sidebar extends Component {
 					</li>
 					<li
 						className={
-							this.isPathActive("/dashboard") ? "nav-item active" : "nav-item"
+							this.isPathActive("/admin/dashboard")
+								? "nav-item active"
+								: "nav-item"
 						}>
-						<Link className="nav-link" to="/user/UserMerchantProfile">
+						<Link className="nav-link" to="/admin/AdminMerchantProfile">
 							<i className="mdi mdi-television menu-icon"></i>
 							<span className="menu-title">
 								<Trans>Merchant Profile</Trans>
@@ -315,7 +317,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserManageUser">
+										to="/admin/AdminManageUser">
 										<Trans>Users</Trans>
 									</Link>
 								</li>
@@ -327,7 +329,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserManageRole">
+										to="/admin/AdminManageRole">
 										<Trans>Role</Trans>
 									</Link>
 								</li>

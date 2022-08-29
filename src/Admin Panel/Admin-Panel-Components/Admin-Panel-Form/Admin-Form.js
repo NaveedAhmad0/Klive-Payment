@@ -1,7 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-const UserForm = () => {
+const AdminForm = () => {
 	return (
 		<div className="col-12 grid-margin">
 			<div className="card">
@@ -119,4 +118,4 @@ const UserForm = () => {
 	);
 };
 
-export default UserForm;
+export default AdminForm;

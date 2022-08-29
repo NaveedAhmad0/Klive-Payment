@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileComponent from "../../../app/Components/Profile-Page/ProfileComponent";
 
-const UserProfile = () => {
+const AdminProfile = () => {
 	return (
 		<div>
 			<ProfileComponent />
@@ -9,4 +9,4 @@ const UserProfile = () => {
 	);
 };
 
-export default UserProfile;
+export default AdminProfile;
