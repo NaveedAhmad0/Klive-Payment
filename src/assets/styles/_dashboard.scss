@@ -133,10 +133,31 @@
     display: none;
   }
 }
-
+.threeCards{
+  // background-position:inherit;
+  background-image: url('../images/dashboard/Ellipse\ 1\(1\).png');
+  z-index: 3;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+.cardPicBg{
+  padding: 20px;
+  z-index: 1;
+  background-image: url('../images/dashboard/Ellipse\ 2.png');
+  background-size: 70px;
+  background-repeat: no-repeat;
+}
 .newboxcss{
   color:white;
   background-color: #5f40f8;
+  border-radius: .5rem;
+ 
+  // height: 300px;
+  padding: 1.4rem!important;
+}
+.newboxcss2{
+  color:black;
+  background-color: white;
   border-radius: .5rem;
   padding: 1.4rem!important;
 }

@@ -6,6 +6,7 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import cardPic from "../../../assets/images/dashboard/Vector(1).png";
 
 const { SearchBar } = Search;
 
@@ -1100,10 +1101,10 @@ export class AdminDashboard extends Component {
 						<div className="card">
 							<div className="card-body">
 								<div className="row">
-									<div className="col-xl-3 col-lg-6 col-sm-6 grid-margin-xl-0 grid-margin">
-										<div className="d-flex newboxcss">
-											<div className="wrapper my-auto ml-auto ml-lg-4 mr-1">
-												<svg
+									<div className="col-xl-3 col-lg-6  col-sm-6 grid-margin-xl-0 grid-margin threeCards">
+										<div className="d-flex newboxcss ">
+											<div className="wrapper my-auto ml-auto ml-lg-4 mr-4 cardPicBg">
+												{/* <svg
 													stroke="currentColor"
 													fill="currentColor"
 													stroke-width="0"
@@ -1112,32 +1113,34 @@ export class AdminDashboard extends Component {
 													width="2em"
 													xmlns="http://www.w3.org/2000/svg">
 													<path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z"></path>
-												</svg>
+												</svg> */}
+												<div className="">
+													<img src={cardPic} alt="cardpic" />
+												</div>
 											</div>
-											<div className="wrapper">
+											<div className="wrapper py-2">
 												<h4 className="mb-0 font-weight-medium text-primary">
 													Main Account
 												</h4>
 												<h3 className="mb-0 font-weight-semibold">32,451</h3>
-												<p className="mb-0 text-muted">+14.00(+0.50%)</p>
+												{/* <p className="mb-0 text-muted">+14.00(+0.50%)</p> */}
 											</div>
 										</div>
 									</div>
 									<div className="col-xl-3 col-lg-6 col-sm-6 mt-md-0 mt-4 grid-margin-xl-0 grid-margin ">
 										<div className="d-flex newboxcss">
-											<div className="wrapper">
+											<div className="wrapper py-2">
 												<h3 className="mb-0 font-weight-semibold">15,236</h3>
 												<h5 className="mb-0 font-weight-medium text-primary">
 													Impressions
 												</h5>
-												<p className="mb-0 text-muted">+138.97(+0.54%)</p>
+												{/* <p className="mb-0 text-muted">+138.97(+0.54%)</p> */}
 											</div>
 											<div className="wrapper my-auto ml-auto ml-lg-4">
 												<Line
 													ref="chart"
 													data={this.state.impressionChartData}
 													options={this.state.areaOptions}
-													datasetKeyProvider={this.state.datasetKeyProvider}
 													height={50}
 													width={100}
 													id="imoressionChart"
@@ -1147,19 +1150,18 @@ export class AdminDashboard extends Component {
 									</div>
 									<div className="col-xl-3 col-lg-6 col-sm-6 mt-md-0 mt-4 grid-margin-xl-0 grid-margin">
 										<div className="d-flex newboxcss">
-											<div className="wrapper">
+											<div className="wrapper py-2">
 												<h3 className="mb-0 font-weight-semibold">7,688</h3>
 												<h5 className="mb-0 font-weight-medium text-primary">
 													Conversion
 												</h5>
-												<p className="mb-0 text-muted">+57.62(+0.76%)</p>
+												{/* <p className="mb-0 text-muted">+57.62(+0.76%)</p> */}
 											</div>
 											<div className="wrapper my-auto ml-auto ml-lg-4">
 												<Line
 													ref="chart"
 													data={this.state.conversionChartData}
 													options={this.state.areaOptions}
-													datasetKeyProvider={this.state.datasetKeyProvider}
 													height={50}
 													width={100}
 													id="conversionChart"
@@ -1169,19 +1171,18 @@ export class AdminDashboard extends Component {
 									</div>
 									<div className="col-xl-3 col-lg-6 col-sm-6 mt-md-0 mt-4 grid-margin-xl-0 grid-margin">
 										<div className="d-flex newboxcss">
-											<div className="wrapper">
+											<div className="wrapper py-2">
 												<h3 className="mb-0 font-weight-semibold">1,553</h3>
 												<h5 className="mb-0 font-weight-medium text-primary">
 													Downloads
 												</h5>
-												<p className="mb-0 text-muted">+138.97(+0.54%)</p>
+												{/* <p className="mb-0 text-muted">+138.97(+0.54%)</p> */}
 											</div>
 											<div className="wrapper my-auto ml-auto ml-lg-4">
 												<Line
 													ref="chart"
 													data={this.state.downloadChartData}
 													options={this.state.areaOptions}
-													datasetKeyProvider={this.state.datasetKeyProvider}
 													height={50}
 													width={100}
 													id="downloadChart"
