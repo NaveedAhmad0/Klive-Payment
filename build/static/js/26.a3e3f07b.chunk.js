@@ -1,2 +1,0 @@
-(window["webpackJsonpstar-admin-pro-react"]=window["webpackJsonpstar-admin-pro-react"]||[]).push([[26],{482:function(n,a,e){"use strict";e.r(a);var t=e(0),r=e.n(t),c=e(179);a.default=function(){return r.a.createElement("div",null,r.a.createElement(c.a,null))}}}]);
-//# sourceMappingURL=26.a3e3f07b.chunk.js.map
