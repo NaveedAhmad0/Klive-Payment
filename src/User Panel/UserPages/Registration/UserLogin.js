@@ -84,11 +84,11 @@ function UserLogin() {
 										className="h-auto"
 									/>
 								</Form.Group>
-								<a
-									href="/user/Registration/ForgotPassword"
+								<Link
+									to="/user/Registration/ForgotPassword"
 									className="auth-link text-black">
 									Forgot password?
-								</a>
+								</Link>
 								<div className="mt-3">
 									{!success ? (
 										<button

@@ -109,12 +109,12 @@ function AdminLogin() {
 											Keep me signed in
 										</label>
 									</div>
-									<a
-										href="/merchant/forgot-password"
+									<Link
+										to="/merchant/forgot-password"
 										// onClick={(event) => event.preventDefault()}
 										className="auth-link text-black">
 										Forgot password?
-									</a>
+									</Link>
 								</div>
 								<div className="mb-2">
 									<button
