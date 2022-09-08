@@ -292,7 +292,7 @@ class MerchantSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user-pages/register-1">
+										to="/merchant/registration">
 										<Trans>Register</Trans>
 									</Link>
 								</li>

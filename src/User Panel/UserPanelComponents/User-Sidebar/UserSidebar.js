@@ -316,7 +316,7 @@ class UserSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user-pages/register-1">
+										to="/user/Registration/UserRegistration">
 										<Trans>Register</Trans>
 									</Link>
 								</li>

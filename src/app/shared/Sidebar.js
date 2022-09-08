@@ -369,18 +369,6 @@ class Sidebar extends Component {
 										<Trans>Login</Trans>
 									</Link>
 								</li>
-								<li className="nav-item">
-									{" "}
-									<Link
-										className={
-											this.isPathActive("/user-pages/register-1")
-												? "nav-link active"
-												: "nav-link"
-										}
-										to="/user-pages/register-1">
-										<Trans>Register</Trans>
-									</Link>
-								</li>
 							</ul>
 						</Collapse>
 					</li>

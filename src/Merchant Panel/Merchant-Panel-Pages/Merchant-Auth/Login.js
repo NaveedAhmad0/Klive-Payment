@@ -1,8 +1,8 @@
-import React, { Component, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
-function Login() {
+function AdminLogin() {
 	return (
 		<div>
 			<div className="d-flex align-items-center auth px-0">
@@ -10,7 +10,10 @@ function Login() {
 					<div className="col-lg-6 mx-auto">
 						<div className="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div className="brand-logo">
-								<img src={require("../../assets/images/logo.svg")} alt="logo" />
+								<img
+									src={require("../../../assets/images/logo.svg")}
+									alt="logo"
+								/>
 							</div>
 							<h4>Hello! let's get started</h4>
 							<h6 className="font-weight-light">Sign in to continue.</h6>
@@ -76,4 +79,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default AdminLogin;

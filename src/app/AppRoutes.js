@@ -21,14 +21,14 @@ const Error500 = lazy(() => import("./error-pages/Error500"));
 const Login = lazy(() => import("./user-pages/Login"));
 const Register1 = lazy(() => import("./user-pages/Register"));
 
-// USER PANEL IMPORTS
+// ADMIN PANEL IMPORTS
 
 const AdminDashboard = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Admin-Dashboard/AdminDashboard")
 );
-// const AdminLogin = lazy(() =>
-// 	import("../User Panel/UserPages/Registration/AdminLogin")
-// );
+const AdminLogin = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Admin-Auth/Login")
+);
 const AdminTransaction = lazy(() =>
 	import(
 		"../Admin Panel/Admin-Panel-Pages/Admin-Payment_Transaction/AdminPaymentTransaction"
@@ -104,12 +104,18 @@ const DepositeToMerchandise = lazy(() =>
 const UserWithdraw = lazy(() =>
 	import("../User Panel/UserPages/UserWithdraw/UserWithdraw")
 );
-// -------------------------------- USER PANEL IMPORTS ---------------------------------------------
+// -------------------------------- MERCHANT PANEL IMPORTS ---------------------------------------------
 
 const MerchantDashboard = lazy(() =>
 	import(
 		"../Merchant Panel/Merchant-Panel-Pages/Merchant-Dashboard/MerchantDashboard"
 	)
+);
+const MerchantRegistration = lazy(() =>
+	import("../Merchant Panel/Merchant-Panel-Pages/Merchant-Auth/Register")
+);
+const MerchantLogin = lazy(() =>
+	import("../Merchant Panel/Merchant-Panel-Pages/Merchant-Auth/Login")
 );
 
 const MerchantProfile = lazy(() =>
@@ -148,7 +154,6 @@ class AppRoutes extends Component {
 			<Suspense fallback={<Spinner />}>
 				<Switch>
 					{/* <Route exact path="/homepage" component={HomePage} /> */}
-					<Route exact path="/admin/dashboard" component={AdminDashboard} />
 
 					<Route path="/basic-ui/buttons" component={Buttons} />
 					<Route path="/basic-ui/dropdowns" component={Dropdowns} />
@@ -168,6 +173,9 @@ class AppRoutes extends Component {
 					<Route path="/user-pages/register-1" component={Register1} />
 
 					{/*------------------------- ADMIN PANEL ROUTES -------------------------- */}
+					<Route exact path="/admin/login" component={AdminLogin} />
+
+					<Route exact path="/admin/dashboard" component={AdminDashboard} />
 
 					<Route
 						path="/admin/AdminPaymentTransaction"
@@ -227,7 +235,12 @@ class AppRoutes extends Component {
 
 					<Route path="/merchant/dashboard" component={MerchantDashboard} />
 					<Route path="/merchant/profile" component={MerchantProfile} />
-
+					<Route
+						exact
+						path="/merchant/registration"
+						component={MerchantRegistration}
+					/>
+					<Route exact path="/merchant/login" component={MerchantLogin} />
 					<Route
 						path="/merchant/merchant-user-deposits"
 						component={MerchantUserDeposits}
