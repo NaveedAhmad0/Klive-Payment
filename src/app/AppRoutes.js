@@ -117,10 +117,20 @@ const MerchantRegistration = lazy(() =>
 const MerchantLogin = lazy(() =>
 	import("../Merchant Panel/Merchant-Panel-Pages/Merchant-Auth/Login")
 );
+const MerchantForgotPassowrd = lazy(() =>
+	import(
+		"../Merchant Panel/Merchant-Panel-Components/Forgot password/MerchantForgotPassword"
+	)
+);
 
 const MerchantProfile = lazy(() =>
 	import(
 		"../Merchant Panel/Merchant-Panel-Pages/Merchant-Profile/MerchantProfile"
+	)
+);
+const MerchantChangePassword = lazy(() =>
+	import(
+		"../Merchant Panel/Merchant-Panel-Pages/Merchant-Change-Password/UserChangePassword"
 	)
 );
 
@@ -235,6 +245,14 @@ class AppRoutes extends Component {
 
 					<Route path="/merchant/dashboard" component={MerchantDashboard} />
 					<Route path="/merchant/profile" component={MerchantProfile} />
+					<Route
+						path="/merchant/reset-password"
+						component={MerchantChangePassword}
+					/>
+					<Route
+						path="/merchant/forgot-password"
+						component={MerchantForgotPassowrd}
+					/>
 					<Route
 						exact
 						path="/merchant/registration"

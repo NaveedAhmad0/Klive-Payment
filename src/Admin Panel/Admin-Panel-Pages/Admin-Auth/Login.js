@@ -1,8 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import axios from "axios";
 
 function AdminLogin() {
+	useEffect(() => {
+		localStorage.clear();
+	}, []);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [success, setSuccess] = useState(false);
+	const [errMsg, setErrMsg] = useState("");
+	const logindetails = { email, password };
+
+	// const navigate = Redirect();
+	function handleChange(event) {
+		setEmail(event.target.value);
+	}
+	function handleChangeone(event) {
+		setPassword(event.target.value);
+	}
+	async function onSubmit(event) {
+		event.preventDefault();
+		console.log(email, password);
+
+		try {
+			const response = await axios.post(
+				`https://backend.klivepay.com/api/admin/login`,
+				JSON.stringify({ email, password }),
+				{
+					headers: { "Content-Type": "application/json" },
+					// withCredentials: true,
+				}
+			);
+
+			console.log(JSON.stringify(response?.data));
+
+			const accessToken = response?.data?.accessToken;
+			localStorage.setItem("token", response?.data?.accessToken);
+			setEmail("");
+			setPassword("");
+			setSuccess(true);
+		} catch (err) {
+			if (!err?.response) {
+				setErrMsg("No Server Response");
+			} else if (err.response?.status === 400) {
+				setErrMsg("Invalid Credentialials");
+				setSuccess(false);
+			} else {
+				setErrMsg("Login failed");
+			}
+			console.log(err);
+		}
+		console.log(success);
+	}
 	return (
 		<div>
 			<div className="d-flex align-items-center auth px-0">
@@ -10,10 +61,7 @@ function AdminLogin() {
 					<div className="col-lg-6 mx-auto">
 						<div className="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div className="brand-logo">
-								<img
-									src={require("../../../assets/images/logo.svg")}
-									alt="logo"
-								/>
+								<h3 className={!errMsg ? "errMsg" : "text-danger"}>{errMsg}</h3>
 							</div>
 							<h4>Hello! let's get started</h4>
 							<h6 className="font-weight-light">Sign in to continue.</h6>
@@ -22,6 +70,8 @@ function AdminLogin() {
 									<Form.Control
 										type="email"
 										placeholder="Username"
+										onChange={(event) => handleChange(event)}
+										value={email}
 										size="lg"
 										className="h-auto"
 									/>
@@ -30,16 +80,22 @@ function AdminLogin() {
 									<Form.Control
 										type="password"
 										placeholder="Password"
+										onChange={(event) => handleChangeone(event)}
+										value={password}
 										size="lg"
 										className="h-auto"
 									/>
 								</Form.Group>
 								<div className="mt-3">
-									<Link
-										className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-										to="/dashboard">
-										SIGN IN
-									</Link>
+									{!success ? (
+										<button
+											onClick={(event) => onSubmit(event)}
+											className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+											SIGN IN
+										</button>
+									) : (
+										<Redirect to="/admin/dashboard" />
+									)}
 								</div>
 								<div className="my-2 d-flex justify-content-between align-items-center">
 									<div className="form-check">
@@ -64,12 +120,12 @@ function AdminLogin() {
 										facebook
 									</button>
 								</div>
-								<div className="text-center mt-4 font-weight-light">
+								{/* <div className="text-center mt-4 font-weight-light">
 									Don't have an account?{" "}
 									<Link to="/user-pages/register" className="text-primary">
 										Create
 									</Link>
-								</div>
+								</div> */}
 							</Form>
 						</div>
 					</div>

@@ -304,7 +304,7 @@ class UserSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user-pages/login-1">
+										to="/user/Registration/UserLogin">
 										<Trans>Login</Trans>
 									</Link>
 								</li>
