@@ -83,13 +83,13 @@ function App(props) {
 				</Switch>
 			</Suspense>
 			<div className="container-scroller">
-				{(isUser && location.pathname === "/Registration/UserLogin") && navbarComponent}
+			{!location.pathname.includes("Registration") && !location.pathname.includes("homepage")  ? navbarComponent:null}
 				{isMerchant && navbarComponent}
 				{isAdmin && navbarComponent}
 				<div className="container-fluid page-body-wrapper">
 					{isAdmin && adminSidebarComponent}
 					{isMerchant && merchantSidebarComponent}
-					{(isUser && location.pathname === "/Registration/UserLogin") && userSidebarComponent}
+					{!location.pathname.includes("Registration") && !location.pathname.includes("homepage") ? userSidebarComponent:null}
 					{/* {sidebarComponent} */}
 					<div className="main-panel">
 						<div className="content-wrapper">
