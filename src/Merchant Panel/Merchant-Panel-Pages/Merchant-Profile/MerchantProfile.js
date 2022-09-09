@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileComponent from "../../../app/Components/Profile-Page/ProfileComponent";
+import ProfileComponent from "../../Merchant-Panel-Components/Profile-Page/ProfileComponent";
 
 const UserProfile = () => {
 	return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ function AdminLogin() {
 	const [password, setPassword] = useState("");
 	const [success, setSuccess] = useState(false);
 	const [errMsg, setErrMsg] = useState("");
-	const logindetails = { email, password };
+	// const logindetails = { email, password };
 
 	// const navigate = Redirect();
 	function handleChange(event) {
@@ -36,7 +36,7 @@ function AdminLogin() {
 
 			console.log(JSON.stringify(response?.data));
 
-			const accessToken = response?.data?.accessToken;
+			// const accessToken = response?.data?.accessToken;
 			localStorage.setItem("token", response?.data?.accessToken);
 			setEmail("");
 			setPassword("");

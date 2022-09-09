@@ -48,6 +48,9 @@ const AdminRefund = lazy(() =>
 const AdminProfile = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Admin-Profile/AdminProfile")
 );
+const GetAdminProfile = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/Admin Get Profile/GetUserProfile")
+);
 const AdminChangePassword = lazy(() =>
 	import(
 		"../Admin Panel/Admin-Panel-Pages/Admin-Change-Password/AdminChangePassword"
@@ -87,6 +90,9 @@ const UserDashboard = lazy(() =>
 
 const UserProfile = lazy(() =>
 	import("../User Panel/UserPages/UserProfile/UserProfile")
+);
+const GetUserProfile = lazy(() =>
+	import("../User Panel/UserPages/Get user Profile/GetUserProfile")
 );
 
 const UserDeposites = lazy(() =>
@@ -131,6 +137,11 @@ const MerchantProfile = lazy(() =>
 const MerchantChangePassword = lazy(() =>
 	import(
 		"../Merchant Panel/Merchant-Panel-Pages/Merchant-Change-Password/UserChangePassword"
+	)
+);
+const GetMerchantProfile = lazy(() =>
+	import(
+		"../Merchant Panel/Merchant-Panel-Components/Get user Profile/GetUserProfile"
 	)
 );
 
@@ -197,7 +208,8 @@ class AppRoutes extends Component {
 					/>
 					<Route path="/admin/AdminVoid" component={AdminVoid} />
 					<Route path="/admin/AdminRefund" component={AdminRefund} />
-					<Route path="/admin/AdminProfile" component={AdminProfile} />
+					<Route path="/admin/edit-AdminProfile" component={AdminProfile} />
+					<Route path="/admin/get-profile" component={GetAdminProfile} />
 					<Route
 						path="/admin/AdminChangePassword"
 						component={AdminChangePassword}
@@ -228,7 +240,8 @@ class AppRoutes extends Component {
 
 					<Route path="/user/UserDashboard" component={UserDashboard} />
 
-					<Route path="/user/UserProfile" component={UserProfile} />
+					<Route path="/user/EditProfile" component={UserProfile} />
+					<Route path="/user/UserProfile" component={GetUserProfile} />
 
 					<Route path="/user/UserDeposites" component={UserDeposites} />
 
@@ -258,6 +271,7 @@ class AppRoutes extends Component {
 						path="/merchant/registration"
 						component={MerchantRegistration}
 					/>
+
 					<Route exact path="/merchant/login" component={MerchantLogin} />
 					<Route
 						path="/merchant/merchant-user-deposits"
@@ -277,6 +291,10 @@ class AppRoutes extends Component {
 					<Route
 						path="/merchant/withdrawalrequest"
 						component={WithdrawalRequest}
+					/>
+					<Route
+						path="/merchant/GetUserProfile"
+						component={GetMerchantProfile}
 					/>
 
 					{/*---------------------------- ERROR PAGE ------------------ */}

@@ -1,7 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import API from "../../../backend";
+import {
+	faCheck,
+	faTimes,
+	faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import API from "../../../backend";
 import MerchantLogin from "../Merchant-Auth/Login";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -142,6 +148,14 @@ function Register() {
 									</h6>
 									<form className="pt-3">
 										<div className="form-group">
+											<FontAwesomeIcon
+												icon={faCheck}
+												className={!validName ? "valid" : "hide"}
+											/>
+											<FontAwesomeIcon
+												icon={faTimes}
+												className={validName || !name ? "hide" : "invalid"}
+											/>
 											<input
 												type="text"
 												id="username"
@@ -157,8 +171,30 @@ function Register() {
 												placeholder="Username"
 												className="form-control form-control-lg"
 											/>
+											<p
+												id="uidnote"
+												className={
+													userFocus && name && !validName
+														? "instructions"
+														: "offscreen"
+												}>
+												<FontAwesomeIcon icon={faInfoCircle} />
+												4 to 24 characters.
+												<br />
+												Must begin with a letter.
+												<br />
+												Letters, numbers, underscores, hyphens allowed.
+											</p>
 										</div>
 										<div className="form-group">
+											<FontAwesomeIcon
+												icon={faCheck}
+												className={validMobile ? "valid" : "hide"}
+											/>
+											<FontAwesomeIcon
+												icon={faTimes}
+												className={validMobile || !mobile ? "hide" : "invalid"}
+											/>
 											<input
 												type="number"
 												id="mobileNumber"
@@ -171,8 +207,26 @@ function Register() {
 												className="form-control form-control-lg"
 												placeholder="mobile"
 											/>
+											<p
+												id="uidnote"
+												className={
+													mobileFocus && mobile && !validMobile
+														? "instructions"
+														: "offscreen"
+												}>
+												<FontAwesomeIcon icon={faInfoCircle} />
+												must be 10 digits.
+											</p>
 										</div>
 										<div className="form-group">
+											<FontAwesomeIcon
+												icon={faCheck}
+												className={validEmail ? "valid" : "hide"}
+											/>
+											<FontAwesomeIcon
+												icon={faTimes}
+												className={validEmail || !email ? "hide" : "invalid"}
+											/>
 											<input
 												type="email"
 												id="email"
@@ -185,6 +239,16 @@ function Register() {
 												className="form-control form-control-lg"
 												placeholder="Email"
 											/>
+											<p
+												id="uidnote"
+												className={
+													emailFocus && email && !validEmail
+														? "instructions"
+														: "offscreen"
+												}>
+												<FontAwesomeIcon icon={faInfoCircle} />
+												must be a proper email address.
+											</p>
 										</div>
 										<div className="form-group">
 											<input

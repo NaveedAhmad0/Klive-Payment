@@ -210,7 +210,7 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/admin/AdminProfile">
+										to="/admin/get-profile">
 										<Trans>User Profile</Trans>
 									</Link>
 								</li>

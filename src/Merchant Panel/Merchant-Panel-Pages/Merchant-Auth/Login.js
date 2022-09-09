@@ -11,7 +11,7 @@ function AdminLogin() {
 	const [password, setPassword] = useState("");
 	const [success, setSuccess] = useState(false);
 	const [errMsg, setErrMsg] = useState("");
-	const logindetails = { email, password };
+	// const logindetails = { email, password };
 
 	// const navigate = Redirect();
 	function handleChange(event) {

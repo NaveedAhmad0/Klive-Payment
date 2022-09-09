@@ -4,6 +4,9 @@
   "homepage": "/admin",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@fullcalendar/core": "^4.3.1",
     "@fullcalendar/daygrid": "^4.3.0",
     "@fullcalendar/interaction": "^4.3.0",
@@ -40,7 +43,7 @@
     "react-bootstrap-typeahead": "^3.4.7",
     "react-c3js": "^0.1.20",
     "react-chartist": "^0.13.3",
-    "react-chartjs-2": "^2.8.0",
+    "react-chartjs-2": "^2.11.2",
     "react-circular-progressbar": "^2.0.2",
     "react-clipboard.js": "^2.0.16",
     "react-collapse": "^5.0.0",
