@@ -91,7 +91,7 @@ function App(props) {
 					{isMerchant && merchantSidebarComponent}
 					{!location.pathname.includes("Registration") && !location.pathname.includes("homepage") ? userSidebarComponent:null}
 					{/* {sidebarComponent} */}
-					<div className="main-panel">
+					<div className={!location.pathname.includes("Registration") && !location.pathname.includes("homepage") ? "main-panel" : "main-2"}>
 						<div className="content-wrapper">
 							<AppRoutes />
 							{SettingsPanelComponent}

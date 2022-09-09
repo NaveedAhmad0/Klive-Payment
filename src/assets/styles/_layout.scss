@@ -264,6 +264,7 @@
     .main-panel {
       width: 100%;
     }
+
   }
 }
 
@@ -436,4 +437,15 @@
       }
     }
   }
+}
+
+
+
+.main-2{
+  transition: width 0.25s ease, margin 0.25s ease;
+    width: calc(100%);
+    min-height: calc(100vh - 63px);
+    padding-top: 63px;
+    display: flex;
+    flex-direction: column;
 }
