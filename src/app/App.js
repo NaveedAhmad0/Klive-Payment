@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState, Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 
 import { withRouter } from "react-router-dom";
 import "./App.scss";
@@ -19,7 +19,7 @@ import Spinner from "./shared/Spinner";
 function App(props) {
 	const [isFullPageLayout, setisFullPageLayout] = useState(false);
 	const { isAdmin, isMerchant, isUser } = useContext(userContext);
-
+    const location = useLocation();
 	let navbarComponent = isFullPageLayout ? <Navbar /> : "";
 	let adminSidebarComponent = isFullPageLayout ? <Sidebar /> : "";
 	let merchantSidebarComponent = isFullPageLayout ? <MerchantSidebar /> : "";
@@ -83,13 +83,13 @@ function App(props) {
 				</Switch>
 			</Suspense>
 			<div className="container-scroller">
-				{isUser && navbarComponent}
+				{(isUser && location.pathname === "/Registration/UserLogin") && navbarComponent}
 				{isMerchant && navbarComponent}
 				{isAdmin && navbarComponent}
 				<div className="container-fluid page-body-wrapper">
 					{isAdmin && adminSidebarComponent}
 					{isMerchant && merchantSidebarComponent}
-					{isUser && userSidebarComponent}
+					{(isUser && location.pathname === "/Registration/UserLogin") && userSidebarComponent}
 					{/* {sidebarComponent} */}
 					<div className="main-panel">
 						<div className="content-wrapper">
