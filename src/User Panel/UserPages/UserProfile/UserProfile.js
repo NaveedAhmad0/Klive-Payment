@@ -102,7 +102,7 @@ const UserProfile = () => {
 					showlinkedin: res.data.user.linkedin,
 					showwebsite: res.data.user.website,
 					showother: res.data.user.other,
-					showshopType: res.data.user.shopType,
+					shopType: res.data.user.shopType,
 					showbank: res.data.user.bank,
 					showrateBARCode: res.data.user.rateBarCode,
 					showrateQRCode: res.data.user.rateQrCode,
@@ -111,6 +111,15 @@ const UserProfile = () => {
 					showcompany: res.data.user.company,
 					showInter: res.data.user.inter,
 					showbookbank: res.data.user.bankBook,
+
+
+					creditCard: res.data.user.creditCard,
+		weChat: res.data.user.weChat,
+		livePayment: res.data.user.livePayment,
+		mobileBanking: res.data.user.mobileBanking,
+		trueWallet: res.data.user.trueWallet,
+		shopeePay: res.data.user.shopeePay,
+		alone: res.data.user.alone,
 				});
 
 				console.log("DATA IS ", res.data.user);
@@ -202,14 +211,14 @@ const UserProfile = () => {
 					district: showData.showdistrict,
 					subDivision: showData.showsubDivision,
 					pincode: showData.showpincode,
-					shopType: showData.showshopType,
-					creditCard: true,
-					weChat: true,
-					livePayment: true,
-					mobileBanking: true,
-					trueWallet: true,
-					shopeePay: true,
-					alone: true,
+					shopType: showData.shopType,
+					creditCard: showData.creditCard,
+		weChat: showData.weChat,
+		livePayment: showData.livePayment,
+		mobileBanking: showData.mobileBanking,
+		trueWallet: showData.trueWallet,
+		shopeePay: showData.shopeePay,
+		alone: showData.alone,
 					website: showData.showwebsite,
 					facebook: showData.showfacebook,
 					linkedin: showData.showlinkedin,
@@ -247,7 +256,7 @@ const UserProfile = () => {
 			alert("Profile changed Succesfully!");
 		}
 	}, [success]);
-
+console.log(showData.shopType)
 	return (
 		<div className="col-12 grid-margin">
 			<h4 className="card-title">user Personal Information</h4>
@@ -565,7 +574,7 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="shop"
-										value="social"
+										//value="social"
 										onChange={(e) => {
 											if(e.target.checked  === true){
 												setShowData({
@@ -575,7 +584,7 @@ const UserProfile = () => {
 											}
 											
 										}}
-										defaultChecked={showData.shopType === "social"}
+										checked={showData.shopType === "social" ? true : false}
 									/>
 									<label className={styles.userLabel}>social</label>
 								</div>
@@ -592,9 +601,9 @@ const UserProfile = () => {
 											}
 											
 										}}
-										defaultChecked={showData.shopType === "website"}
+										checked={showData.shopType === "website"}
 										name="shop"
-										value="website"
+										//value="website"
 									/>
 									<label className={styles.userLabel}>website</label>
 								</div>
