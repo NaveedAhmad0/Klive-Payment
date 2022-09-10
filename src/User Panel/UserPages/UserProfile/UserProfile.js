@@ -28,7 +28,10 @@ const UserProfile = () => {
 		showInitialShop: "",
 		showfirstName: "",
 		showbookbank: "",
-
+		showLogo: "",
+		showOtherDocument: "",
+		showbookbank: "",
+		showidCard: "",
 		email: "",
 		userName: "",
 		surName: "",
@@ -93,6 +96,10 @@ const UserProfile = () => {
 					showsurName: res.data.user.surName,
 					showprovince: res.data.user.province,
 					showYearOfBirth: res.data.user.yearOfBirth,
+					showbookbank: res.data.user.bankBook,
+					showidCard: res.data.user.copyOfId,
+					showLogo: res.data.user.logo,
+					showOtherDocument: res.data.user.otherDocument,
 					showmonthOfBirth: res.data.user.monthOfBirth,
 					showDistrict: res.data.user.district,
 					showsubDivision: res.data.user.subDivision,
@@ -213,6 +220,12 @@ const UserProfile = () => {
 					pincode: showData.showpincode,
 					shopType: showData.shopType,
 					creditCard: showData.creditCard,
+
+
+					copyOfId: showData.showidCard,
+					logo: showData.showLogo,
+					bankBook: showData.showbookbank,
+					otherDocument: showData.showOtherDocument,
 		weChat: showData.weChat,
 		livePayment: showData.livePayment,
 		mobileBanking: showData.mobileBanking,
@@ -1110,11 +1123,27 @@ console.log(showData.shopType)
 						</div>
 
 						<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-							<form>
+						<form>
 								<div className="form-group">
 									<label className={styles.userLabel}>logo</label>
 									<input
 										type="file"
+										onChange={(e) => {
+											const files = [...e.target.files];
+											compress
+												.compress(files, {
+													size: 1,
+													quality: 0.4,
+													maxWidth: 500,
+													maxHeight: 500,
+													resize: true,
+													rotate: false,
+												})
+												.then((data) => {
+													showData.showLogo = data[0].prefix + data[0].data;
+												});
+										}}
+										// value={showData.showLogo}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="file"
 									/>
@@ -1123,6 +1152,23 @@ console.log(showData.shopType)
 									<label className={styles.userLabel}>other document</label>
 									<input
 										type="file"
+										onChange={(e) => {
+											const files = [...e.target.files];
+											compress
+												.compress(files, {
+													size: 1,
+													quality: 0.4,
+													maxWidth: 500,
+													maxHeight: 500,
+													resize: true,
+													rotate: false,
+												})
+												.then((data) => {
+													showData.showOtherDocument =
+														data[0].prefix + data[0].data;
+												});
+										}}
+										// value={showData.showOtherDocument}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="file"
 									/>
@@ -1150,10 +1196,10 @@ console.log(showData.shopType)
 										onChange={(e) => {
 											setShowData({
 												...showData,
-												showRFNCode: e.target.value,
+												showRNFcode: e.target.value,
 											});
 										}}
-										value={showData.showRFNCode}
+										value={showData.showRNFcode}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="Rnf Code"
 									/>
@@ -1184,7 +1230,7 @@ console.log(showData.shopType)
 												showrateBARCode: e.target.value,
 											});
 										}}
-										value={showData.showrateBarCode}
+										value={showData.showrateBARCode}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="Bar code"
 									/>
