@@ -147,7 +147,7 @@ const Navbar = () =>  {
                     
                     evt.preventDefault()
                     localStorage.clear();
-                    history.push("/admin/user/Registration/UserRegistration")
+                    history.push("/admin/user/Registration/UserLogin")
                     
                     }}>
                     <Trans>Sign Out</Trans>
