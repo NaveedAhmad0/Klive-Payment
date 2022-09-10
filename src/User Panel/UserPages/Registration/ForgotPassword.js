@@ -48,9 +48,7 @@ const UserForgotPassword = () => {
 					<div className="col-lg-8 mx-auto">
 						<div className="auth-form-light text-left py-5 px-4 px-sm-5">
 							<h4>
-								Online
-								<br />
-								Payment
+								Forgot Password
 							</h4>
 							<form className="pt-3">
 								<div className="form-group">
@@ -77,8 +75,8 @@ const UserForgotPassword = () => {
 									<button
 										href="/admin/user/Registration/UserLogin"
 										onClick={(event) => onSubmit(event)}
-										className="btn btn-block btn btn-success btn-lg btn-block rounded-pill">
-										Reset Password
+										className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+										Forgot Password
 									</button>
 								</div>
 							</form>

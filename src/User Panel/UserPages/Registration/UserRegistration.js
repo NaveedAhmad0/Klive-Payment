@@ -17,7 +17,7 @@ function UserRegistration() {
 	const [validName, setValidName] = useState(false);
 	const [userFocus, setUserFocus] = useState(false);
 
-	const [mobile, setMobile] = useState(0);
+	const [mobile, setMobile] = useState();
 	const [validMobile, setValidMobile] = useState(false);
 	const [mobileFocus, setMobileFocus] = useState(false);
 

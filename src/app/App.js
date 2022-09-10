@@ -100,7 +100,7 @@ function App(props) {
 					{/* {isMerchant ? merchantSidebarComponent : null} */}
 
 					{(!location.pathname.includes("Registration") && !location.pathname.includes("login")) &&
-					!location.pathname.includes("admin") &&  !location.pathname.includes("admin")
+					!location.pathname.includes("admin/login") &&  !location.pathname.includes("admin/login")
 						? userSidebarComponent
 						: null}
 				
