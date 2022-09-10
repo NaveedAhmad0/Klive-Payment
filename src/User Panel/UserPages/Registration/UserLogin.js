@@ -64,6 +64,10 @@ function UserLogin() {
 								<h3 className={!errMsg ? "errMsg" : "text-danger"}>{errMsg}</h3>
 								{/* <img src={require("../../assets/images/logo.svg")} alt="logo" /> */}
 							</div>
+							<h4 className="text-primary">
+									Login
+									 
+								</h4>
 							<Form className="pt-3">
 								<Form.Group className="d-flex search-field">
 									<Form.Control

@@ -120,10 +120,9 @@ function UserRegistration() {
 								<div className="brand-logo">
 									{/* <img src={require("../../assets/images/logo.svg")} alt="logo" /> */}
 								</div>
-								<h4>
-									Online
-									<br />
-									Payment
+								<h4  className="text-primary">
+									Register
+									 
 								</h4>
 								<form className="pt-3">
 									<div className="form-group">
