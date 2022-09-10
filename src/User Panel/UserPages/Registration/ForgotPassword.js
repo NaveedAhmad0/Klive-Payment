@@ -75,7 +75,7 @@ const UserForgotPassword = () => {
 								</div>
 								<div className="mt-3">
 									<button
-										href="/user/Registration/UserLogin"
+										href="/admin/user/Registration/UserLogin"
 										onClick={(event) => onSubmit(event)}
 										className="btn btn-block btn btn-success btn-lg btn-block rounded-pill">
 										Reset Password

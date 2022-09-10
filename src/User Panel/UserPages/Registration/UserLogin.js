@@ -86,7 +86,7 @@ function UserLogin() {
 									/>
 								</Form.Group>
 								<Link
-									to="/user/Registration/ForgotPassword"
+									to="/admin/user/Registration/ForgotPassword"
 									className="auth-link text-black">
 									Forgot password?
 								</Link>
@@ -98,14 +98,14 @@ function UserLogin() {
 											SIGN IN
 										</button>
 									) : (
-										<Redirect to="/user/UserDashboard" />
+										<Redirect to="/admin/user/UserDashboard" />
 									)}
 								</div>
 
 								<div className="text-center mt-4 font-weight-light">
 									Don't have an account?{" "}
 									<Link
-										to="/user/Registration/UserRegistration"
+										to="/admin/user/Registration/UserRegistration"
 										className="text-primary">
 										SignUp
 									</Link>

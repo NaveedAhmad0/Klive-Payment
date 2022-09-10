@@ -223,7 +223,7 @@ function UserRegistration() {
 									<div className="mt-3">
 										{!success ? (
 											<button
-												href="/user/Registration/UserLogin"
+												href="/admin/user/Registration/UserLogin"
 												onClick={handleSubmit}
 												disabled={
 													!validName ||
@@ -238,13 +238,13 @@ function UserRegistration() {
 												SIGN UP
 											</button>
 										) : (
-											<Redirect to="/user/Registration/UserLogin" />
+											<Redirect to="/admin/user/Registration/UserLogin" />
 										)}
 									</div>
 									<div className="text-center mt-4 font-weight-light">
 										Already have an account?{" "}
 										<Link
-											to="/user/Registration/UserLogin"
+											to="/admin/user/Registration/UserLogin"
 											className="text-primary">
 											Login
 										</Link>

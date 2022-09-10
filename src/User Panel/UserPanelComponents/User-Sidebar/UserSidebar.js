@@ -128,7 +128,7 @@ class UserSidebar extends Component {
 						className={
 							this.isPathActive("/dashboard") ? "nav-item active" : "nav-item"
 						}>
-						<Link className="nav-link" to="/user/UserDashboard">
+						<Link className="nav-link" to="/admin/user/UserDashboard">
 							<i className="mdi mdi-television menu-icon"></i>
 							<span className="menu-title">
 								<Trans>Dashboard</Trans>
@@ -163,7 +163,7 @@ class UserSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/EditProfile">
+										to="/admin/user/EditProfile">
 										<Trans>User Profile</Trans>
 									</Link>
 								</li>
@@ -175,7 +175,7 @@ class UserSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/Registration/ResetPassword">
+										to="/admin/user/Registration/ResetPassword">
 										<Trans>Change Password</Trans>
 									</Link>
 								</li>
@@ -184,7 +184,7 @@ class UserSidebar extends Component {
 					</li>
 					<li
 						className={
-							this.isPathActive("/user/UserDeposites")
+							this.isPathActive("/admin/user/UserDeposites")
 								? "nav-item active"
 								: "nav-item"
 						}>
@@ -202,7 +202,7 @@ class UserSidebar extends Component {
 								? "nav-item active"
 								: "nav-item"
 						}>
-						<Link className="nav-link" to="/user/UserTransaction">
+						<Link className="nav-link" to="/admin/user/UserTransaction">
 							<i className="mdi mdi-television menu-icon"></i>
 							<span className="menu-title">
 								<Trans>Transaction Histories</Trans>
@@ -212,7 +212,7 @@ class UserSidebar extends Component {
 
 					<li
 						className={
-							this.isPathActive("/user/DepositeToMerchandise")
+							this.isPathActive("/admin/user/DepositeToMerchandise")
 								? "nav-item active"
 								: "nav-item"
 						}>
@@ -230,7 +230,7 @@ class UserSidebar extends Component {
 								? "nav-item active"
 								: "nav-item"
 						}>
-						<Link className="nav-link" to="/user/UserWithdraw">
+						<Link className="nav-link" to="/admin/user/UserWithdraw">
 							<i className="mdi mdi-television menu-icon"></i>
 							<span className="menu-title">
 								<Trans>Reports</Trans>
@@ -278,7 +278,7 @@ class UserSidebar extends Component {
 
 					<li
 						className={
-							this.isPathActive("/user-pages") ? "nav-item active" : "nav-item"
+							this.isPathActive("/admin/user-pages") ? "nav-item active" : "nav-item"
 						}>
 						<div
 							className={
@@ -304,7 +304,7 @@ class UserSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/Registration/UserLogin">
+										to="/admin/user/Registration/UserLogin">
 										<Trans>Login</Trans>
 									</Link>
 								</li>
@@ -316,7 +316,7 @@ class UserSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/Registration/UserRegistration">
+										to="/admin/user/Registration/UserRegistration">
 										<Trans>Register</Trans>
 									</Link>
 								</li>
