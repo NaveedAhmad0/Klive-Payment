@@ -85,29 +85,29 @@ function App(props) {
 			</Suspense> */}
 			<div className="container-scroller">
 				{!location.pathname.includes("Registration") &&  !location.pathname.includes("login") &&
-				!location.pathname.includes("homepage")
+				!location.pathname.includes("admin")
 					? navbarComponent
 					: null}
-				{isMerchant && navbarComponent}
+				{/* {isMerchant && navbarComponent} */}
 
-				{location.pathname.includes("login") || location.pathname.includes("Registration")  ? null:navbarComponent}
+				{location.pathname.includes("login") || location.pathname.includes("Registration") || location.pathname == "/admin"  ? null:navbarComponent}
 				
 				
 				
 				
 				<div className="container-fluid page-body-wrapper">
-					{location.pathname.includes("login") || location.pathname.includes("Registration") || location.pathname.includes("login") || location.pathname.includes("user") ? null: adminSidebarComponent}
-					{isMerchant ? merchantSidebarComponent : null}
+					{location.pathname.includes("login") || location.pathname.includes("Registration")  ||  location.pathname == "/admin" || location.pathname.includes("user") ? null: adminSidebarComponent}
+					{/* {isMerchant ? merchantSidebarComponent : null} */}
 
 					{(!location.pathname.includes("Registration") && !location.pathname.includes("login")) &&
-					!location.pathname.includes("homepage") &&  !location.pathname.includes("admin")
+					!location.pathname.includes("admin") &&  !location.pathname.includes("admin")
 						? userSidebarComponent
 						: null}
 				
 					<div
 						className={
 							!location.pathname.includes("Registration") &&
-							!location.pathname.includes("homepage") && !location.pathname.includes("login")
+							!location.pathname.includes("admin") && !location.pathname.includes("login")
 								? "main-panel"
 								: "main-2"
 						}>
