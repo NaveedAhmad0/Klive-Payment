@@ -85,7 +85,7 @@ function App(props) {
 			</Suspense> */}
 			<div className="container-scroller">
 				{!location.pathname.includes("Registration") &&  !location.pathname.includes("login") &&
-				!location.pathname.includes("homepage")
+				!location.pathname.includes("admin")
 					? navbarComponent
 					: null}
 				{isMerchant && navbarComponent}
@@ -100,14 +100,14 @@ function App(props) {
 					{isMerchant ? merchantSidebarComponent : null}
 
 					{(!location.pathname.includes("Registration") && !location.pathname.includes("login")) &&
-					!location.pathname.includes("homepage") &&  !location.pathname.includes("admin")
+					!location.pathname.includes("admin") &&  !location.pathname.includes("admin")
 						? userSidebarComponent
 						: null}
 				
 					<div
 						className={
 							!location.pathname.includes("Registration") &&
-							!location.pathname.includes("homepage") && !location.pathname.includes("login")
+							!location.pathname.includes("admin") && !location.pathname.includes("login")
 								? "main-panel"
 								: "main-2"
 						}>

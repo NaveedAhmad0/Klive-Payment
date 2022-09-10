@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Trans } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
-class Navbar extends Component {
-  toggleOffcanvas() {
+const Navbar = () =>  {
+  let history = useHistory();
+ const  toggleOffcanvas = () => {
     document.querySelector('.sidebar-offcanvas').classList.toggle('active');
   }
-  toggleRightSidebar() {
+  const toggleRightSidebar = () => {
     document.querySelector('.right-sidebar').classList.toggle('open');
   }
-  render () {  
+
     return (
       <nav className="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
         <div className="navbar-menu-wrapper d-flex align-items-center justify-content-between">
@@ -140,20 +142,27 @@ class Navbar extends Component {
                   <Dropdown.Item className="dropdown-item preview-item d-flex align-items-center border-0" onClick={evt =>evt.preventDefault()}>
                     <Trans>Check Inbox</Trans>
                   </Dropdown.Item>
-                  <Dropdown.Item className="dropdown-item preview-item d-flex align-items-center border-0" onClick={evt =>evt.preventDefault()}>
+                  <Dropdown.Item className="dropdown-item preview-item d-flex align-items-center border-0" onClick={evt =>{
+                    
+                    
+                    evt.preventDefault()
+                    localStorage.clear();
+                    history.push("/admin")
+                    
+                    }}>
                     <Trans>Sign Out</Trans>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </li>
           </ul>
-          <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" onClick={this.toggleOffcanvas}>
+          <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" onClick={toggleOffcanvas}>
             <span className="mdi mdi-menu"></span>
           </button>
         </div>
       </nav>
     );
   }
-}
+
 
 export default Navbar;
