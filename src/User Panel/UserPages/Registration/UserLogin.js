@@ -37,6 +37,7 @@ function UserLogin() {
 
 			const accessToken = response?.data?.accessToken;
 			localStorage.setItem("token", accessToken);
+			localStorage.setItem("email", email);
 			setEmail("");
 			setPassword("");
 			setSuccess(true);

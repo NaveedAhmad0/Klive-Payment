@@ -4,7 +4,13 @@ import { Form } from "react-bootstrap";
 const ResetPassword = () => {
 	return (
 		<div className="card">
-                <h4>Online<br/>Payment</h4>
+			<div className="text-center">
+				<h4>
+					Online
+					<br />
+					Payment
+				</h4>
+			</div>
 			<div className="card-body">
 				<form className="forms-sample">
 					<Form.Group>

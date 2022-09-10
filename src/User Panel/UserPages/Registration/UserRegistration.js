@@ -243,7 +243,9 @@ function UserRegistration() {
 									</div>
 									<div className="text-center mt-4 font-weight-light">
 										Already have an account?{" "}
-										<Link to="/user/Registration/UserLogin" className="text-primary">
+										<Link
+											to="/user/Registration/UserLogin"
+											className="text-primary">
 											Login
 										</Link>
 									</div>

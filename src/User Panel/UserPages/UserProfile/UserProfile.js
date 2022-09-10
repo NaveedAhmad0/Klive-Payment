@@ -1,21 +1,45 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styles from "./userprofile.module.css";
-import { Form } from "react-bootstrap";
+import Compress from "compress.js";
 
 const UserProfile = () => {
-	const [email, setEmail] = useState("");
-	const [userName, setUserName] = useState("");
-	const [surName, setSurName] = useState("");
-	const [mobile, setMobile] = useState(1238192123);
-	const [address, setAddress] = useState("");
-	const [province, setProvince] = useState("");
-	const [district, setDistrict] = useState("");
-	const [subDivision, setSubDivision] = useState("");
-	const [pincode, setPincode] = useState(112312);
-	const [success, setSuccess] = useState(false);
-	const [nullVal, setNullVal] = useState({
-		personType: "null",
+	const compress = new Compress();
+	//Get profile
+	const [showData, setShowData] = useState({
+		showemail: "",
+		showuserName: "",
+		showsurName: "",
+		showyearOfBirth: "",
+		showdayOfBirth: "",
+		showmonthOfBirth: "",
+		showpersonType: "",
+		showmobile: 0,
+		showaddress: "",
+		showprovince: "",
+		showdistrict: "",
+		showsubDivision: "",
+		showpincode: "",
+		showinstagram: "",
+		showfacebook: "",
+		showlinkedin: "",
+		showwebsite: "",
+		showother: "",
+		showInitialShop: "",
+		showfirstName: "",
+		showbookbank: "",
+
+		email: "",
+		userName: "",
+		surName: "",
+		mobile: 0,
+		address: "",
+		province: "",
+		district: "",
+		subDivision: "",
+		pincode: 0,
+		success: false,
+		personType: "kjahsd",
 		InitialShop: "null",
 		firstName: "null",
 		yearOfBirth: "null",
@@ -48,7 +72,64 @@ const UserProfile = () => {
 		otherDocument: "null",
 	});
 
+	// const { email, mobile } = values;
+	const loginEmail = localStorage.getItem("email");
+	useEffect(() => {
+		axios
+			.get(
+				`https://backend.klivepay.com/api/user/get-profile?email=${loginEmail}`
+			)
+			.then((res) => {
+				setShowData({
+					showemail: res.data.user.email,
+					showmobile: res.data.user.mobile,
+					showuserName: res.data.user.userName,
+					showfirstName: res.data.user.firstName,
+					showaddress: res.data.user.address,
+					showInitialShop: res.data.user.InitialShop,
+					showyearOfBirth: res.data.user.yearOfBirth,
+					showdayOfBirth: res.data.user.dayOfBirth,
+					showdistrict: res.data.user.district,
+					showsurName: res.data.user.surName,
+					showprovince: res.data.user.province,
+					showYearOfBirth: res.data.user.yearOfBirth,
+					showmonthOfBirth: res.data.user.monthOfBirth,
+					showDistrict: res.data.user.district,
+					showsubDivision: res.data.user.subDivision,
+					showpincode: res.data.user.pincode,
+					showinstagram: res.data.user.instagram,
+					showfacebook: res.data.user.facebook,
+					showlinkedin: res.data.user.linkedin,
+					showwebsite: res.data.user.website,
+					showother: res.data.user.other,
+					showshopType: res.data.user.shopType,
+					showbank: res.data.user.bank,
+					showrateBARCode: res.data.user.rateBarCode,
+					showrateQRCode: res.data.user.rateQrCode,
+					showDomestic: res.data.user.domestic,
+					showbankAccount: res.data.user.bankAccount,
+					showcompany: res.data.user.company,
+					showInter: res.data.user.inter,
+					showbookbank: res.data.user.bankBook,
+				});
+
+				console.log("DATA IS ", res.data.user);
+			});
+	}, []);
+
+	//For update
+
 	const {
+		email,
+		userName,
+		surName,
+		mobile,
+		address,
+		province,
+		district,
+		subDivision,
+		pincode,
+		success,
 		personType,
 		InitialShop,
 		firstName,
@@ -80,50 +161,19 @@ const UserProfile = () => {
 		logo,
 		bankBook,
 		otherDocument,
-	} = nullVal;
+	} = showData;
 
-	const handleChange = (event) => {
-		setNullVal({
-			...{
-				personType,
-				InitialShop,
-				firstName,
-				yearOfBirth,
-				monthOfBirth,
-				dayOfBirth,
-				shopType,
-				creditCard,
-				weChat,
-				livePayment,
-				mobileBanking,
-				trueWallet,
-				shopeePay,
-				alone,
-				website,
-				facebook,
-				linkedin,
-				instagram,
-				other,
-				company,
-				bank,
-				bankAccount,
-				rnfCode,
-				domestic,
-				inter,
-				rateQrCode,
-				rateBarCode,
-				copyOfId,
-				logo,
-				bankBook,
-				otherDocument,
-			},
-			[event.target.name]: event.target.value,
+	const handleChange = (e) => {
+		setShowData({
+			...showData,
+			[e.target.name]: e.target.value,
 		});
 	};
 
 	async function onSubmit(event) {
 		event.preventDefault();
 		console.log(
+			userName,
 			email,
 			surName,
 			mobile,
@@ -138,45 +188,45 @@ const UserProfile = () => {
 			const response = await axios.patch(
 				`https://backend.klivepay.com/api/user/update-profile?email=user%40mail.com`,
 				JSON.stringify({
-					userName,
-					surName,
-					firstName,
-					mobile,
-					address,
-					province,
-					district,
-					subDivision,
-					pincode,
-					personType,
-					InitialShop,
-					yearOfBirth,
-					monthOfBirth,
-					dayOfBirth,
-					shopType,
-					creditCard,
-					weChat,
-					livePayment,
-					mobileBanking,
-					trueWallet,
-					shopeePay,
-					alone,
-					website,
-					facebook,
-					linkedin,
-					instagram,
-					other,
-					company,
-					bank,
-					bankAccount,
-					rnfCode,
-					domestic,
-					inter,
-					rateQrCode,
-					rateBarCode,
-					copyOfId,
-					logo,
-					bankBook,
-					otherDocument,
+					userName: showData.showuserName,
+					personType: "normal",
+					InitialShop: showData.showInitialShop,
+					firstName: showData.showfirstName,
+					surName: showData.showsurName,
+					yearOfBirth: showData.showyearOfBirth,
+					monthOfBirth: showData.showmonthOfBirth,
+					dayOfBirth: showData.showdayOfBirth,
+					mobile: parseInt(showData.showmobile),
+					address: showData.showaddress,
+					province: showData.showprovince,
+					district: showData.showdistrict,
+					subDivision: showData.showsubDivision,
+					pincode: showData.showpincode,
+					shopType: showData.showshopType,
+					creditCard: true,
+					weChat: true,
+					livePayment: true,
+					mobileBanking: true,
+					trueWallet: true,
+					shopeePay: true,
+					alone: true,
+					website: showData.showwebsite,
+					facebook: showData.showfacebook,
+					linkedin: showData.showlinkedin,
+					instagram: showData.showinstagram,
+					other: showData.showother,
+					company: showData.showcompany,
+					bank: showData.showbank,
+					bankAccount: 0,
+					rnfCode: showData.showRFNCode,
+					domestic: showData.showDomestic,
+					inter: showData.showInter,
+					rateQrCode: showData.showrateQRCode,
+					rateBarCode: showData.showrateBARCode,
+					copyOfId: "string",
+					logo: "string",
+					bankBook: showData.showbookbank,
+					otherDocument: "string",
 				}),
 				{
 					headers: { "Content-Type": "application/json" },
@@ -187,22 +237,7 @@ const UserProfile = () => {
 			console.log("mail", email);
 
 			console.log(JSON.stringify(response?.data));
-
-			// const accessToken = response?.data?.accessToken;
-			// localStorage.setItem("token", response?.data?.accessToken);
-			// setEmail("");
-			// setUserName("");
-			// setSurname("");
-			// setSurname("");
-			// setSurname("");
-			// setSurname("");
-			// setMobile("");
-			// setAddress("");
-			// setProvince("");
-			// setDistrict("");
-			// setSubDivision("");
-			// setZipCode("");
-			setSuccess(true);
+			// setSuccess(true);
 		} catch (err) {
 			console.log(err);
 		}
@@ -229,17 +264,23 @@ const UserProfile = () => {
 										type="email"
 										disabled
 										className={`form-control ${styles.userInputs}`}
-										placeholder="123456"
+										placeholder={"123456"}
 									/>
 								</div>
 								<div className="form-group">
 									<label className={styles.userLabel}>merchant name</label>
 									<input
 										type="text"
-										onChange={(e) => setUserName(e.target.value)}
-										value={userName}
+										name="showuserName"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showuserName: e.target.value,
+											});
+										}}
+										value={showData.showuserName}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="Email address"
+										placeholder="name"
 									/>
 								</div>
 							</form>
@@ -263,9 +304,14 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>Email address</label>
 									<input
 										type="email"
-										disabled
 										className={`form-control ${styles.userInputs}`}
-										placeholder="Email address"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showemail: e.target.value,
+											});
+										}}
+										value={showData.showemail}
 									/>
 								</div>
 							</form>
@@ -302,10 +348,15 @@ const UserProfile = () => {
 						<input
 							type="email"
 							name="InitialShop"
-							onChange={(e) => handleChange(e)}
-							value={InitialShop}
+							onChange={(e) => {
+								setShowData({
+									...showData,
+									showInitialShop: e.target.value,
+								});
+							}}
+							value={showData.showInitialShop}
 							className={`form-control ${styles.userInputs}`}
-							placeholder="Abc"
+							// placeholder={showInitialShop}
 						/>
 					</div>
 
@@ -315,11 +366,16 @@ const UserProfile = () => {
 								<label className={styles.userLabel}>first name</label>
 								<input
 									type="year"
-									name="firstName"
-									onChange={(e) => handleChange(e)}
-									value={firstName}
+									name="showfirstName"
+									onChange={(e) => {
+										setShowData({
+											...showData,
+											showfirstName: e.target.value,
+										});
+									}}
+									value={showData.showfirstName}
 									className={`form-control ${styles.userInputs}`}
-									placeholder="first name"
+									// placeholder={showfirstName}
 								/>
 							</div>
 						</div>
@@ -329,10 +385,15 @@ const UserProfile = () => {
 								<label className={styles.userLabel}>sur name</label>
 								<input
 									type="text"
-									onChange={(e) => setSurName(e.target.value)}
-									value={surName}
+									onChange={(e) => {
+										setShowData({
+											...showData,
+											showsurName: e.target.value,
+										});
+									}}
+									value={showData.showsurName}
 									className={`form-control ${styles.userInputs}`}
-									placeholder="surname"
+									// placeholder={showsurName}
 								/>
 							</div>
 						</div>
@@ -345,10 +406,15 @@ const UserProfile = () => {
 								<input
 									type="year"
 									name="yearOfBirth"
-									onChange={(e) => handleChange(e)}
-									value={yearOfBirth}
+									onChange={(e) => {
+										setShowData({
+											...showData,
+											showyearOfBirth: e.target.value,
+										});
+									}}
+									value={showData.showyearOfBirth}
 									className={`form-control ${styles.userInputs}`}
-									placeholder="first name"
+									// placeholder={showyearOfBirth}
 								/>
 							</div>
 						</div>
@@ -359,10 +425,15 @@ const UserProfile = () => {
 								<input
 									type="month"
 									name="monthOfBirth"
-									onChange={(e) => handleChange(e)}
-									value={monthOfBirth}
+									onChange={(e) => {
+										setShowData({
+											...showData,
+											showmonthOfBirth: e.target.value,
+										});
+									}}
+									value={showData.showmonthOfBirth}
 									className={`form-control ${styles.userInputs}`}
-									placeholder="surname"
+									// placeholder={showmonthOfBirth}
 								/>
 							</div>
 						</div>
@@ -373,10 +444,15 @@ const UserProfile = () => {
 								<input
 									type="day"
 									name="dayOfBirth"
-									onChange={(e) => handleChange(e)}
-									value={dayOfBirth}
+									onChange={(e) => {
+										setShowData({
+											...showData,
+											showdayOfBirth: e.target.value,
+										});
+									}}
+									value={showData.showdayOfBirth}
 									className={`form-control ${styles.userInputs}`}
-									placeholder="surname"
+									// placeholder={showdayOfBirth}
 								/>
 							</div>
 						</div>
@@ -386,21 +462,31 @@ const UserProfile = () => {
 						<label className={styles.userLabel}>contact number</label>
 						<input
 							type="number"
-							onChange={(e) => setMobile(e.target.value)}
-							value={mobile}
+							onChange={(e) => {
+								setShowData({
+									...showData,
+									showmobile: parseInt(e.target.value),
+								});
+							}}
+							value={showData.showmobile}
 							className={`form-control ${styles.userInputs}`}
-							placeholder="3333223"
+							// placeholder={showmobile}
 						/>
 					</div>
 
 					<div class="form-group">
 						<label className={styles.userLabel}>address</label>
 						<input
-							type="number"
-							onChange={(e) => setAddress(e.target.value)}
-							value={address}
+							type="text"
+							onChange={(e) => {
+								setShowData({
+									...showData,
+									showaddress: e.target.value,
+								});
+							}}
+							value={showData.showaddress}
 							className={`form-control ${styles.userInputs}`}
-							placeholder="Abc"
+							// placeholder={showaddress}
 						/>
 					</div>
 
@@ -411,20 +497,30 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>provience</label>
 									<input
 										type="email"
-										onChange={(e) => setProvince(e.target.value)}
-										value={province}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showprovince: e.target.value,
+											});
+										}}
+										value={showData.showprovince}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="Provience"
+										// placeholder={showprovince}
 									/>
 								</div>
 								<div className="form-group">
 									<label className={styles.userLabel}>sub division</label>
 									<input
 										type="text"
-										onChange={(e) => setSubDivision(e.target.value)}
-										value={subDivision}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showsubDivision: e.target.value,
+											});
+										}}
+										value={showData.showsubDivision}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="Sub Division"
+										// placeholder={showsubDivision}
 									/>
 								</div>
 							</form>
@@ -436,10 +532,15 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>district</label>
 									<input
 										type="text"
-										onChange={(e) => setDistrict(e.target.value)}
-										value={district}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showdistrict: e.target.value,
+											});
+										}}
+										value={showData.showdistrict}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="District"
+										// placeholder={showdistrict}
 									/>
 								</div>
 								<div className="form-group">
@@ -669,10 +770,15 @@ const UserProfile = () => {
 									<input
 										type="text"
 										name="website"
-										onChange={(e) => handleChange(e)}
-										value={website}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showwebsite: e.target.value,
+											});
+										}}
+										value={showData.showwebsite}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="www.abc.com"
+										// placeholder={showwebsite}
 									/>
 								</div>
 								<div className="form-group">
@@ -680,10 +786,15 @@ const UserProfile = () => {
 									<input
 										type="text"
 										name="linkedin"
-										onChange={(e) => handleChange(e)}
-										value={linkedin}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showlinkedin: e.target.value,
+											});
+										}}
+										value={showData.showlinkedin}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="Linkedin/abc"
+										// placeholder={showlinkedin}
 									/>
 								</div>
 
@@ -692,10 +803,15 @@ const UserProfile = () => {
 									<input
 										type="text"
 										name="other"
-										onChange={(e) => handleChange(e)}
-										value={other}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showother: e.target.value,
+											});
+										}}
+										value={showData.showother}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="Other"
+										// placeholder={showother}
 									/>
 								</div>
 							</form>
@@ -708,10 +824,15 @@ const UserProfile = () => {
 									<input
 										type="text"
 										name="facebook"
-										onChange={(e) => handleChange(e)}
-										value={facebook}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showfacebook: e.target.value,
+											});
+										}}
+										value={showData.showfacebook}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="facebook/abc"
+										// placeholder={showfacebook}
 									/>
 								</div>
 								<div className="form-group">
@@ -719,10 +840,15 @@ const UserProfile = () => {
 									<input
 										type="text"
 										name="instagram"
-										onChange={(e) => handleChange(e)}
-										value={instagram}
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showinstagram: e.target.value,
+											});
+										}}
+										value={showData.showinstagram}
 										className={`form-control ${styles.userInputs}`}
-										placeholder="instagram/abc"
+										// placeholder={showinstagram}
 									/>
 								</div>
 							</form>
@@ -747,6 +873,21 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>book bank</label>
 									<input
 										type="file"
+										onChange={(e) => {
+											const files = [...e.target.files];
+											compress
+												.compress(files, {
+													size: 1,
+													quality: 0.4,
+													maxWidth: 500,
+													maxHeight: 500,
+													resize: true,
+													rotate: false,
+												})
+												.then((data) => {
+													showData.showbookbank = data[0].prefix + data[0].data;
+												});
+										}}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="file"
 									/>
@@ -756,6 +897,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>company</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showcompany: e.target.value,
+											});
+										}}
+										value={showData.showcompany}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="company"
 									/>
@@ -765,6 +913,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>bank account</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showbankAccount: e.target.value,
+											});
+										}}
+										value={showData.showbankAccount}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="bank account"
 									/>
@@ -773,6 +928,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>domestic</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showDomestic: e.target.value,
+											});
+										}}
+										value={showData.showDomestic}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="Domestic"
 									/>
@@ -782,6 +944,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>rate of QR code</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showrateQRCode: e.target.value,
+											});
+										}}
+										value={showData.showrateQRCode}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="QR code"
 									/>
@@ -812,6 +981,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>Bank</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showbank: e.target.value,
+											});
+										}}
+										value={showData.showbank}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="bank"
 									/>
@@ -820,6 +996,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>rnf code</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showRFNCode: e.target.value,
+											});
+										}}
+										value={showData.showRFNCode}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="Rnf Code"
 									/>
@@ -829,6 +1012,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>inter</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showInter: e.target.value,
+											});
+										}}
+										value={showData.showInter}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="Inter"
 									/>
@@ -837,6 +1027,13 @@ const UserProfile = () => {
 									<label className={styles.userLabel}>rate of bar code</label>
 									<input
 										type="text"
+										onChange={(e) => {
+											setShowData({
+												...showData,
+												showrateBARCode: e.target.value,
+											});
+										}}
+										value={showData.showrateBarCode}
 										className={`form-control ${styles.userInputs}`}
 										placeholder="Bar code"
 									/>

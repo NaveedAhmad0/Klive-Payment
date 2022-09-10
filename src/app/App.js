@@ -19,7 +19,7 @@ import Spinner from "./shared/Spinner";
 function App(props) {
 	const [isFullPageLayout, setisFullPageLayout] = useState(false);
 	const { isAdmin, isMerchant, isUser } = useContext(userContext);
-    const location = useLocation();
+	const location = useLocation();
 	let navbarComponent = isFullPageLayout ? <Navbar /> : "";
 	let adminSidebarComponent = isFullPageLayout ? <Sidebar /> : "";
 	let merchantSidebarComponent = isFullPageLayout ? <MerchantSidebar /> : "";
@@ -83,15 +83,28 @@ function App(props) {
 				</Switch>
 			</Suspense>
 			<div className="container-scroller">
-			{!location.pathname.includes("Registration") && !location.pathname.includes("homepage")  ? navbarComponent:null}
+				{!location.pathname.includes("Registration") &&
+				!location.pathname.includes("homepage")
+					? navbarComponent
+					: null}
 				{isMerchant && navbarComponent}
 				{isAdmin && navbarComponent}
 				<div className="container-fluid page-body-wrapper">
 					{isAdmin && adminSidebarComponent}
-					{isMerchant && merchantSidebarComponent}
-					{!location.pathname.includes("Registration") && !location.pathname.includes("homepage") ? userSidebarComponent:null}
+					{isMerchant ? merchantSidebarComponent : null}
+
+					{!location.pathname.includes("Registration") &&
+					!location.pathname.includes("homepage")
+						? userSidebarComponent
+						: null}
 					{/* {sidebarComponent} */}
-					<div className={!location.pathname.includes("Registration") && !location.pathname.includes("homepage") ? "main-panel" : "main-2"}>
+					<div
+						className={
+							!location.pathname.includes("Registration") &&
+							!location.pathname.includes("homepage")
+								? "main-panel"
+								: "main-2"
+						}>
 						<div className="content-wrapper">
 							<AppRoutes />
 							{SettingsPanelComponent}

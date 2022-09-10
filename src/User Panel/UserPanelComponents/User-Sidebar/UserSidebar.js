@@ -163,7 +163,7 @@ class UserSidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/user/UserProfile">
+										to="/user/EditProfile">
 										<Trans>User Profile</Trans>
 									</Link>
 								</li>
