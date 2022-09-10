@@ -88,16 +88,16 @@ function App(props) {
 				!location.pathname.includes("admin")
 					? navbarComponent
 					: null}
-				{isMerchant && navbarComponent}
+				{/* {isMerchant && navbarComponent} */}
 
-				{location.pathname.includes("login") || location.pathname.includes("Registration")  ? null:navbarComponent}
+				{location.pathname.includes("login") || location.pathname.includes("Registration") || location.pathname == "/admin"  ? null:navbarComponent}
 				
 				
 				
 				
 				<div className="container-fluid page-body-wrapper">
-					{location.pathname.includes("login") || location.pathname.includes("Registration") || location.pathname.includes("login") || location.pathname.includes("user") ? null: adminSidebarComponent}
-					{isMerchant ? merchantSidebarComponent : null}
+					{location.pathname.includes("login") || location.pathname.includes("Registration")  ||  location.pathname == "/admin" || location.pathname.includes("user") ? null: adminSidebarComponent}
+					{/* {isMerchant ? merchantSidebarComponent : null} */}
 
 					{(!location.pathname.includes("Registration") && !location.pathname.includes("login")) &&
 					!location.pathname.includes("admin") &&  !location.pathname.includes("admin")
