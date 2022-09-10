@@ -176,22 +176,22 @@ class AppRoutes extends Component {
 				<Switch>
 					{/* <Route exact path="/homepage" component={HomePage} /> */}
 					{/* <Route exact path="/homepage" component={UserLogin} /> */}
-					<Route path="/basic-ui/buttons" component={Buttons} />
-					<Route path="/basic-ui/dropdowns" component={Dropdowns} />
+					<Route path="/admin/basic-ui/buttons" component={Buttons} />
+					<Route path="/admin//basic-ui/dropdowns" component={Dropdowns} />
 
 					<Route
-						path="/form-Elements/basic-elements"
+						path="/admin//form-Elements/basic-elements"
 						component={BasicElements}
 					/>
 
-					<Route path="/tables/basic-table" component={BasicTable} />
+					<Route path="/admin//tables/basic-table" component={BasicTable} />
 
-					<Route path="/icons/mdi" component={Mdi} />
+					<Route path="/admin//icons/mdi" component={Mdi} />
 
-					<Route path="/charts/chart-js" component={ChartJs} />
+					<Route path="/admin//charts/chart-js" component={ChartJs} />
 
-					<Route path="/user-pages/login-1" component={Login} />
-					<Route path="/user-pages/register-1" component={Register1} />
+					<Route path="/admin//user-pages/login-1" component={Login} />
+					<Route path="/admin//user-pages/register-1" component={Register1} />
 
 					{/*------------------------- ADMIN PANEL ROUTES -------------------------- */}
 					<Route exact path="/admin/login" component={AdminLogin} />
@@ -227,82 +227,82 @@ class AppRoutes extends Component {
 					/>
 
 					<Route
-						path="/user/Registration/ForgotPassword"
+						path="/admin/user/Registration/ForgotPassword"
 						component={ForgotPassword}
 					/>
 
 					<Route
-						path="/user/Registration/ResetPassword"
+						path="/admin/user/Registration/ResetPassword"
 						component={ResetPassword}
 					/>
 
 					<Route path="/admin/user/Registration/UserLogin" component={UserLogin} />
 
-					<Route path="/user/UserDashboard" component={UserDashboard} />
+					<Route path="/admin/user/UserDashboard" component={UserDashboard} />
 
-					<Route path="/user/EditProfile" component={UserProfile} />
-					<Route path="/user/UserProfile" component={GetUserProfile} />
+					<Route path="/admin/user/EditProfile" component={UserProfile} />
+					<Route path="/admin/user/UserProfile" component={GetUserProfile} />
 
-					<Route path="/user/UserDeposites" component={UserDeposites} />
+					<Route path="/admin/user/UserDeposites" component={UserDeposites} />
 
-					<Route path="/user/UserTransaction" component={UserTransaction} />
+					<Route path="/admin/user/UserTransaction" component={UserTransaction} />
 
 					<Route
-						path="/user/DepositeToMerchandise"
+						path="/admin/user/DepositeToMerchandise"
 						component={DepositeToMerchandise}
 					/>
 
-					<Route path="/user/UserWithdraw" component={UserWithdraw} />
+					<Route path="/admin/user/UserWithdraw" component={UserWithdraw} />
 
 					{/*------------------------- MERCHANT PANEL ROUTES -------------------------- */}
 
-					<Route path="/merchant/dashboard" component={MerchantDashboard} />
-					<Route path="/merchant/profile" component={MerchantProfile} />
+					<Route path="/admin/merchant/dashboard" component={MerchantDashboard} />
+					<Route path="/admin/merchant/profile" component={MerchantProfile} />
 					<Route
-						path="/merchant/reset-password"
+						path="/admin/merchant/reset-password"
 						component={MerchantChangePassword}
 					/>
 					<Route
-						path="/merchant/forgot-password"
+						path="/admin/merchant/forgot-password"
 						component={MerchantForgotPassowrd}
 					/>
 					<Route
 						exact
-						path="/merchant/registration"
+						path="/admin/merchant/registration"
 						component={MerchantRegistration}
 					/>
 
-					<Route exact path="/merchant/login" component={MerchantLogin} />
+					<Route exact path="/admin/merchant/login" component={MerchantLogin} />
 					<Route
-						path="/merchant/merchant-user-deposits"
+						path="/admin/merchant/merchant-user-deposits"
 						component={MerchantUserDeposits}
 					/>
 
 					<Route
-						path="/merchant/transactionhistory"
+						path="/admin/merchant/transactionhistory"
 						component={MerchantTransactionHistory}
 					/>
 
 					<Route
-						path="/merchant/deposits-to-merchant"
+						path="/admin/merchant/deposits-to-merchant"
 						component={DepositsToMerchant}
 					/>
 
 					<Route
-						path="/merchant/withdrawalrequest"
+						path="/admin/merchant/withdrawalrequest"
 						component={WithdrawalRequest}
 					/>
 					<Route
-						path="/merchant/GetUserProfile"
+						path="/admin/merchant/GetUserProfile"
 						component={GetMerchantProfile}
 					/>
 
 					{/*---------------------------- ERROR PAGE ------------------ */}
 
-					<Route path="/error-pages/error-404" component={Error404} />
-					<Route path="/error-pages/error-500" component={Error500} />
+					<Route path="/admin/error-pages/error-404" component={Error404} />
+					<Route path="/admin/error-pages/error-500" component={Error500} />
 
-					<Redirect to="/homepage" />
+					<Redirect to="/admin" />
 				</Switch>
 			</Suspense>
 		);
