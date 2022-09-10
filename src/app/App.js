@@ -15,6 +15,7 @@ import MerchantSidebar from "../Merchant Panel/Merchant-Panel-Components/Merchan
 import UserSidebar from "../User Panel/UserPanelComponents/User-Sidebar/UserSidebar";
 import HomePage from "../Homepage/HomePage";
 import Spinner from "./shared/Spinner";
+import UserLogin from "../User Panel/UserPages/Registration/UserLogin";
 
 function App(props) {
 	const [isFullPageLayout, setisFullPageLayout] = useState(false);
@@ -77,31 +78,36 @@ function App(props) {
 
 	return (
 		<>
-			<Suspense fallback={<Spinner />}>
+			{/* <Suspense fallback={<Spinner />}>
 				<Switch>
-					<Route exact path="/homepage" component={HomePage} />
+					<Route exact path="/homepage" component={UserLogin} />
 				</Switch>
-			</Suspense>
+			</Suspense> */}
 			<div className="container-scroller">
-				{!location.pathname.includes("Registration") &&
+				{!location.pathname.includes("Registration") &&  !location.pathname.includes("login") &&
 				!location.pathname.includes("homepage")
 					? navbarComponent
 					: null}
 				{isMerchant && navbarComponent}
-				{isAdmin && navbarComponent}
+
+				{location.pathname.includes("login") || location.pathname.includes("Registration")  ? null:navbarComponent}
+				
+				
+				
+				
 				<div className="container-fluid page-body-wrapper">
-					{isAdmin && adminSidebarComponent}
+					{location.pathname.includes("login") || location.pathname.includes("Registration") || location.pathname.includes("login") || location.pathname.includes("user") ? null: adminSidebarComponent}
 					{isMerchant ? merchantSidebarComponent : null}
 
-					{!location.pathname.includes("Registration") &&
-					!location.pathname.includes("homepage")
+					{(!location.pathname.includes("Registration") && !location.pathname.includes("login")) &&
+					!location.pathname.includes("homepage") &&  !location.pathname.includes("admin")
 						? userSidebarComponent
 						: null}
-					{/* {sidebarComponent} */}
+				
 					<div
 						className={
 							!location.pathname.includes("Registration") &&
-							!location.pathname.includes("homepage")
+							!location.pathname.includes("homepage") && !location.pathname.includes("login")
 								? "main-panel"
 								: "main-2"
 						}>

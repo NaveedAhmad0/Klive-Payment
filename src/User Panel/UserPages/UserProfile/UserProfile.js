@@ -564,10 +564,18 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
 										name="shop"
 										value="social"
-										checked
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													shopType:"social"
+												})
+											}
+											
+										}}
+										defaultChecked={showData.shopType === "social"}
 									/>
 									<label className={styles.userLabel}>social</label>
 								</div>
@@ -575,7 +583,16 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													shopType:"website"
+												})
+											}
+											
+										}}
+										defaultChecked={showData.shopType === "website"}
 										name="shop"
 										value="website"
 									/>
@@ -590,9 +607,18 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="livepayment"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													livePayment:true
+												})
+											}
+											
+										}}
+										defaultChecked={showData.livePayment === false}
 										value="yes"
-										checked
+										
 									/>
 									<label className={styles.userLabel}>yes</label>
 								</div>
@@ -601,7 +627,16 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="livepayment"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													livePayment:false
+												})
+											}
+											
+										}}
+										defaultChecked={showData.livePayment === false}
 										value="no"
 									/>
 									<label className={styles.userLabel}>no</label>
@@ -614,7 +649,16 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													shopeePay:true
+												})
+											}
+											
+										}}
+										defaultChecked={showData.mobileBanking === true}
 										name="shopeepay"
 										value="yes"
 										checked
@@ -626,7 +670,16 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="shopeepay"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													shopeePay:false
+												})
+											}
+											
+										}}
+										defaultChecked={showData.shopeePay === false}
 										value="no"
 									/>
 									<label className={styles.userLabel}>no</label>
@@ -640,10 +693,19 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													creditCard:true
+												})
+											}
+											
+										}}
 										name="creditcard"
-										value="yes"
-										checked
+										value={"yes"}
+										defaultChecked={showData.creditCard === true}
+										checked={ showData.creditCard}
 									/>
 									<label className={styles.userLabel}>yes</label>
 								</div>
@@ -651,9 +713,17 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													creditCard:false
+												})
+											}
+										}}
 										name="creditcard"
 										value="no"
+										defaultChecked={showData.creditCard === false}
 									/>
 									<label className={styles.userLabel}>no</label>
 								</div>
@@ -665,10 +735,18 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													mobileBanking:true
+												})
+											}
+											
+										}}
 										name="mbank"
 										value="yes"
-										checked
+										defaultChecked={showData.mobileBanking === true}
 									/>
 									<label className={styles.userLabel}>yes</label>
 								</div>
@@ -676,9 +754,19 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													mobileBanking:false
+												})
+											}
+											
+										}}
+										defaultChecked={showData.mobileBanking === false}
 										name="mbank"
 										value="no"
+										
 									/>
 									<label className={styles.userLabel}>no</label>
 								</div>
@@ -690,10 +778,19 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													alone:true
+												})
+											}
+											
+										}}
+										defaultChecked={showData.alone === true}
 										name="alone"
 										value="yes"
-										checked
+										
 									/>
 									<label className={styles.userLabel}>yes</label>
 								</div>
@@ -702,7 +799,16 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="alone"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													alone:false
+												})
+											}
+											
+										}}
+										defaultChecked={showData.alone === false}
 										value="no"
 									/>
 									<label className={styles.userLabel}>no</label>
@@ -716,10 +822,19 @@ const UserProfile = () => {
 									<input
 										className="form-check-input"
 										type="radio"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													weChat:true
+												})
+											}
+											
+										}}
+										defaultChecked={showData.weChat === true}
 										name="wechat"
 										value="yes"
-										checked
+										
 									/>
 									<label className={styles.userLabel}>yes</label>
 								</div>
@@ -728,7 +843,16 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="wechat"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													weChat:false
+												})
+											}
+											
+										}}
+										defaultChecked={showData.mobileBanking === false}
 										value="no"
 									/>
 									<label className={styles.userLabel}>no</label>
@@ -742,9 +866,18 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="twallet"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													trueWallet:true
+												})
+											}
+											
+										}}
+										defaultChecked={showData.trueWallet === true}
 										value="yes"
-										checked
+										
 									/>
 									<label className={styles.userLabel}>yes</label>
 								</div>
@@ -753,7 +886,16 @@ const UserProfile = () => {
 										className="form-check-input"
 										type="radio"
 										name="twallet"
-										disabled
+										onChange={(e) => {
+											if(e.target.checked  === true){
+												setShowData({
+													...showData,
+													trueWallet:false
+												})
+											}
+											
+										}}
+										defaultChecked={showData.trueWallet === false}
 										value="no"
 									/>
 									<label className={styles.userLabel}>no</label>

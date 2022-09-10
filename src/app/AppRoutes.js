@@ -175,7 +175,7 @@ class AppRoutes extends Component {
 			<Suspense fallback={<Spinner />}>
 				<Switch>
 					{/* <Route exact path="/homepage" component={HomePage} /> */}
-
+					{/* <Route exact path="/homepage" component={UserLogin} /> */}
 					<Route path="/basic-ui/buttons" component={Buttons} />
 					<Route path="/basic-ui/dropdowns" component={Dropdowns} />
 
