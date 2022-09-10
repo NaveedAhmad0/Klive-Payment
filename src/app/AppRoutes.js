@@ -222,7 +222,7 @@ class AppRoutes extends Component {
 					<Route path="/admin/AdminManageRole" component={AdminManageRole} />
 					{/*------------------------- USER PANEL ROUTES -------------------------- */}
 					<Route
-						path="/user/Registration/UserRegistration"
+						path="/admin/user/Registration/UserRegistration"
 						component={UserRegistration}
 					/>
 
@@ -236,7 +236,7 @@ class AppRoutes extends Component {
 						component={ResetPassword}
 					/>
 
-					<Route path="/user/Registration/UserLogin" component={UserLogin} />
+					<Route path="/admin/user/Registration/UserLogin" component={UserLogin} />
 
 					<Route path="/user/UserDashboard" component={UserDashboard} />
 
