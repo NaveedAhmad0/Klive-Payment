@@ -11,11 +11,7 @@ import SettingsPanel from "./shared/SettingsPanel";
 import Footer from "./shared/Footer";
 import { withTranslation } from "react-i18next";
 import userContext from "../context/userContext";
-import MerchantSidebar from "../Merchant Panel/Merchant-Panel-Components/Merchant-Sidebar/MerchantSidebar";
-import UserSidebar from "../User Panel/UserPanelComponents/User-Sidebar/UserSidebar";
-import HomePage from "../Homepage/HomePage";
 import Spinner from "./shared/Spinner";
-import UserLogin from "../User Panel/UserPages/Registration/UserLogin";
 
 function App(props) {
 	const [isFullPageLayout, setisFullPageLayout] = useState(false);
@@ -23,8 +19,6 @@ function App(props) {
 	const location = useLocation();
 	let navbarComponent = isFullPageLayout ? <Navbar /> : "";
 	let adminSidebarComponent = isFullPageLayout ? <Sidebar /> : "";
-	let merchantSidebarComponent = isFullPageLayout ? <MerchantSidebar /> : "";
-	let userSidebarComponent = isFullPageLayout ? <UserSidebar /> : "";
 	let SettingsPanelComponent = isFullPageLayout ? <SettingsPanel /> : "";
 	let footerComponent = isFullPageLayout ? <Footer /> : "";
 
@@ -84,30 +78,25 @@ function App(props) {
 				</Switch>
 			</Suspense> */}
 			<div className="container-scroller">
-				{!location.pathname.includes("Registration") &&  !location.pathname.includes("login") &&
-				!location.pathname.includes("admin")
+				{!location.pathname.includes("Registration") &&
+				!location.pathname.includes("login") &&
+				!location.pathname.includes("forgotPassword")
 					? navbarComponent
 					: null}
-				{/* {isMerchant && navbarComponent} */}
 
-				{location.pathname.includes("login") || location.pathname.includes("Registration") || location.pathname == "/admin"  ? null:navbarComponent}
-				
-				
-				
-				
 				<div className="container-fluid page-body-wrapper">
-					{location.pathname.includes("login") || location.pathname.includes("Registration")  ||  location.pathname == "/admin" || location.pathname.includes("user") ? null: adminSidebarComponent}
-					{/* {isMerchant ? merchantSidebarComponent : null} */}
+					{location.pathname.includes("login") ||
+					location.pathname.includes("forgotPassword") ||
+					location.pathname == "/admin" ||
+					location.pathname.includes("user")
+						? null
+						: adminSidebarComponent}
 
-					{(!location.pathname.includes("Registration") && !location.pathname.includes("login")) &&
-					!location.pathname.includes("admin/login") &&  !location.pathname.includes("admin/login")
-						? userSidebarComponent
-						: null}
-				
 					<div
 						className={
-							!location.pathname.includes("Registration") &&
-							!location.pathname.includes("admin") && !location.pathname.includes("login")
+							!location.pathname.includes("forgotPassword") &&
+							location.pathname.includes("admin") &&
+							!location.pathname.includes("login")
 								? "main-panel"
 								: "main-2"
 						}>

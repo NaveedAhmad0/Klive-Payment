@@ -63,8 +63,8 @@ function AdminLogin() {
 							<div className="brand-logo">
 								<h3 className={!errMsg ? "errMsg" : "text-danger"}>{errMsg}</h3>
 							</div>
-							<h4>Hello! let's get started</h4>
-							<h6 className="font-weight-light">Sign in to continue.</h6>
+							<h4 className="text-primary">Admin Login</h4>
+
 							<Form className="pt-3">
 								<Form.Group className="d-flex search-field">
 									<Form.Control
@@ -106,8 +106,8 @@ function AdminLogin() {
 										</label>
 									</div>
 									<a
-										href="!#"
-										onClick={(event) => event.preventDefault()}
+										href="/admin/forgotPassword"
+										// onClick={(event) => event.preventDefault()}
 										className="auth-link text-black">
 										Forgot password?
 									</a>

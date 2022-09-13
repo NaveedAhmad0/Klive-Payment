@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const MerchantForgotPassword = () => {
+const ResetPassword = () => {
 	const [email, setEmail] = useState("");
 	const [newPassword, setNewPassword] = useState("");
 	const [success, setSuccess] = useState(false);
@@ -12,7 +13,7 @@ const MerchantForgotPassword = () => {
 
 		try {
 			const response = await axios.patch(
-				`https://backend.klivepay.com/api/merchant/forget-password?email=${email}`,
+				`https://backend.klivepay.com/api/admin/forget-password?email=${email}`,
 				JSON.stringify({ newPassword }),
 				{
 					headers: { "Content-Type": "application/json" },
@@ -41,17 +42,12 @@ const MerchantForgotPassword = () => {
 		}
 	}, [success]);
 	return (
-		// <div className="col-12 grid-margin stretch-card">
 		<div>
 			<div className="d-flex align-items-center auth px-0">
 				<div className="row w-100 mx-0">
 					<div className="col-lg-8 mx-auto">
 						<div className="auth-form-light text-left py-5 px-4 px-sm-5">
-							<h4>
-								Online
-								<br />
-								Payment
-							</h4>
+							<h4 className="text-primary">Forgot Password</h4>
 							<form className="pt-3">
 								<div className="form-group">
 									<input
@@ -73,12 +69,18 @@ const MerchantForgotPassword = () => {
 										value={newPassword}
 									/>
 								</div>
+								<div className="form-group">
+									<Link to="/admin/login">
+										<h5 className="text-primary">Login?</h5>
+									</Link>
+								</div>
+
 								<div className="mt-3">
 									<button
-										href="/merchant/login"
+										href="/admin/login"
 										onClick={(event) => onSubmit(event)}
-										className="btn btn-block btn btn-success btn-lg btn-block rounded-pill">
-										Reset Password
+										className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+										Forgot Password
 									</button>
 								</div>
 							</form>
@@ -87,8 +89,7 @@ const MerchantForgotPassword = () => {
 				</div>
 			</div>
 		</div>
-		// </div>
 	);
 };
 
-export default MerchantForgotPassword;
+export default ResetPassword;

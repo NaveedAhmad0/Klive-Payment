@@ -330,7 +330,7 @@ class Sidebar extends Component {
 												: "nav-link"
 										}
 										to="/admin/AdminManageRole">
-										<Trans>Role</Trans>
+										<Trans>Merchants </Trans>
 									</Link>
 								</li>
 							</ul>

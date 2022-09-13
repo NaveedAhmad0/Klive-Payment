@@ -97,40 +97,11 @@ export class AdminDashboard extends Component {
 		super(props);
 		this.state = {
 			visitChartData: {},
-			impressionChartData: {},
-			conversionChartData: {},
-			downloadChartData: {},
+
 			salesStatisticsChartData: {},
 			netProfitChartData: {},
 			totaltransactionChartData: {},
-			areaOptions: {
-				responsive: true,
-				maintainAspectRatio: false,
-				scales: {
-					yAxes: [
-						{
-							display: false,
-						},
-					],
-					xAxes: [
-						{
-							display: false,
-						},
-					],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0,
-					},
-					line: {
-						tension: 0,
-					},
-				},
-				stepsize: 100,
-			},
+
 			salesStaticsOptions: {
 				responsive: true,
 				animation: {
@@ -897,21 +868,6 @@ export class AdminDashboard extends Component {
 	componentDidMount() {
 		//your code
 
-		var ctx2 = document.getElementById("imoressionChart").getContext("2d");
-		var gradientBar2 = ctx2.createLinearGradient(0, 0, 0, 181);
-		gradientBar2.addColorStop(1, "rgba(110,123,247,0.7)");
-		gradientBar2.addColorStop(0, "rgba(255,255,255,0)");
-
-		var ctx3 = document.getElementById("conversionChart").getContext("2d");
-		var gradientBar3 = ctx3.createLinearGradient(0, 0, 0, 181);
-		gradientBar3.addColorStop(1, "rgba(110,123,247,0.7)");
-		gradientBar3.addColorStop(0, "rgba(255,255,255,0)");
-
-		var ctx4 = document.getElementById("downloadChart").getContext("2d");
-		var gradientBar4 = ctx4.createLinearGradient(0, 0, 0, 181);
-		gradientBar4.addColorStop(1, "rgba(110,123,247,0.7)");
-		gradientBar4.addColorStop(0, "rgba(255,255,255,0)");
-
 		var ctx5 = document.getElementById("salesStatisticsChart").getContext("2d");
 		var gradientBar5 = ctx5.createLinearGradient(0, 0, 0, 450);
 		gradientBar5.addColorStop(1, "rgba(255,255,255, 0.0)");
@@ -921,88 +877,6 @@ export class AdminDashboard extends Component {
 		var gradientBar6 = ctx6.createLinearGradient(0, 0, 0, 400);
 		gradientBar6.addColorStop(1, "rgba(255, 255, 255, 0.01)");
 		gradientBar6.addColorStop(0, "#14c671");
-
-		const impressionData = {
-			labels: [
-				"Day 1",
-				"Day 2",
-				"Day 3",
-				"Day 4",
-				"Day 5",
-				"Day 6",
-				"Day 7",
-				"Day 8",
-				"Day 9",
-				"Day 10",
-				"Day 11",
-				"Day 12",
-				"Day 13",
-			],
-			datasets: [
-				{
-					label: "Profit",
-					data: [7, 6, 8, 5, 7, 8, 6, 7, 7, 6, 9, 7, 8],
-					borderColor: "#6d7cfc",
-					backgroundColor: gradientBar2,
-					borderWidth: 3,
-					fill: true,
-				},
-			],
-		};
-		const conversionData = {
-			labels: [
-				"Day 1",
-				"Day 2",
-				"Day 3",
-				"Day 4",
-				"Day 5",
-				"Day 6",
-				"Day 7",
-				"Day 8",
-				"Day 9",
-				"Day 10",
-				"Day 11",
-				"Day 12",
-				"Day 13",
-			],
-			datasets: [
-				{
-					label: "Profit",
-					data: [8, 6, 7, 8, 5, 7, 9, 7, 8, 7, 6, 7, 6],
-					borderColor: "#6d7cfc",
-					backgroundColor: gradientBar3,
-					borderWidth: 3,
-					fill: true,
-				},
-			],
-		};
-		const downloadData = {
-			labels: [
-				"Day 1",
-				"Day 2",
-				"Day 3",
-				"Day 4",
-				"Day 5",
-				"Day 6",
-				"Day 7",
-				"Day 8",
-				"Day 9",
-				"Day 10",
-				"Day 11",
-				"Day 12",
-				"Day 13",
-			],
-			datasets: [
-				{
-					label: "Profit",
-					data: [7, 6, 8, 5, 8, 6, 8, 7, 8, 6, 9, 7, 7],
-					borderColor: "#6d7cfc",
-					backgroundColor: gradientBar4,
-					borderWidth: 3,
-					fill: true,
-				},
-			],
-		};
 
 		var Datas = [60, 75, 65, 130, 130, 145, 110, 145, 155, 149, 170];
 		var Datas1 = [0, 25, 20, 40, 70, 52, 49, 90, 70, 94, 110, 135];
@@ -1075,9 +949,6 @@ export class AdminDashboard extends Component {
 		};
 
 		this.setState({
-			impressionChartData: impressionData,
-			conversionChartData: conversionData,
-			downloadChartData: downloadData,
 			salesStatisticsChartData: salesStatisticsData,
 			netProfitChartData: netProfitData,
 		});
@@ -1119,10 +990,10 @@ export class AdminDashboard extends Component {
 												</div>
 											</div>
 											<div className="wrapper py-2">
-												<h4 className="mb-0 font-weight-medium text-primary">
+												<h6 className="mb-0 font-weight-medium text-primary">
 													Main Account
-												</h4>
-												<h3 className="mb-0 font-weight-semibold">32,451</h3>
+												</h6>
+												<h5 className="mb-0 font-weight-semibold">32,451</h5>
 												{/* <p className="mb-0 text-muted">+14.00(+0.50%)</p> */}
 											</div>
 										</div>
@@ -1137,14 +1008,9 @@ export class AdminDashboard extends Component {
 												{/* <p className="mb-0 text-muted">+138.97(+0.54%)</p> */}
 											</div>
 											<div className="wrapper my-auto ml-auto ml-lg-4">
-												<Line
-													ref="chart"
-													data={this.state.impressionChartData}
-													options={this.state.areaOptions}
-													height={50}
-													width={100}
-													id="imoressionChart"
-												/>
+												<div className="">
+													<img src={cardPic} alt="cardpic" />
+												</div>
 											</div>
 										</div>
 									</div>
@@ -1158,14 +1024,9 @@ export class AdminDashboard extends Component {
 												{/* <p className="mb-0 text-muted">+57.62(+0.76%)</p> */}
 											</div>
 											<div className="wrapper my-auto ml-auto ml-lg-4">
-												<Line
-													ref="chart"
-													data={this.state.conversionChartData}
-													options={this.state.areaOptions}
-													height={50}
-													width={100}
-													id="conversionChart"
-												/>
+												<div className="">
+													<img src={cardPic} alt="cardpic" />
+												</div>
 											</div>
 										</div>
 									</div>
@@ -1179,14 +1040,9 @@ export class AdminDashboard extends Component {
 												{/* <p className="mb-0 text-muted">+138.97(+0.54%)</p> */}
 											</div>
 											<div className="wrapper my-auto ml-auto ml-lg-4">
-												<Line
-													ref="chart"
-													data={this.state.downloadChartData}
-													options={this.state.areaOptions}
-													height={50}
-													width={100}
-													id="downloadChart"
-												/>
+												<div className="">
+													<img src={cardPic} alt="cardpic" />
+												</div>
 											</div>
 										</div>
 									</div>

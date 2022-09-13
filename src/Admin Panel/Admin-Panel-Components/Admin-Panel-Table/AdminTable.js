@@ -5,93 +5,6 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
-const { SearchBar } = Search;
-
-// import DatePicker from 'react-datepicker';
-// import { Dropdown } from 'react-bootstrap';
-const columns = [
-	{
-		dataField: "id",
-		text: "Order number",
-		sort: true,
-		classes: "deal-row",
-		headerClasses: "deal-header",
-	},
-	{
-		dataField: "code",
-		text: "Voucher code",
-		classes: "deal-row-2",
-
-		headerClasses: "deal-header",
-	},
-
-	{
-		dataField: "purchasedate",
-		text: "Purchase date",
-		classes: "deal-row",
-		headerClasses: "deal-header",
-	},
-	{
-		dataField: "status",
-		text: "Status",
-		classes: "deal-row",
-		headerClasses: "deal-header",
-	},
-	{
-		dataField: "branchredeem",
-		text: "Branch redeemed",
-		headerClasses: "deal-header",
-	},
-	{
-		dataField: "redemptiondate",
-		text: "Redemption date",
-		headerClasses: "deal-header",
-	},
-];
-const products = [
-	{
-		id: 1003,
-		code: "5Q2H-MWXF-36HE",
-		purchasedate: "Jul. 8, 2022",
-		status: "used",
-		branchredeem: "Glorietta - GLO101",
-		redemptiondate: "Jul. 10, 2022 at 4:30pm",
-	},
-
-	{
-		id: 1004,
-		code: "5Q2H-MWXF-36HE",
-		purchasedate: "Jul. 8, 2022",
-		status: "used",
-		branchredeem: "Glorietta - GLO101",
-		redemptiondate: "Jul. 10, 2022 at 4:30pm",
-	},
-	{
-		id: 1005,
-		code: "5Q2H-MWXF-36HE",
-		purchasedate: "Jul. 8, 2022",
-		status: "used",
-		branchredeem: "Glorietta - GLO101",
-		redemptiondate: "Jul. 10, 2022 at 4:30pm",
-	},
-	{
-		id: 1006,
-		code: "5Q2H-MWXF-36HE",
-		purchasedate: "Jul. 8, 2022",
-		status: "used",
-		branchredeem: "Glorietta - GLO101",
-		redemptiondate: "Jul. 10, 2022 at 4:30pm",
-	},
-	{
-		id: 1007,
-		code: "5Q2H-MWXF-36HE",
-		purchasedate: "Jul. 8, 2022",
-		status: "used",
-		branchredeem: "Glorietta - GLO101",
-		redemptiondate: "Jul. 10, 2022 at 4:30pm",
-	},
-];
-
 const options = {
 	paginationSize: 4,
 	pageStartIndex: 1,
@@ -104,7 +17,98 @@ const options = {
 
 	disablePageTitle: true,
 };
-const AdminTable = () => {
+const AdminTable = (list) => {
+	// const { id } = ;ite
+	// const { id, firstName } = items;
+	const { SearchBar } = Search;
+
+	// import DatePicker from 'react-datepicker';
+	// import { Dropdown } from 'react-bootstrap';
+	const columns = [
+		{
+			dataField: "id",
+			text: "Order number",
+			sort: true,
+			classes: "deal-row",
+			headerClasses: "deal-header",
+		},
+		{
+			dataField: "code",
+			text: "Voucher code",
+			classes: "deal-row-2",
+
+			headerClasses: "deal-header",
+		},
+
+		{
+			dataField: "purchasedate",
+			text: "Purchase date",
+			classes: "deal-row",
+			headerClasses: "deal-header",
+		},
+		{
+			dataField: "status",
+			text: "Status",
+			classes: "deal-row",
+			headerClasses: "deal-header",
+		},
+		{
+			dataField: "branchredeem",
+			text: "Branch redeemed",
+			headerClasses: "deal-header",
+		},
+		{
+			dataField: "redemptiondate",
+			text: "Redemption date",
+			headerClasses: "deal-header",
+		},
+	];
+	const products = [];
+	// list.map((list)=>{})
+	products.push(
+		{
+			id: 1212,
+			code: "ssfsd",
+			purchasedate: "Jul. 8, 2022",
+			status: "used",
+			branchredeem: "Glorietta - GLO101",
+			redemptiondate: "Jul. 10, 2022 at 4:30pm",
+		},
+
+		{
+			id: 1004,
+			code: "5Q2H-MWXF-36HE",
+			purchasedate: "Jul. 8, 2022",
+			status: "used",
+			branchredeem: "Glorietta - GLO101",
+			redemptiondate: "Jul. 10, 2022 at 4:30pm",
+		},
+		{
+			id: 1005,
+			code: "5Q2H-MWXF-36HE",
+			purchasedate: "Jul. 8, 2022",
+			status: "used",
+			branchredeem: "Glorietta - GLO101",
+			redemptiondate: "Jul. 10, 2022 at 4:30pm",
+		},
+		{
+			id: 1006,
+			code: "5Q2H-MWXF-36HE",
+			purchasedate: "Jul. 8, 2022",
+			status: "used",
+			branchredeem: "Glorietta - GLO101",
+			redemptiondate: "Jul. 10, 2022 at 4:30pm",
+		},
+		{
+			id: 1007,
+			code: "5Q2H-MWXF-36HE",
+			purchasedate: "Jul. 8, 2022",
+			status: "used",
+			branchredeem: "Glorietta - GLO101",
+			redemptiondate: "Jul. 10, 2022 at 4:30pm",
+		}
+	);
+
 	return (
 		<div className="row">
 			<div className="col-md-12">
