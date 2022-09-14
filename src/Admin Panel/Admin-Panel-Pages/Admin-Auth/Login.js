@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import axios from "axios";
@@ -112,20 +113,6 @@ function AdminLogin() {
 										Forgot password?
 									</a>
 								</div>
-								{/* <div className="mb-2">
-									<button
-										type="button"
-										className="btn btn-block btn-facebook auth-form-btn">
-										<i className="mdi mdi-facebook mr-2"></i>Connect using
-										facebook
-									</button>
-								</div> */}
-								{/* <div className="text-center mt-4 font-weight-light">
-									Don't have an account?{" "}
-									<Link to="/user-pages/register" className="text-primary">
-										Create
-									</Link>
-								</div> */}
 							</Form>
 						</div>
 					</div>

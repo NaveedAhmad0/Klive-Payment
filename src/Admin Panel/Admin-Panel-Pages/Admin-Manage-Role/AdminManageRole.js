@@ -31,19 +31,19 @@ const AdminManageRole = () => {
 					.then((response) => {
 						// if (response == 200) {
 						const sample = [];
-						for (let i = 0; i < response.data.merchant.length; i += 1) {
+						for (let i = 0; i < response.data.length; i += 1) {
 							sample.push({
-								id: response.data.merchant[i].id,
-								FirstName: response.data.merchant[i].firstName,
-								email: response.data.merchant[i].email,
-								status: response.data.merchant[i].email,
-								branchredeem: response.data.merchant[i].email,
-								redemptiondate: response.data.merchant[i].email,
+								id: response.data[i].id,
+								FirstName: response.data[i].firstName,
+								email: response.data[i].email,
+								status: response.data[i].email,
+								branchredeem: response.data[i].email,
+								redemptiondate: response.data[i].email,
 							});
 						}
 						setItems(sample);
 						// }
-						console.log(response.data.merchant[3].id);
+						console.log("babla", response.data);
 						// const listItems = response.json();
 					});
 			} catch (error) {

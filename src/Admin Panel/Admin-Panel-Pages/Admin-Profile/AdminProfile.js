@@ -49,21 +49,6 @@ const AdminProfile = () => {
 			console.log("mail", email);
 
 			console.log(JSON.stringify(response?.data));
-
-			// const accessToken = response?.data?.accessToken;
-			// localStorage.setItem("token", response?.data?.accessToken);
-			// setEmail("");
-			// setUserName("");
-			// setSurname("");
-			// setSurname("");
-			// setSurname("");
-			// setSurname("");
-			// setMobile("");
-			// setAddress("");
-			// setProvince("");
-			// setDistrict("");
-			// setSubDistrict("");
-			// setZipCode("");
 			setSuccess(true);
 		} catch (err) {
 			console.log(err);

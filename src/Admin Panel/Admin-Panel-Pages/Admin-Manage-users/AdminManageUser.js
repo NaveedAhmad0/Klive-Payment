@@ -5,7 +5,6 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import { faCake } from "@fortawesome/free-solid-svg-icons";
 
 const options = {
 	paginationSize: 4,
@@ -24,7 +23,7 @@ const AdminManageUser = () => {
 	const [ittems, setItems] = useState([]);
 
 	console.log("items is", ittems);
-
+	// const edit = <faCake />;
 	useEffect(() => {
 		const getUserDetails = async () => {
 			try {
@@ -33,22 +32,22 @@ const AdminManageUser = () => {
 					.then((response) => {
 						const sample = [];
 
-						for (let i = 0; i < response.data.user.length; i += 1) {
+						for (let i = 0; i < response.data.length; i += 1) {
 							sample.push({
-								id: response.data.user[i].id,
-								FirstName: response.data.user[i].firstName,
-								email: response.data.user[i].email,
-								status: response.data.user[i].mobile,
-								branchredeem: response.data.user[i].email,
-								redemptiondate: <faCake />,
+								id: response.data[i].id,
+								FirstName: response.data[i].name,
+								email: response.data[i].email,
+								status: response.data[i].mobile,
+								branchredeem: response.data[i].email,
+								redemptiondate: response.data[i].email,
 							});
 						}
 						setItems(sample);
 
-						console.log(response.data.user[3].id);
+						console.log(response.data[3].id);
 					});
 			} catch (error) {
-				console.log(error.stack);
+				console.log(error);
 			}
 		};
 
