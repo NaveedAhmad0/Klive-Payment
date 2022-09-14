@@ -289,6 +289,7 @@ class Sidebar extends Component {
 							</span>
 						</Link>
 					</li>
+
 					<li
 						className={
 							this.isPathActive("/basic-ui") ? "nav-item active" : "nav-item"
@@ -331,42 +332,6 @@ class Sidebar extends Component {
 										}
 										to="/admin/AdminManageRole">
 										<Trans>Merchants </Trans>
-									</Link>
-								</li>
-							</ul>
-						</Collapse>
-					</li>
-
-					<li
-						className={
-							this.isPathActive("/user-pages") ? "nav-item active" : "nav-item"
-						}>
-						<div
-							className={
-								this.state.userPagesMenuOpen
-									? "nav-link menu-expanded"
-									: "nav-link"
-							}
-							onClick={() => this.toggleMenuState("userPagesMenuOpen")}
-							data-toggle="collapse">
-							<i className="mdi mdi-lock-outline menu-icon"></i>
-							<span className="menu-title">
-								<Trans>Admin Pages</Trans>
-							</span>
-							<i className="menu-arrow"></i>
-						</div>
-						<Collapse in={this.state.userPagesMenuOpen}>
-							<ul className="nav flex-column sub-menu">
-								<li className="nav-item">
-									{" "}
-									<Link
-										className={
-											this.isPathActive("/user-pages/login-1")
-												? "nav-link active"
-												: "nav-link"
-										}
-										to="/user-pages/login-1">
-										<Trans>Login</Trans>
 									</Link>
 								</li>
 							</ul>

@@ -5,7 +5,9 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import Edit from "../../../assets/logo/K Live Pay.png";
 
+import { useHistory } from "react-router-dom";
 const options = {
 	paginationSize: 4,
 	pageStartIndex: 1,
@@ -20,6 +22,8 @@ const options = {
 };
 
 const AdminManageRole = () => {
+	const history = useHistory();
+
 	const [ittems, setItems] = useState([]);
 	console.log("items is", ittems);
 
@@ -47,18 +51,14 @@ const AdminManageRole = () => {
 						// const listItems = response.json();
 					});
 			} catch (error) {
-				console.log(error.stack);
+				console.log(error);
 			}
 		};
 		(async () => await getUserDetails())();
 	}, []);
 
-	// console.log("reposnse", list);
-	// const { id, firstName } = items;
 	const { SearchBar } = Search;
 
-	// import DatePicker from 'react-datepicker';
-	// import { Dropdown } from 'react-bootstrap';
 	const columns = [
 		{
 			dataField: "id",
@@ -89,16 +89,47 @@ const AdminManageRole = () => {
 		},
 		{
 			dataField: "branchredeem",
-			text: "Branch redeemed",
+			isDummyField: true,
+			text: "View user",
 			headerClasses: "deal-header",
+			formatter: (cellContent, row) => {
+				return customFunction(cellContent, row);
+			},
 		},
-		{
-			dataField: "redemptiondate",
-			text: "Redemption date",
-			headerClasses: "deal-header",
-		},
+		// {
+		// 	dataField: "name",
+		// 	isDummyField: true,
+		// 	text: "Edit role",
+		// 	headerClasses: "deal-header",
+		// 	formatter: (cellContent, row) => {
+		// 		return customFunction(cellContent, row);
+		// 	},
+		// },
 	];
 	console.log("list of item", ittems);
+	const customFunction = (cellContent, row) => {
+		return (
+			<h5>
+				{/* <Link to="/admin/getUserProfile"> */}
+				<a
+					href
+					alt="issueimageload"
+					className="cursor-pointer"
+					// src={Edit}
+					onClick={() => {
+						// eslint-disable-next-line no-restricted-globals
+						history.push({
+							pathname: "/admin/getMerchantProfile",
+							state: { merchantdataEmail: row.email },
+						});
+						console.log("sent email", row.email);
+					}}>
+					view
+				</a>
+				{/* </Link> */}
+			</h5>
+		);
+	};
 	// list.map((list)=>{})
 
 	return (

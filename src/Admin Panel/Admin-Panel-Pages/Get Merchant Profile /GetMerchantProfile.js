@@ -2,16 +2,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import styles from "./GetUserProfile.css";
+import styles from "./GetMercahntProfile.css";
 
-const GetUserProfile = () => {
+const GetMerchantProfile = () => {
 	const location = useLocation();
 	const [fetchData, setFetchData] = useState({
 		id: 0,
 		name: "",
 		mobile: "",
 		email: "",
-		userName: "",
+		merchantName: "",
 		personType: "",
 		InitialShop: "",
 		firstName: "",
@@ -55,7 +55,8 @@ const GetUserProfile = () => {
 		name,
 		mobile,
 		email,
-		userName,
+		merchant,
+		merchantName,
 		personType,
 		InitialShop,
 		firstName,
@@ -97,59 +98,59 @@ const GetUserProfile = () => {
 
 	useEffect(() => {
 		// const loginemail = localStorage.getItem("email");
-		const userDataEmail = location.state.dataEmail;
-		console.log("Email is", location.state.dataEmail);
+		const merchantDataEmail = location.state.merchantdataEmail;
+		console.log("Email issss", location.state.merchantdataEmail);
 		axios
 			.get(
-				`https://backend.klivepay.com/api/user/get-profile?email=${userDataEmail}`
+				`https://backend.klivepay.com/api/merchant/get-profile?email=${merchantDataEmail}`
 			)
 			.then((res) => {
 				setFetchData({
-					id: res.data.user.id,
-					name: res.data.user.name,
-					mobile: res.data.user.mobile,
-					email: res.data.user.email,
-					userName: res.data.user.userName,
-					personType: res.data.user.personType,
-					InitialShop: res.data.user.InitialShop,
-					firstName: res.data.user.firstName,
-					surName: res.data.user.surName,
-					yearOfBirth: res.data.user.yearOfBirth,
-					monthOfBirth: res.data.user.monthOfBirth,
-					dayOfBirth: res.data.user.dayOfBirth,
-					address: res.data.user.address,
-					province: res.data.user.province,
-					district: res.data.user.district,
-					subDivision: res.data.user.subDivision,
-					pincode: res.data.user.pincode,
-					shopType: res.data.user.shopType,
-					creditCard: res.data.user.creditCard,
-					weChat: res.data.user.weChat,
-					livePayment: res.data.user.livePayment,
-					mobileBanking: res.data.user.mobileBanking,
-					trueWallet: res.data.user.trueWallet,
-					shopeePay: res.data.user.shopeePay,
-					alone: res.data.user.alone,
-					website: res.data.user.website,
-					facebook: res.data.user.facebook,
-					linkedin: res.data.user.linkedin,
-					instagram: res.data.user.instagram,
-					other: res.data.user.other,
-					company: res.data.user.company,
-					bank: res.data.user.bank,
-					bankAccount: res.data.user.bankAccount,
-					rnfCode: res.data.user.rnfCode,
-					domestic: res.data.user.domestic,
-					inter: res.data.user.inter,
-					rateQrCode: res.data.user.rateQrCode,
-					rateBarCode: res.data.user.rateBarCode,
-					copyOfId: res.data.user.copyOfId,
-					logo: res.data.user.logo,
-					bankBook: res.data.user.bankBook,
-					otherDocument: res.data.user.otherDocument,
+					id: res.data.merchant.id,
+					name: res.data.merchant.name,
+					mobile: res.data.merchant.mobile,
+					email: res.data.merchant.email,
+					merchantName: res.data.merchant.merchantName,
+					personType: res.data.merchant.personType,
+					InitialShop: res.data.merchant.InitialShop,
+					firstName: res.data.merchant.firstName,
+					surName: res.data.merchant.surName,
+					yearOfBirth: res.data.merchant.yearOfBirth,
+					monthOfBirth: res.data.merchant.monthOfBirth,
+					dayOfBirth: res.data.merchant.dayOfBirth,
+					address: res.data.merchant.address,
+					province: res.data.merchant.province,
+					district: res.data.merchant.district,
+					subDivision: res.data.merchant.subDivision,
+					pincode: res.data.merchant.pincode,
+					shopType: res.data.merchant.shopType,
+					creditCard: res.data.merchant.creditCard,
+					weChat: res.data.merchant.weChat,
+					livePayment: res.data.merchant.livePayment,
+					mobileBanking: res.data.merchant.mobileBanking,
+					trueWallet: res.data.merchant.trueWallet,
+					shopeePay: res.data.merchant.shopeePay,
+					alone: res.data.merchant.alone,
+					website: res.data.merchant.website,
+					facebook: res.data.merchant.facebook,
+					linkedin: res.data.merchant.linkedin,
+					instagram: res.data.merchant.instagram,
+					other: res.data.merchant.other,
+					company: res.data.merchant.company,
+					bank: res.data.merchant.bank,
+					bankAccount: res.data.merchant.bankAccount,
+					rnfCode: res.data.merchant.rnfCode,
+					domestic: res.data.merchant.domestic,
+					inter: res.data.merchant.inter,
+					rateQrCode: res.data.merchant.rateQrCode,
+					rateBarCode: res.data.merchant.rateBarCode,
+					copyOfId: res.data.merchant.copyOfId,
+					logo: res.data.merchant.logo,
+					bankBook: res.data.merchant.bankBook,
+					otherDocument: res.data.merchant.otherDocument,
 				});
 
-				console.log("USER DATA IS ", res.data.user);
+				console.log("merchant DATA IS ", res.data.merchant);
 			});
 	}, []);
 
@@ -175,15 +176,15 @@ const GetUserProfile = () => {
 				</div>
 
 				<div className="col-12 grid-margin">
-					<h4 className="card-title">user Personal Information</h4>
+					<h4 className="card-title">merchant Personal Information</h4>
 
 					<div className="card">
 						<div className={`card-body ${styles.usercardbody}`}>
-							<form className="form-sample">
+							<div className="form-sample">
 								{/* <h4 className={`text-center ${styles.userHeading}`}>Profile</h4> */}
 								<div className="row mt-5">
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<div className="form-group">
 												<Form.Group className=" d-flex">
 													<h5
@@ -201,14 +202,14 @@ const GetUserProfile = () => {
 														className="text-primary">
 														Merchant Name :-
 													</h5>
-													<h6 className="ms-2">{userName}</h6>
+													<h6 className="ms-2">{merchantName}</h6>
 												</Form.Group>
 											</div>
-										</form>
+										</div>
 									</div>
 
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<div className="form-group">
 												<Form.Group className=" d-flex">
 													<h5
@@ -229,11 +230,11 @@ const GetUserProfile = () => {
 													<h6 className="ms-2">{email}</h6>
 												</Form.Group>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div className="form-group">
 									<Form.Group className=" d-flex">
 										<h5
 											htmlFor="exampleInputUsername1"
@@ -337,7 +338,7 @@ const GetUserProfile = () => {
 
 								<div className="row mt-5">
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<Form.Group className=" d-flex">
 												<h5
 													htmlFor="exampleInputUsername1"
@@ -355,11 +356,11 @@ const GetUserProfile = () => {
 												</h5>
 												<h6 className="ms-2">{subDivision}</h6>
 											</Form.Group>
-										</form>
+										</div>
 									</div>
 
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<div className="form-group">
 												<Form.Group className=" d-flex">
 													<h5
@@ -381,13 +382,13 @@ const GetUserProfile = () => {
 													<h6 className="ms-2">{mobile}</h6>
 												</Form.Group>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 
 								<div className="row mt-5">
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<div className="form-group">
 												<Form.Group className=" d-flex">
 													<h5
@@ -419,11 +420,11 @@ const GetUserProfile = () => {
 													<h6 className="ms-2">{other}</h6>
 												</Form.Group>
 											</div>
-										</form>
+										</div>
 									</div>
 
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<div className="form-group">
 												<Form.Group className=" d-flex">
 													<h5
@@ -444,13 +445,13 @@ const GetUserProfile = () => {
 													<h6 className="ms-2">{instagram}</h6>
 												</Form.Group>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 
 								<div className="row mt-5">
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<div className="form-group">
 												<Form.Group className=" d-flex">
 													<h5
@@ -515,11 +516,11 @@ const GetUserProfile = () => {
 													<h6 className="ms-2">Qr Code</h6>
 												</Form.Group>
 											</div>
-										</form>
+										</div>
 									</div>
 
 									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<form>
+										<div>
 											<div className="form-group">
 												<Form.Group className=" d-flex">
 													<h5
@@ -582,14 +583,14 @@ const GetUserProfile = () => {
 													<h6 className="ms-2">Bar Code</h6>
 												</Form.Group>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 								{/* <button type="button" className={`btn ${styles.userBtn}`}>Finish</button> */}
-								<button type="button" className={`btn ${styles.userBtn}`}>
+								{/* <button type="button" className={`btn ${styles.userBtn}`}>
 									Finish
-								</button>
-							</form>
+								</button> */}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -598,4 +599,4 @@ const GetUserProfile = () => {
 	);
 };
 
-export default GetUserProfile;
+export default GetMerchantProfile;

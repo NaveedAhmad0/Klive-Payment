@@ -5,6 +5,8 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import Edit from "../../../assets/logo/K Live Pay.png";
+import { useHistory } from "react-router-dom";
 
 const options = {
 	paginationSize: 4,
@@ -20,6 +22,7 @@ const options = {
 };
 
 const AdminManageUser = () => {
+	const history = useHistory();
 	const [ittems, setItems] = useState([]);
 
 	console.log("items is", ittems);
@@ -90,11 +93,37 @@ const AdminManageUser = () => {
 			headerClasses: "deal-header",
 		},
 		{
-			dataField: "redemptiondate",
-			text: "Redemption date",
+			dataField: "branchredeem",
+			isDummyField: true,
+			text: "Edit role",
 			headerClasses: "deal-header",
+			formatter: (cellContent, row) => {
+				return customFunction(cellContent, row);
+			},
 		},
 	];
+	const customFunction = (cellContent, row) => {
+		return (
+			<h5>
+				{/* <Link to="/admin/getUserProfile"> */}
+				<h6
+					alt="issueimageload"
+					className="cursor-pointer"
+					// src={Edit}
+					onClick={() => {
+						// eslint-disable-next-line no-restricted-globals
+						history.push({
+							pathname: "/admin/getUserProfile",
+							state: { dataEmail: row.email },
+						});
+						// console.log(row.email);
+					}}>
+					view
+				</h6>
+				{/* </Link> */}
+			</h5>
+		);
+	};
 	console.log("list of item", ittems);
 	// list.map((list)=>{})
 
