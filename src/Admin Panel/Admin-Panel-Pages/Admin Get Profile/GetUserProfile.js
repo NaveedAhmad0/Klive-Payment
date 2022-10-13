@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import API from "../../../backend";
 
 const GetAdminProfile = () => {
 	const [email, setEmail] = useState("");
@@ -15,12 +16,10 @@ const GetAdminProfile = () => {
 	const [pincode, setPincode] = useState("");
 
 	// const { email, mobile } = values;
-
+	const loginMail = localStorage.getItem("email");
 	useEffect(() => {
 		axios
-			.get(
-				"https://backend.klivepay.com/api/admin/get-profile?email=admin%40mail.com"
-			)
+			.get(`${API}/admin/get-profile?email=${loginMail}`)
 
 			.then((res) => {
 				// setEmail(res.data.admin.email);
@@ -49,7 +48,7 @@ const GetAdminProfile = () => {
 					/>
 					<div className="mt-2 mx-auto">
 						<p>
-							Merchant Code: <span className="text-primary">M010303</span>
+							Merchant Code: <span className="text-primary">M0103033</span>
 						</p>
 						<p className="mx-auto">
 							Email: <span className="text-primary">{email}</span>

@@ -7,6 +7,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import Edit from "../../../assets/logo/K Live Pay.png";
 import { useHistory } from "react-router-dom";
+import API from "../../../backend";
 
 const options = {
 	paginationSize: 4,
@@ -30,25 +31,23 @@ const AdminManageUser = () => {
 	useEffect(() => {
 		const getUserDetails = async () => {
 			try {
-				await axios
-					.get("https://backend.klivepay.com/api/admin/get-user-list")
-					.then((response) => {
-						const sample = [];
+				await axios.get(`${API}/admin/get-user-list`).then((response) => {
+					const sample = [];
 
-						for (let i = 0; i < response.data.length; i += 1) {
-							sample.push({
-								id: response.data[i].id,
-								FirstName: response.data[i].name,
-								email: response.data[i].email,
-								status: response.data[i].mobile,
-								branchredeem: response.data[i].email,
-								redemptiondate: response.data[i].email,
-							});
-						}
-						setItems(sample);
+					for (let i = 0; i < response.data.length; i += 1) {
+						sample.push({
+							id: response.data[i].id,
+							FirstName: response.data[i].name,
+							email: response.data[i].email,
+							status: response.data[i].mobile,
+							branchredeem: response.data[i].email,
+							redemptiondate: response.data[i].email,
+						});
+					}
+					setItems(sample);
 
-						console.log(response.data[3].id);
-					});
+					console.log(response.data[3].id);
+				});
 			} catch (error) {
 				console.log(error);
 			}

@@ -2,6 +2,7 @@ import React, { Component, Suspense, lazy } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import Spinner from "../app/shared/Spinner";
+require("dotenv").config();
 
 // const HomePage = lazy(() => import("../Homepage/HomePage"));
 const Buttons = lazy(() => import("./basic-ui/Buttons"));
@@ -78,6 +79,11 @@ const AdminManageUser = lazy(() =>
 const AdminManageRole = lazy(() =>
 	import("../Admin Panel/Admin-Panel-Pages/Admin-Manage-Role/AdminManageRole")
 );
+const AssignMerchToUser = lazy(() =>
+	import(
+		"../Admin Panel/Admin-Panel-Pages/Assign-Merchant-To-User/AssignMerchToUser"
+	)
+);
 
 class AppRoutes extends Component {
 	render() {
@@ -145,7 +151,10 @@ class AppRoutes extends Component {
 					/>
 					<Route path="/admin/AdminManageUser" component={AdminManageUser} />
 					<Route path="/admin/AdminManageRole" component={AdminManageRole} />
-					{/*------------------------- USER PANEL ROUTES -------------------------- */}
+					<Route
+						path="/admin/assign-merchnat-to-users"
+						component={AssignMerchToUser}
+					/>
 
 					<Route path="/admin/error-pages/error-404" component={Error404} />
 					<Route path="/admin/error-pages/error-500" component={Error500} />

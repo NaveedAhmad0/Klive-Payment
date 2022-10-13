@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import API from "../../../backend";
 import styles from "./GetUserProfile.css";
 
 const GetUserProfile = () => {
@@ -99,58 +100,54 @@ const GetUserProfile = () => {
 		// const loginemail = localStorage.getItem("email");
 		const userDataEmail = location.state.dataEmail;
 		console.log("Email is", location.state.dataEmail);
-		axios
-			.get(
-				`https://backend.klivepay.com/api/user/get-profile?email=${userDataEmail}`
-			)
-			.then((res) => {
-				setFetchData({
-					id: res.data.user.id,
-					name: res.data.user.name,
-					mobile: res.data.user.mobile,
-					email: res.data.user.email,
-					userName: res.data.user.userName,
-					personType: res.data.user.personType,
-					InitialShop: res.data.user.InitialShop,
-					firstName: res.data.user.firstName,
-					surName: res.data.user.surName,
-					yearOfBirth: res.data.user.yearOfBirth,
-					monthOfBirth: res.data.user.monthOfBirth,
-					dayOfBirth: res.data.user.dayOfBirth,
-					address: res.data.user.address,
-					province: res.data.user.province,
-					district: res.data.user.district,
-					subDivision: res.data.user.subDivision,
-					pincode: res.data.user.pincode,
-					shopType: res.data.user.shopType,
-					creditCard: res.data.user.creditCard,
-					weChat: res.data.user.weChat,
-					livePayment: res.data.user.livePayment,
-					mobileBanking: res.data.user.mobileBanking,
-					trueWallet: res.data.user.trueWallet,
-					shopeePay: res.data.user.shopeePay,
-					alone: res.data.user.alone,
-					website: res.data.user.website,
-					facebook: res.data.user.facebook,
-					linkedin: res.data.user.linkedin,
-					instagram: res.data.user.instagram,
-					other: res.data.user.other,
-					company: res.data.user.company,
-					bank: res.data.user.bank,
-					bankAccount: res.data.user.bankAccount,
-					rnfCode: res.data.user.rnfCode,
-					domestic: res.data.user.domestic,
-					inter: res.data.user.inter,
-					rateQrCode: res.data.user.rateQrCode,
-					rateBarCode: res.data.user.rateBarCode,
-					copyOfId: res.data.user.copyOfId,
-					logo: res.data.user.logo,
-					bankBook: res.data.user.bankBook,
-					otherDocument: res.data.user.otherDocument,
-				});
-
-				console.log("USER DATA IS ", res.data.user);
+		axios.get(`${API}/user/get-profile?email=${userDataEmail}`).then((res) => {
+			setFetchData({
+				id: res.data.user.id,
+				name: res.data.user.name,
+				mobile: res.data.user.mobile,
+				email: res.data.user.email,
+				userName: res.data.user.userName,
+				personType: res.data.user.personType,
+				InitialShop: res.data.user.InitialShop,
+				firstName: res.data.user.firstName,
+				surName: res.data.user.surName,
+				yearOfBirth: res.data.user.yearOfBirth,
+				monthOfBirth: res.data.user.monthOfBirth,
+				dayOfBirth: res.data.user.dayOfBirth,
+				address: res.data.user.address,
+				province: res.data.user.province,
+				district: res.data.user.district,
+				subDivision: res.data.user.subDivision,
+				pincode: res.data.user.pincode,
+				shopType: res.data.user.shopType,
+				creditCard: res.data.user.creditCard,
+				weChat: res.data.user.weChat,
+				livePayment: res.data.user.livePayment,
+				mobileBanking: res.data.user.mobileBanking,
+				trueWallet: res.data.user.trueWallet,
+				shopeePay: res.data.user.shopeePay,
+				alone: res.data.user.alone,
+				website: res.data.user.website,
+				facebook: res.data.user.facebook,
+				linkedin: res.data.user.linkedin,
+				instagram: res.data.user.instagram,
+				other: res.data.user.other,
+				company: res.data.user.company,
+				bank: res.data.user.bank,
+				bankAccount: res.data.user.bankAccount,
+				rnfCode: res.data.user.rnfCode,
+				domestic: res.data.user.domestic,
+				inter: res.data.user.inter,
+				rateQrCode: res.data.user.rateQrCode,
+				rateBarCode: res.data.user.rateBarCode,
+				copyOfId: res.data.user.copyOfId,
+				logo: res.data.user.logo,
+				bankBook: res.data.user.bankBook,
+				otherDocument: res.data.user.otherDocument,
 			});
+
+			console.log("USER DATA IS ", res.data.user);
+		});
 	}, []);
 
 	return (

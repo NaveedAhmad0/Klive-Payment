@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState, Suspense } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
-
 import { withRouter } from "react-router-dom";
 import "./App.scss";
 import AppRoutes from "./AppRoutes";
@@ -12,6 +11,7 @@ import Footer from "./shared/Footer";
 import { withTranslation } from "react-i18next";
 import userContext from "../context/userContext";
 import Spinner from "./shared/Spinner";
+require("dotenv").config();
 
 function App(props) {
 	const [isFullPageLayout, setisFullPageLayout] = useState(false);
@@ -87,9 +87,9 @@ function App(props) {
 				<div className="container-fluid page-body-wrapper">
 					{location.pathname.includes("login") ||
 					location.pathname.includes("forgotPassword") ||
-					location.pathname == "/admin" ||
-					location.pathname.includes("user")
-						? null
+					location.pathname == "/admin"
+						? // location.pathname.includes("user")
+						  null
 						: adminSidebarComponent}
 
 					<div

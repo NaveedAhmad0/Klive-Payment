@@ -8,6 +8,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import Edit from "../../../assets/logo/K Live Pay.png";
 
 import { useHistory } from "react-router-dom";
+import API from "../../../backend";
 const options = {
 	paginationSize: 4,
 	pageStartIndex: 1,
@@ -30,26 +31,24 @@ const AdminManageRole = () => {
 	useEffect(() => {
 		const getUserDetails = async () => {
 			try {
-				await axios
-					.get("https://backend.klivepay.com/api/admin/get-merchant-list")
-					.then((response) => {
-						// if (response == 200) {
-						const sample = [];
-						for (let i = 0; i < response.data.length; i += 1) {
-							sample.push({
-								id: response.data[i].id,
-								FirstName: response.data[i].firstName,
-								email: response.data[i].email,
-								status: response.data[i].email,
-								branchredeem: response.data[i].email,
-								redemptiondate: response.data[i].email,
-							});
-						}
-						setItems(sample);
-						// }
-						console.log("babla", response.data);
-						// const listItems = response.json();
-					});
+				await axios.get(`${API}/admin/get-merchant-list`).then((response) => {
+					// if (response == 200) {
+					const sample = [];
+					for (let i = 0; i < response.data.length; i += 1) {
+						sample.push({
+							id: response.data[i].id,
+							FirstName: response.data[i].firstName,
+							email: response.data[i].email,
+							status: response.data[i].email,
+							branchredeem: response.data[i].email,
+							redemptiondate: response.data[i].email,
+						});
+					}
+					setItems(sample);
+					// }
+					console.log("babla", response.data);
+					// const listItems = response.json();
+				});
 			} catch (error) {
 				console.log(error);
 			}

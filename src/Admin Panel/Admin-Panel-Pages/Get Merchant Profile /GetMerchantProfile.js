@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import API from "../../../backend";
 import styles from "./GetMercahntProfile.css";
 
 const GetMerchantProfile = () => {
@@ -101,9 +102,7 @@ const GetMerchantProfile = () => {
 		const merchantDataEmail = location.state.merchantdataEmail;
 		console.log("Email issss", location.state.merchantdataEmail);
 		axios
-			.get(
-				`https://backend.klivepay.com/api/merchant/get-profile?email=${merchantDataEmail}`
-			)
+			.get(`${API}/merchant/get-profile?email=${merchantDataEmail}`)
 			.then((res) => {
 				setFetchData({
 					id: res.data.merchant.id,

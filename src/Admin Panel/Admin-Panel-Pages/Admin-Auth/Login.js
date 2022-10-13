@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import axios from "axios";
+import API from "../../../backend";
 
 function AdminLogin() {
 	useEffect(() => {
 		localStorage.clear();
+		console.log(API);
 	}, []);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -27,7 +29,7 @@ function AdminLogin() {
 
 		try {
 			const response = await axios.post(
-				`https://backend.klivepay.com/api/admin/login`,
+				`${API}/admin/login`,
 				JSON.stringify({ email, password }),
 				{
 					headers: { "Content-Type": "application/json" },
@@ -39,6 +41,7 @@ function AdminLogin() {
 
 			// const accessToken = response?.data?.accessToken;
 			localStorage.setItem("token", response?.data?.accessToken);
+			localStorage.setItem("email", email);
 			setEmail("");
 			setPassword("");
 			setSuccess(true);
