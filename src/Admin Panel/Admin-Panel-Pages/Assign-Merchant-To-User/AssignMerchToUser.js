@@ -23,7 +23,7 @@ const AssignMerchToUser = () => {
 		});
 	}, []);
 	console.log(merchList);
-	const handleChange = (select) => {
+	const handleChange = (e) => {
 		// let options = e.target.value;
 		// let value = [];
 		// for (let i = 0; i < options.length; i++) {
@@ -32,8 +32,7 @@ const AssignMerchToUser = () => {
 		// 	}
 		// 	console.log(options[i].selected);
 		// }
-		setSelect({ select });
-		console.log(select);
+		setmerchantEmail(e.target.value);
 		// console.log("sent", options, value);
 	};
 
@@ -51,8 +50,10 @@ const AssignMerchToUser = () => {
 				)
 				.then((res) => {
 					console.log(res.data);
+					alert("Asssigned sucessfully!");
 				});
 		} catch (error) {
+			alert("something went wrong!");
 			console.log(error);
 		}
 		console.log("merchantEmail", merchantEmail);
@@ -94,9 +95,7 @@ const AssignMerchToUser = () => {
 												<option>Select Merchant</option>
 												{merchList.length
 													? merchList.map((item) => (
-															<option value={item.email.selected}>
-																{item.email}
-															</option>
+															<option value={item.email}>{item.email}</option>
 													  ))
 													: ""}
 											</select>
