@@ -11,37 +11,45 @@ const AssignMerchToUser = () => {
 	const [userEmail, setUserEmail] = useState([]);
 	const [merchantEmail, setmerchantEmail] = useState([]);
 	useEffect(() => {
-		axios.get(`${API}/admin/get-merchant-list`).then((res) => {
-			const sample = [];
-			for (let i = 0; i < res.data.length; i++) {
-				sample.push({
-					email: res.data[i].email,
-				});
-			}
-			setMerchList(sample);
-			console.log("sample", sample);
-		});
+		axios
+			.get(`https://backend.klivepay.com/api/admin/get-merchant-list`)
+			.then((res) => {
+				const sample = [];
+				for (let i = 0; i < res.data.length; i++) {
+					sample.push({
+						email: res.data[i].email,
+					});
+				}
+				setMerchList(sample);
+				console.log("sample", sample);
+			});
 	}, []);
 	console.log(merchList);
-	const handleChange = (e) => {
-		// let options = e.target.value;
-		// let value = [];
-		// for (let i = 0; i < options.length; i++) {
-		// 	if (options[i].selected) {
-		// 		await value.push(options[i].value);
-		// 	}
-		// 	console.log(options[i].selected);
-		// }
-		setmerchantEmail(e.target.value);
-		// console.log("sent", options, value);
+
+	// let options = e.target.value;
+	// let value = [];
+	// for (let i = 0; i < options.length; i++) {
+	// 	if (options[i].selected) {
+	// 		await value.push(options[i].value);
+	// 	}
+	// 	console.log(options[i].selected);
+	const handleChange = (e, i) => {
+		// let newFormValues = [...merchantEmail];
+		// newFormValues[i][e.target.name] = e.target.value;
+
+		const select = [e.target.value];
+		// console.log(newFormValues);
+		setmerchantEmail(select);
 	};
+	// }
+	// console.log("sent", options, value);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		try {
 			axios
 				.patch(
-					`${API}/admin/assign-merchnat-to-user`,
+					`https://backend.klivepay.com/api/admin/assign-merchnat-to-user`,
 					JSON.stringify({ merchantEmail, userEmail }),
 					{
 						headers: { "Content-Type": "application/json" },
@@ -53,7 +61,9 @@ const AssignMerchToUser = () => {
 					alert("Asssigned sucessfully!");
 				});
 		} catch (error) {
-			alert("something went wrong!");
+			if (error) {
+				alert("something went wrong!");
+			}
 			console.log(error);
 		}
 		console.log("merchantEmail", merchantEmail);
