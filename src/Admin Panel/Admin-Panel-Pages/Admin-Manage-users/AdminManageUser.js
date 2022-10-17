@@ -46,7 +46,7 @@ const AdminManageUser = () => {
 					}
 					setItems(sample);
 
-					console.log(response.data[3].id);
+					// console.log(response.data[i].id);
 				});
 			} catch (error) {
 				console.log(error);

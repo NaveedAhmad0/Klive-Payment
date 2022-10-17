@@ -31,7 +31,7 @@ const GetAdminProfile = () => {
 				setDistrict(res.data.admin.district);
 				setSubDistrict(res.data.admin.subDistrict);
 				setPincode(res.data.admin.pincode);
-				console.log("DATA IS ", res.data.admin);
+				// console.log("DATA IS ", res.data.admin.merchantEmail[0]);
 			});
 	}, []);
 

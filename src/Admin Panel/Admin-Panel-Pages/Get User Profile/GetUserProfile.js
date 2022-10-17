@@ -146,7 +146,7 @@ const GetUserProfile = () => {
 				otherDocument: res.data.user.otherDocument,
 			});
 
-			console.log("USER DATA IS ", res.data.user);
+			// console.log("USER DATA IS ", res.data.user.merchantEmail);
 		});
 	}, []);
 

@@ -7,7 +7,7 @@ import API from "../../../backend";
 
 const AssignMerchToUser = () => {
 	const [merchList, setMerchList] = useState([]);
-	const [select, setSelect] = useState(null);
+	// const [select, setSelect] = useState(null);
 	const [userEmail, setUserEmail] = useState([]);
 	const [merchantEmail, setmerchantEmail] = useState([]);
 	useEffect(() => {
@@ -16,14 +16,13 @@ const AssignMerchToUser = () => {
 			.then((res) => {
 				const sample = [];
 				for (let i = 0; i < res.data.length; i++) {
-					sample.push({
-						email: res.data[i].email,
-					});
+					sample.push(res.data[i].email);
 				}
 				setMerchList(sample);
-				console.log("sample", sample);
+				console.log("sample");
 			});
 	}, []);
+
 	console.log(merchList);
 
 	// let options = e.target.value;
@@ -33,24 +32,26 @@ const AssignMerchToUser = () => {
 	// 		await value.push(options[i].value);
 	// 	}
 	// 	console.log(options[i].selected);
-	const handleChange = (e, i) => {
-		// let newFormValues = [...merchantEmail];
+	const handleChange = (value, i) => {
+		// let newFormValues = [...value];
 		// newFormValues[i][e.target.name] = e.target.value;
 
-		const select = [e.target.value];
-		// console.log(newFormValues);
-		setmerchantEmail(select);
+		// const select = [value];
+		// select.push(value);
+		console.log(value);
+		setmerchantEmail(value);
 	};
 	// }
-	// console.log("sent", options, value);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
+
 		try {
 			axios
 				.patch(
 					`https://backend.klivepay.com/api/admin/assign-merchnat-to-user`,
 					JSON.stringify({ merchantEmail, userEmail }),
+
 					{
 						headers: { "Content-Type": "application/json" },
 						// withCredentials: true,
@@ -94,30 +95,31 @@ const AssignMerchToUser = () => {
 								<div className="col-md-6">
 									<Form.Group className="row">
 										<div className="col-sm-12">
-											<select
-												// multiple
+											{/* <select
+												multiple
 												aria-multiselectable
 												multiselect-serach="true"
 												value={merchantEmail}
-												onChange={(e) => handleChange(e)}
+												onChange={(value) => handleChange(value)}
 												className="form-control "
 												data-live-search="true">
 												<option>Select Merchant</option>
 												{merchList.length
 													? merchList.map((item) => (
-															<option value={item.email}>{item.email}</option>
+															<option value={item}>{item}</option>
 													  ))
 													: ""}
-											</select>
+											</select> */}
+											<Select
+												isMulti={true}
+												value={merchantEmail.item}
+												onChange={(value) => handleChange(value)}
+												options={merchList}
+												getOptionLabel={(option) => option}
+												getOptionValue={(option) => option}
+											/>
 										</div>
 										{/* <DropdownMultiselect options={merchList} /> */}
-
-										{/* <Select
-											// isMulti={true}
-											value={select}
-											onChange={(e) => handleChange(e)}
-											options={merchList}
-										/> */}
 									</Form.Group>
 								</div>
 							</div>
