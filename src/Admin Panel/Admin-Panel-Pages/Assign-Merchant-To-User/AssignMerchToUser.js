@@ -94,7 +94,7 @@ const AssignMerchToUser = () => {
 
 								<div className="col-md-6">
 									<Form.Group className="row">
-										<div className="col-sm-12">
+										<div className="col-sm-12 ">
 											{/* <select
 												multiple
 												aria-multiselectable
@@ -112,6 +112,7 @@ const AssignMerchToUser = () => {
 											</select> */}
 											<Select
 												isMulti={true}
+												// className="form-control"
 												value={merchantEmail.item}
 												onChange={(value) => handleChange(value)}
 												options={merchList}
