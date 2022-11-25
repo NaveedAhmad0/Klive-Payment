@@ -35,7 +35,7 @@ const Navbar = () => {
 				</ul>
 
 				<ul className="navbar-nav navbar-nav-right">
-					<li className="nav-item  nav-profile border-0 pl-4">
+					{/* <li className="nav-item  nav-profile border-0 pl-4">
 						<Dropdown>
 							<Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
 								<i className="mdi mdi-bell-outline"></i>
@@ -196,7 +196,7 @@ const Navbar = () => {
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
-					</li>
+					</li> */}
 
 					<li className="nav-item  nav-profile border-0">
 						<Dropdown>

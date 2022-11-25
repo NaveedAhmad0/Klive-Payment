@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import "./App.scss";
@@ -9,13 +9,11 @@ import Sidebar from "./shared/Sidebar";
 import SettingsPanel from "./shared/SettingsPanel";
 import Footer from "./shared/Footer";
 import { withTranslation } from "react-i18next";
-import userContext from "../context/userContext";
 import Spinner from "./shared/Spinner";
 require("dotenv").config();
 
 function App(props) {
 	const [isFullPageLayout, setisFullPageLayout] = useState(false);
-	const { isAdmin, isMerchant, isUser } = useContext(userContext);
 	const location = useLocation();
 	let navbarComponent = isFullPageLayout ? <Navbar /> : "";
 	let adminSidebarComponent = isFullPageLayout ? <Sidebar /> : "";

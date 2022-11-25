@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Form } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import API from "../../../backend";
@@ -50,18 +50,17 @@ const GetMerchantProfile = () => {
 		logo: "",
 		bankBook: "",
 		otherDocument: "",
+		transaction: "",
+		withdraw: "",
 	});
 	const {
 		id,
 		name,
 		mobile,
 		email,
-		merchant,
 		merchantName,
-		personType,
 		InitialShop,
 		firstName,
-		surName,
 		yearOfBirth,
 		monthOfBirth,
 		dayOfBirth,
@@ -69,529 +68,602 @@ const GetMerchantProfile = () => {
 		province,
 		district,
 		subDivision,
-		pincode,
-		shopType,
-		creditCard,
-		weChat,
-		livePayment,
-		mobileBanking,
-		trueWallet,
-		shopeePay,
-		alone,
+		inter,
+		rnfCode,
+		bank,
+		logo,
+		rateQrCode,
+		domestic,
+		company,
+		bankAccount,
 		website,
 		facebook,
 		linkedin,
 		instagram,
 		other,
-		company,
-		bank,
-		bankAccount,
-		rnfCode,
-		domestic,
-		inter,
-		rateQrCode,
-		rateBarCode,
-		copyOfId,
-		logo,
-		bankBook,
-		otherDocument,
+		transaction,
+		withdraw,
 	} = fetchData;
+	const [TransactionFee, setTransactionFee] = useState({});
+	const [withdrawFee, setWithdrawFee] = useState({});
+	const [success, setSuccess] = useState(false);
 
-	useEffect(() => {
-		// const loginemail = localStorage.getItem("email");
-		const merchantDataEmail = location.state.merchantdataEmail;
-		console.log("Email issss", location.state.merchantdataEmail);
-		axios
-			.get(`${API}/merchant/get-profile?email=${merchantDataEmail}`)
-			.then((res) => {
-				setFetchData({
-					id: res.data.merchant.id,
-					name: res.data.merchant.name,
-					mobile: res.data.merchant.mobile,
-					email: res.data.merchant.email,
-					merchantName: res.data.merchant.merchantName,
-					personType: res.data.merchant.personType,
-					InitialShop: res.data.merchant.InitialShop,
-					firstName: res.data.merchant.firstName,
-					surName: res.data.merchant.surName,
-					yearOfBirth: res.data.merchant.yearOfBirth,
-					monthOfBirth: res.data.merchant.monthOfBirth,
-					dayOfBirth: res.data.merchant.dayOfBirth,
-					address: res.data.merchant.address,
-					province: res.data.merchant.province,
-					district: res.data.merchant.district,
-					subDivision: res.data.merchant.subDivision,
-					pincode: res.data.merchant.pincode,
-					shopType: res.data.merchant.shopType,
-					creditCard: res.data.merchant.creditCard,
-					weChat: res.data.merchant.weChat,
-					livePayment: res.data.merchant.livePayment,
-					mobileBanking: res.data.merchant.mobileBanking,
-					trueWallet: res.data.merchant.trueWallet,
-					shopeePay: res.data.merchant.shopeePay,
-					alone: res.data.merchant.alone,
-					website: res.data.merchant.website,
-					facebook: res.data.merchant.facebook,
-					linkedin: res.data.merchant.linkedin,
-					instagram: res.data.merchant.instagram,
-					other: res.data.merchant.other,
-					company: res.data.merchant.company,
-					bank: res.data.merchant.bank,
-					bankAccount: res.data.merchant.bankAccount,
-					rnfCode: res.data.merchant.rnfCode,
-					domestic: res.data.merchant.domestic,
-					inter: res.data.merchant.inter,
-					rateQrCode: res.data.merchant.rateQrCode,
-					rateBarCode: res.data.merchant.rateBarCode,
-					copyOfId: res.data.merchant.copyOfId,
-					logo: res.data.merchant.logo,
-					bankBook: res.data.merchant.bankBook,
-					otherDocument: res.data.merchant.otherDocument,
+	const merchantId = location.state.merchantId;
+
+	async function onSubmit(event) {
+		event.preventDefault();
+
+		try {
+			const response = await axios
+				.patch(
+					`${API}/admin/fees-by-id?merchantId=${merchantId}`,
+					JSON.stringify({
+						TransactionFee: parseInt(TransactionFee),
+						withdrawFee: parseInt(withdrawFee),
+					}),
+					{
+						headers: { "Content-Type": "application/json" },
+						// withCredentials: true,
+					}
+				)
+				.then((res) => {
+					setTransactionFee("");
+					setWithdrawFee("");
+					console.log(res);
+					alert("Fee Added Succesfully");
 				});
 
-				console.log("merchant DATA IS ", res.data.merchant);
-			});
+			setSuccess(true);
+		} catch (err) {
+			alert("something went wrong");
+			console.log(err);
+		}
+	}
+
+	const merchantDataEmail = location.state.merchantdataEmail;
+	const getProfile = useCallback(() => {
+		try {
+			axios
+				.get(`${API}/merchant/get-profile?email=${merchantDataEmail}`)
+				.then((res) => {
+					setFetchData({
+						id: res.data.merchant.id,
+						name: res.data.merchant.name,
+						mobile: res.data.merchant.mobile,
+						email: res.data.merchant.email,
+						merchantName: res.data.merchant.merchantName,
+						personType: res.data.merchant.personType,
+						InitialShop: res.data.merchant.InitialShop,
+						firstName: res.data.merchant.firstName,
+						surName: res.data.merchant.surName,
+						yearOfBirth: res.data.merchant.yearOfBirth,
+						monthOfBirth: res.data.merchant.monthOfBirth,
+						dayOfBirth: res.data.merchant.dayOfBirth,
+						address: res.data.merchant.address,
+						province: res.data.merchant.province,
+						district: res.data.merchant.district,
+						subDivision: res.data.merchant.subDivision,
+						pincode: res.data.merchant.pincode,
+						shopType: res.data.merchant.shopType,
+						creditCard: res.data.merchant.creditCard,
+						weChat: res.data.merchant.weChat,
+						livePayment: res.data.merchant.livePayment,
+						mobileBanking: res.data.merchant.mobileBanking,
+						trueWallet: res.data.merchant.trueWallet,
+						shopeePay: res.data.merchant.shopeePay,
+						alone: res.data.merchant.alone,
+						website: res.data.merchant.website,
+						facebook: res.data.merchant.facebook,
+						linkedin: res.data.merchant.linkedin,
+						instagram: res.data.merchant.instagram,
+						other: res.data.merchant.other,
+						company: res.data.merchant.company,
+						bank: res.data.merchant.bank,
+						bankAccount: res.data.merchant.bankAccount,
+						rnfCode: res.data.merchant.rnfCode,
+						domestic: res.data.merchant.domestic,
+						inter: res.data.merchant.inter,
+						rateQrCode: res.data.merchant.rateQrCode,
+						rateBarCode: res.data.merchant.rateBarCode,
+						copyOfId: res.data.merchant.copyOfId,
+						logo: res.data.merchant.logo,
+						bankBook: res.data.merchant.bankBook,
+						otherDocument: res.data.merchant.otherDocument,
+						transaction: res.data.merchant.transaction,
+						withdraw: res.data.merchant.withdraw,
+					});
+
+					console.log("merchant DATA IS ", res.data.merchant);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	}, [TransactionFee, withdrawFee]);
+
+	useEffect(() => {
+		getProfile();
 	}, []);
+	useEffect(() => {
+		getProfile();
+	}, [TransactionFee, withdrawFee]);
 
 	return (
-		<div className="col-12 grid-margin">
-			<h4 className="card-title">Personal admin Information</h4>
+		<div className="col-12 grid-margin userProfileMain">
+			<h4 className="card-title fs-3">Personal Admin Information</h4>
 
-			<div className="card">
-				<div className="row flex-column mt-5 mx-auto">
+			<div className="card userProfileCard-2 ">
+				<div
+					className="row flex-column mt-5 mx-auto card text-white w-30 mb-5"
+					style={{
+						backgroundColor: "#007BFF",
+						fontWeight: "500",
+						lineHeight: "1",
+						fontSize: "10px",
+					}}>
 					<img
-						className="img-lg mx-auto rounded-circle"
+						className="profile-img mt-3 mb-2"
 						src={require("../../../assets/images/faces/face8.jpg")}
 						alt="Profile"
 					/>
 					<div className="mt-2 mx-auto">
-						<p>
-							Merchant Code: <span className="text-primary">M010303</span>
+						<p className="text-white">
+							Merchant Code: <span className="text-warning">M010303</span>
 						</p>
-						<p className="mx-auto">
-							Email: <span className="text-primary">{email}</span>
+						<p className="text-white">
+							Email: <span className="text-warning">{email}</span>
 						</p>
 					</div>
 				</div>
 
 				<div className="col-12 grid-margin">
-					<h4 className="card-title">merchant Personal Information</h4>
+					<h4 className="card-title fs-4">Merchant Personal Information</h4>
 
-					<div className="card">
+					<div className="card userCard p-lg-2">
 						<div className={`card-body ${styles.usercardbody}`}>
-							<div className="form-sample">
-								{/* <h4 className={`text-center ${styles.userHeading}`}>Profile</h4> */}
-								<div className="row mt-5">
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Merchant ID :-
-													</h5>
-													<h6 className="ms-2">{id}</h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Merchant Name :-
-													</h5>
-													<h6 className="ms-2">{merchantName}</h6>
-												</Form.Group>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Merchant Name English:-
-													</h5>
-													<h6 className="ms-2">{name}</h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Email Address :-
-													</h5>
-													<h6 className="ms-2">{email}</h6>
-												</Form.Group>
-											</div>
-										</div>
-									</div>
+							<form className="row g-3 form-sample">
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Merchant ID :
+									</label>
+									<input className="form-control" id="inputEmail4" value={id} />
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className=" form-label">
+										Merchant Name :
+									</label>
+									<input
+										className="form-control"
+										id="inputPassword4"
+										value={merchantName}
+									/>
 								</div>
 
-								<div className="form-group">
-									<Form.Group className=" d-flex">
-										<h5
-											htmlFor="exampleInputUsername1"
-											className="text-primary">
-											Initial Shop :-
-										</h5>
-										<h6 className="ms-2">{InitialShop}</h6>
-									</Form.Group>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Merchant Name English :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={name}
+									/>
 								</div>
-
-								<div className="row">
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div className="form-group">
-											<Form.Group className=" d-flex">
-												<h5
-													htmlFor="exampleInputUsername1"
-													className="text-primary">
-													First Name :-
-												</h5>
-												<h6 className="ms-2">{firstName}</h6>
-											</Form.Group>
-										</div>
-									</div>
-
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div className="form-group">
-											<Form.Group className=" d-flex">
-												<h5
-													htmlFor="exampleInputUsername1"
-													className="text-primary">
-													Email :-
-												</h5>
-												<h6 className="ms-2">{email}</h6>
-											</Form.Group>
-										</div>
-									</div>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Email Address :
+									</label>
+									<input
+										className="form-control"
+										id="inputPassword4"
+										value={email}
+									/>
 								</div>
-
-								<div className="row">
-									<div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div className="form-group">
-											<Form.Group className=" d-flex">
-												<h5
-													htmlFor="exampleInputUsername1"
-													className="text-primary">
-													Year of Birth :-
-												</h5>
-												<h6 className="ms-2">{yearOfBirth}</h6>
-											</Form.Group>
-										</div>
-									</div>
-
-									<div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div className="form-group">
-											<Form.Group className=" d-flex">
-												<h5
-													htmlFor="exampleInputUsername1"
-													className="text-primary">
-													Month Of Birth :-
-												</h5>
-												<h6 className="ms-2">{monthOfBirth}</h6>
-											</Form.Group>
-										</div>
-									</div>
-
-									<div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div className="form-group">
-											<Form.Group className=" d-flex">
-												<h5
-													htmlFor="exampleInputUsername1"
-													className="text-primary">
-													Day Of Birth:-
-												</h5>
-												<h6 className="ms-2">{dayOfBirth}</h6>
-											</Form.Group>
-										</div>
-									</div>
+								<div class="col-md-12">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Initial Shop :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={InitialShop}
+									/>
 								</div>
-
-								<div class="form-group">
-									<Form.Group className=" d-flex">
-										<h5
-											htmlFor="exampleInputUsername1"
-											className="text-primary">
-											Contact Number :-
-										</h5>
-										<h6 className="ms-2">{mobile}</h6>
-									</Form.Group>
+							</form>
+							<br></br>
+							<br></br>
+							<form className="row g-3 form-sample">
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										First Name:
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={firstName}
+									/>
 								</div>
-
-								<div class="form-group">
-									<Form.Group className=" d-flex">
-										<h5
-											htmlFor="exampleInputUsername1"
-											className="text-primary">
-											Address :-
-										</h5>
-										<h6 className="ms-2">{address}</h6>
-									</Form.Group>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Email :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={email}
+									/>
 								</div>
-
-								<div className="row mt-5">
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<Form.Group className=" d-flex">
-												<h5
-													htmlFor="exampleInputUsername1"
-													className="text-primary">
-													Provience :-
-												</h5>
-												<h6 className="ms-2">{province}</h6>
-											</Form.Group>
-
-											<Form.Group className=" d-flex">
-												<h5
-													htmlFor="exampleInputUsername1"
-													className="text-primary">
-													Sub Division :-
-												</h5>
-												<h6 className="ms-2">{subDivision}</h6>
-											</Form.Group>
-										</div>
-									</div>
-
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														District :-
-													</h5>
-													<h6 className="ms-2">{district}</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Mobile no :-
-													</h5>
-													<h6 className="ms-2">{mobile}</h6>
-												</Form.Group>
-											</div>
-										</div>
-									</div>
+								<div class="col-md-4">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Year of Birth :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={yearOfBirth}
+									/>
 								</div>
-
-								<div className="row mt-5">
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Web Site :-
-													</h5>
-													<h6 className="ms-2">{website}</h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Linked in :-
-													</h5>
-													<h6 className="ms-2">{linkedin}</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Other :-
-													</h5>
-													<h6 className="ms-2">{other}</h6>
-												</Form.Group>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Facebook :-
-													</h5>
-													<h6 className="ms-2">{facebook}</h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Instagram :-
-													</h5>
-													<h6 className="ms-2">{instagram}</h6>
-												</Form.Group>
-											</div>
-										</div>
-									</div>
+								<div class="col-md-4">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Month Of Birth :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={monthOfBirth}
+									/>
 								</div>
-
-								<div className="row mt-5">
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Copy Of id Card (Up to 5mb):-
-													</h5>
-													<h6 className="ms-2">file</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Book Bank
-													</h5>
-													<h6 className="ms-2">file</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														company:-
-													</h5>
-													<h6 className="ms-2">company</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Bank Account:-
-													</h5>
-													<h6 className="ms-2">bank Account</h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Domestic:-
-													</h5>
-													<h6 className="ms-2">domestic</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Rate of QR Code:-
-													</h5>
-													<h6 className="ms-2">Qr Code</h6>
-												</Form.Group>
-											</div>
-										</div>
-									</div>
-
-									<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-										<div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Logo :-
-													</h5>
-													<h6 className="ms-2">file</h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Other document:-
-													</h5>
-													<h6 className="ms-2">file</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Bank :-
-													</h5>
-													<h6 className="ms-2">bank</h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Rnf Code :-
-													</h5>
-													<h6 className="ms-2">Rnf Code</h6>
-												</Form.Group>
-											</div>
-
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														inter :-
-													</h5>
-													<h6 className="ms-2">inter </h6>
-												</Form.Group>
-											</div>
-											<div className="form-group">
-												<Form.Group className=" d-flex">
-													<h5
-														htmlFor="exampleInputUsername1"
-														className="text-primary">
-														Rate Of Bar Code :-
-													</h5>
-													<h6 className="ms-2">Bar Code</h6>
-												</Form.Group>
-											</div>
-										</div>
-									</div>
+								<div class="col-md-4">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Day Of Birth :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={dayOfBirth}
+									/>
 								</div>
-								{/* <button type="button" className={`btn ${styles.userBtn}`}>Finish</button> */}
-								{/* <button type="button" className={`btn ${styles.userBtn}`}>
-									Finish
-								</button> */}
-							</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Contact Number :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={mobile}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Address :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={address}
+									/>
+								</div>
+							</form>
+							<br></br>
+							<br></br>
+							<form className="row g-3 form-sample">
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Provience :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={province}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Sub Division :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={subDivision}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										District :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={district}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Mobile no :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={mobile}
+									/>
+								</div>
+							</form>
+							<br></br>
+							<br></br>
+							<form className="row g-3 form-sample">
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Web Site :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={website}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Linked in :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={linkedin}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Facebok :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={facebook}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Instagram :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={instagram}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Other :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={other}
+									/>
+								</div>
+							</form>
+							<br></br>
+							<br></br>
+							<form className="row g-3 form-sample">
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Copy Of Id Card (Up to 5mb):{" "}
+									</label>
+									<input className="form-control" id="inputEmail4" />
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Book Bank :
+									</label>
+									<input className="form-control" id="inputEmail4" />
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Company :{" "}
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={company}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label text-primary">
+										Bank Account :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={bankAccount}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Domestic :{" "}
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={domestic}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Rate Of QR Code :{" "}
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={rateQrCode}
+									/>
+								</div>
+							</form>
+							<br></br>
+							<br></br>
+							<form className="row g-3 form-sample">
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Logo :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={logo}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Other document: :{" "}
+									</label>
+									<input className="form-control" id="inputEmail4" />
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Bank :
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={bank}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Rnf Code :{" "}
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={rnfCode}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										Inter :{" "}
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={inter}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Rate Of Bar Code :{" "}
+									</label>
+									<input className="form-control" id="inputEmail4" />
+								</div>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Transaction Fee :{" "}
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={transaction}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										Withdraw Fee :{" "}
+									</label>
+									<input
+										className="form-control"
+										id="inputEmail4"
+										value={withdraw}
+									/>
+								</div>
+							</form>
+							<br />
+							<form className="row g-3 form-sample">
+								<h3>Add Fee to this merchant</h3>
+								<div class="col-md-6">
+									<label htmlFor="exampleInputUsername1" className="form-label">
+										TransactionFee :
+									</label>
+									<input
+										className="form-control"
+										// id="inputEmail4"
+										type="number"
+										value={TransactionFee}
+										onChange={(e) =>
+											setTransactionFee(parseInt(e.target.value))
+										}
+									/>
+								</div>
+								<div class="col-md-6">
+									<label
+										htmlFor="exampleInputUsername1"
+										className="form-label ">
+										withdrawFee :{" "}
+									</label>
+									<input
+										className="form-control"
+										type="number"
+										// id="inputEmail4"
+										value={withdrawFee}
+										onChange={(e) => setWithdrawFee(parseInt(e.target.value))}
+									/>
+								</div>
+								<div class="col-md-12 text-center">
+									<button
+										type="button"
+										className="btn text-center btn-success w-100  rounded-pill"
+										onClick={onSubmit}>
+										{" "}
+										Add Fee{" "}
+									</button>
+								</div>
+							</form>
 						</div>
 					</div>
+					<br></br>
+					<div className="text-center"></div>
 				</div>
 			</div>
 		</div>

@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ResetPassword = () => {
-	const [email, setEmail] = useState("");
 	const [newPassword, setNewPassword] = useState("");
 	const [success, setSuccess] = useState(false);
-
+	const email = localStorage.getItem("email");
 	async function onSubmit(event) {
 		event.preventDefault();
 		console.log(email, newPassword);
@@ -27,7 +26,6 @@ const ResetPassword = () => {
 
 			// const accessToken = response?.data?.accessToken;
 			// localStorage.setItem("token", response?.data?.accessToken);
-			setEmail("");
 			setNewPassword("");
 			setSuccess(true);
 		} catch (err) {
@@ -49,7 +47,7 @@ const ResetPassword = () => {
 						<div className="auth-form-light text-left py-5 px-4 px-sm-5">
 							<h4>Reset Password</h4>
 							<form className="pt-3">
-								<div className="form-group">
+								{/* <div className="form-group">
 									<input
 										type="email"
 										className="form-control form-control-lg"
@@ -58,17 +56,17 @@ const ResetPassword = () => {
 										value={email}
 										placeholder="Old Password"
 									/>
-								</div>
-								<div className="form-group">
+								</div> */}
+								{/* <div className="form-group">
 									<input
 										type="email"
 										className="form-control form-control-lg"
 										id="exampleInputEmail1"
 										onChange={(e) => setEmail(e.target.value)}
 										value={email}
-										placeholder="New password"
+										placeholder="Email"
 									/>
-								</div>
+								</div> */}
 								<div className="form-group">
 									<input
 										type="password"

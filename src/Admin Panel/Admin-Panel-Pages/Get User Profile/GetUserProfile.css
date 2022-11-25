@@ -1,13 +1,32 @@
-.userHeading {
+input[type=text] {
+  background-color: #fff;
+}
 
+.profile-img {
+    border-radius: 50%;
+}
+
+.userCard {
+    background-color:white;
+}
+
+.form-label {
+    color: #007BFF;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.userProfileCard-2 {
+    background-color: #fff;
+}
+
+.userHeading {
     color: black;
     font-weight: 500;
 }
 .usercardbody {
-
-     
-     
-     border-radius: 8px;
+    border-radius: 8px;
 }
 
 .userLabel {

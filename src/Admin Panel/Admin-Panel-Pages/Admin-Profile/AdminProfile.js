@@ -72,9 +72,6 @@ const AdminProfile = () => {
 						alt="Profile"
 					/>
 					<div className="mt-2 mx-auto">
-						<p>
-							Merchant Code: <span className="text-primary">M010303</span>
-						</p>
 						<p className="mx-auto">
 							Email: <span className="text-primary">info@gmail.com</span>
 						</p>

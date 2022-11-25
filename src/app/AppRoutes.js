@@ -35,9 +35,12 @@ const AdminTransaction = lazy(() =>
 		"../Admin Panel/Admin-Panel-Pages/Admin-Payment_Transaction/AdminPaymentTransaction"
 	)
 );
-const AdminSettlementReport = lazy(() =>
+const WithdrawalRequest = lazy(() =>
+	import("../Admin Panel/Admin-Panel-Pages/WithdrawalRequest/WithdrawalRequest")
+);
+const WithdrawalDetails = lazy(() =>
 	import(
-		"../Admin Panel/Admin-Panel-Pages/Admin-Settlement-Report/AdminSettlementReport"
+		"../Admin Panel/Admin-Panel-Pages/WithdrawalRequest/Withdrawal-Details"
 	)
 );
 const AdminVoid = lazy(() =>
@@ -119,8 +122,12 @@ class AppRoutes extends Component {
 						component={AdminTransaction}
 					/>
 					<Route
-						path="/admin/AdminSettlementReport"
-						component={AdminSettlementReport}
+						path="/admin/WithdrawalRequest"
+						component={WithdrawalRequest}
+					/>
+					<Route
+						path="/admin/WithdrawalDetails"
+						component={WithdrawalDetails}
 					/>
 					<Route path="/admin/AdminVoid" component={AdminVoid} />
 					<Route path="/admin/AdminRefund" component={AdminRefund} />

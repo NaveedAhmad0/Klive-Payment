@@ -175,8 +175,8 @@ class Sidebar extends Component {
 												? "nav-link active"
 												: "nav-link"
 										}
-										to="/admin/AdminSettlementReport">
-										<Trans>Settlement Report</Trans>
+										to="/admin/WithdrawalRequest">
+										<Trans>Withdrawal Request</Trans>
 									</Link>
 								</li>
 							</ul>

@@ -6,9 +6,9 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import Edit from "../../../assets/logo/K Live Pay.png";
-
 import { useHistory } from "react-router-dom";
 import API from "../../../backend";
+
 const options = {
 	paginationSize: 4,
 	pageStartIndex: 1,
@@ -22,37 +22,38 @@ const options = {
 	disablePageTitle: true,
 };
 
-const AdminManageRole = () => {
+const WithdrawalRequest = () => {
 	const history = useHistory();
-
 	const [ittems, setItems] = useState([]);
-	console.log("items is", ittems);
 
+	console.log("items is", ittems);
+	// const edit = <faCake />;
 	useEffect(() => {
 		const getUserDetails = async () => {
 			try {
-				await axios.get(`${API}/admin/get-merchant-list`).then((response) => {
-					// if (response == 200) {
+				await axios.get(`${API}/admin/withdraw-request`).then((response) => {
 					const sample = [];
+
 					for (let i = 0; i < response.data.length; i += 1) {
 						sample.push({
 							id: response.data[i].id,
-							FirstName: response.data[i].firstName,
-							email: response.data[i].email,
-							status: response.data[i].email,
-							branchredeem: response.data[i].email,
-							merchantId: response.data[i].merchantId,
+							amount: response.data[i].amount,
+							AccountNumber: response.data[i].BankDetails.AccountNumber,
+							status: response.data[i].status,
+							branchredeem: response.data[i].BankDetails.BankName,
+							redemptiondate: response.data[i].AccountNumber,
+							referalNumber: response.data[i].ReferalNumber,
 						});
 					}
 					setItems(sample);
-					// }
-					console.log("babla", response.data);
-					// const listItems = response.json();
+
+					// console.log(response.data[i].id);
 				});
 			} catch (error) {
 				console.log(error);
 			}
 		};
+
 		(async () => await getUserDetails())();
 	}, []);
 
@@ -61,22 +62,22 @@ const AdminManageRole = () => {
 	const columns = [
 		{
 			dataField: "id",
-			text: "Order number",
+			text: "No",
 			sort: true,
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
 		{
-			dataField: "FirstName",
-			text: "Voucher code",
+			dataField: "amount",
+			text: "Amount",
 			classes: "deal-row-2",
 
 			headerClasses: "deal-header",
 		},
 
 		{
-			dataField: "email",
-			text: "Purchase date",
+			dataField: "AccountNumber",
+			text: "Account Number",
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
@@ -88,55 +89,47 @@ const AdminManageRole = () => {
 		},
 		{
 			dataField: "branchredeem",
+			text: "Bank Name",
+			headerClasses: "deal-header",
+		},
+		{
+			dataField: "branchredeem",
 			isDummyField: true,
-			text: "View user",
+			text: "Edit role",
 			headerClasses: "deal-header",
 			formatter: (cellContent, row) => {
 				return customFunction(cellContent, row);
 			},
 		},
-		// {
-		// 	dataField: "name",
-		// 	isDummyField: true,
-		// 	text: "Edit role",
-		// 	headerClasses: "deal-header",
-		// 	formatter: (cellContent, row) => {
-		// 		return customFunction(cellContent, row);
-		// 	},
-		// },
 	];
-	console.log("list of item", ittems);
 	const customFunction = (cellContent, row) => {
 		return (
 			<h5>
 				{/* <Link to="/admin/getUserProfile"> */}
-				<a
-					href
+				<button
 					alt="issueimageload"
-					className="cursor-pointer"
+					className="cursor-pointer btn btn-success"
 					// src={Edit}
 					onClick={() => {
 						// eslint-disable-next-line no-restricted-globals
 						history.push({
-							pathname: "/admin/getMerchantProfile",
-							state: {
-								merchantdataEmail: row.email,
-								merchantId: row.merchantId,
-							},
+							pathname: "/admin/WithdrawalDetails",
+							state: { ReferenceId: row.referalNumber },
 						});
-						console.log("sent email", row.merchantId);
+						// console.log(row.email);
 					}}>
 					view
-				</a>
+				</button>
 				{/* </Link> */}
 			</h5>
 		);
 	};
+	console.log("list of item", ittems);
 	// list.map((list)=>{})
 
 	return (
 		<div>
-			<h2 className="text-primary bw-bold">Merchant List</h2>
+			<h2 className="text-primary bw-bold">Users</h2>
 			{/* {ittems.map((item) => (
 				<AdminTable key={item.id} list={item} />
 			))} */}
@@ -185,4 +178,4 @@ const AdminManageRole = () => {
 	);
 };
 
-export default AdminManageRole;
+export default WithdrawalRequest;
