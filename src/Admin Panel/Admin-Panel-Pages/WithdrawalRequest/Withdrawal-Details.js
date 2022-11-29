@@ -2,10 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import API from "../../../backend";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const WithdrawalDetails = () => {
 	const location = useLocation();
 	const [TransactionId, setTransactionId] = useState("");
+	const [loading, setLoading] = useState(true);
 
 	const ReferenceId = location.state.ReferenceId;
 	const [showData, setShowData] = useState([
@@ -74,12 +76,16 @@ const WithdrawalDetails = () => {
 						IFSCcode: res.data[i].BankDetails.IFSCcode,
 						BankName: res.data[i].BankDetails.BankName,
 						comments: res.data[i].comments,
-						status: res.data[i].status,
+						status: res.data[i].status === true ? "completed" : "pending",
 
 						// notes: res.data[i].note,
 					});
 					console.log("DATA IS ", res.data[i].status);
 				}
+				setLoading(false);
+				setTimeout(() => {
+					setLoading(false);
+				}, 3000);
 			});
 	}, []);
 
@@ -88,70 +94,77 @@ const WithdrawalDetails = () => {
 			<div className="col-md-12">
 				<div className="row">
 					<h2 className="text-primary">Request Details</h2>
-					<div className="col-md-12 grid-margin">
-						<div className="card">
-							<div className="card-body">
-								<div className="container">
-									<table class="table table-striped table-bordered">
-										<tbody>
-											<tr>
-												<td>Id</td>
-												<td>{showData.id}</td>
-											</tr>
-											<tr>
-												<td>ReferalNumber</td>
-												<td>{showData.ReferalNumber}</td>
-											</tr>
-											<tr>
-												<td>merchantId</td>
-												<td>{showData.merchantId}</td>
-											</tr>
-											<tr>
-												<td>amount</td>
-												<td>{showData.amount}</td>
-											</tr>
-											<tr>
-												<td>WithdrawCharges</td>
-												<td>{showData.WithdrawCharges}</td>
-											</tr>
-											<tr>
-												<td>FinalAmount</td>
-												<td>{showData.FinalAmount}</td>
-											</tr>
-											<tr>
-												<td>Name</td>
-												<td>{showData.Name}</td>
-											</tr>
-											<tr>
-												<td>AccountNumber</td>
-												<td>{showData.AccountNumber}</td>
-											</tr>
-											<tr>
-												<td>IFSCcode</td>
-												<td>{showData.IFSCcode}</td>
-											</tr>
-											<tr>
-												<td>amount</td>
-												<td>{showData.amount}</td>
-											</tr>
-											<tr>
-												<td>BankName</td>
-												<td>{showData.BankName}</td>
-											</tr>
-											<tr>
-												<td>comments</td>
-												<td>{showData.comments}</td>
-											</tr>
-											<tr>
-												<td>status</td>
-												<td>{`${showData.status}`}</td>
-											</tr>
-										</tbody>
-									</table>
-									<br></br>
-								</div>
+					{loading ? (
+						<div className="row" style={{ height: "500px" }}>
+							<div className="col-12 text-center my-auto">
+								<ClipLoader color="#136be0" size={100} speedMultiplier={1} />
+							</div>
+						</div>
+					) : (
+						<div className="col-md-12 grid-margin">
+							<div className="card">
+								<div className="card-body">
+									<div className="container">
+										<table class="table table-striped table-bordered">
+											<tbody>
+												<tr>
+													<td>Id</td>
+													<td>{showData.id}</td>
+												</tr>
+												<tr>
+													<td>ReferalNumber</td>
+													<td>{showData.ReferalNumber}</td>
+												</tr>
+												<tr>
+													<td>merchantId</td>
+													<td>{showData.merchantId}</td>
+												</tr>
+												<tr>
+													<td>amount</td>
+													<td>{showData.amount}</td>
+												</tr>
+												<tr>
+													<td>WithdrawCharges</td>
+													<td>{showData.WithdrawCharges}</td>
+												</tr>
+												<tr>
+													<td>FinalAmount</td>
+													<td>{showData.FinalAmount}</td>
+												</tr>
+												<tr>
+													<td>Name</td>
+													<td>{showData.Name}</td>
+												</tr>
+												<tr>
+													<td>AccountNumber</td>
+													<td>{showData.AccountNumber}</td>
+												</tr>
+												<tr>
+													<td>IFSCcode</td>
+													<td>{showData.IFSCcode}</td>
+												</tr>
+												<tr>
+													<td>amount</td>
+													<td>{showData.amount}</td>
+												</tr>
+												<tr>
+													<td>BankName</td>
+													<td>{showData.BankName}</td>
+												</tr>
+												<tr>
+													<td>comments</td>
+													<td>{showData.comments}</td>
+												</tr>
+												<tr>
+													<td>status</td>
+													<td>{`${showData.status}`}</td>
+												</tr>
+											</tbody>
+										</table>
+										<br></br>
+									</div>
 
-								{/* <div className="row my-3">
+									{/* <div className="row my-3">
 									<div className="col-xl-3 col-lg-6 col-sm-6 grid-margin-xl-0 d-flex grid-margin">
 										<input
 											type="text"
@@ -165,9 +178,10 @@ const WithdrawalDetails = () => {
 										</button>
 									</div>
 								</div> */}
+								</div>
 							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</div>
 			<div className="col-md-12">

@@ -8,6 +8,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import Edit from "../../../assets/logo/K Live Pay.png";
 import { useHistory } from "react-router-dom";
 import API from "../../../backend";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const options = {
 	paginationSize: 4,
@@ -25,6 +26,7 @@ const options = {
 const WithdrawalRequest = () => {
 	const history = useHistory();
 	const [ittems, setItems] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	console.log("items is", ittems);
 	// const edit = <faCake />;
@@ -39,14 +41,18 @@ const WithdrawalRequest = () => {
 							id: response.data[i].id,
 							amount: response.data[i].amount,
 							AccountNumber: response.data[i].BankDetails.AccountNumber,
-							status: response.data[i].status,
+							status:
+								response.data[i].status === true ? "completed" : "pending",
 							branchredeem: response.data[i].BankDetails.BankName,
 							redemptiondate: response.data[i].AccountNumber,
 							referalNumber: response.data[i].ReferalNumber,
 						});
 					}
 					setItems(sample);
-
+					setLoading(false);
+					setTimeout(() => {
+						setLoading(false);
+					}, 3000);
 					// console.log(response.data[i].id);
 				});
 			} catch (error) {
@@ -129,51 +135,57 @@ const WithdrawalRequest = () => {
 
 	return (
 		<div>
-			<h2 className="text-primary bw-bold">Users</h2>
-			{/* {ittems.map((item) => (
-				<AdminTable key={item.id} list={item} />
-			))} */}
-			<div className="row">
-				<div className="col-md-12">
-					<div className="row">
-						<div className="col-md-12 grid-margin">
-							<div className="card">
-								<div className="card-body">
-									<div className="table-responsive">
-										<ToolkitProvider
-											keyField="id"
-											data={ittems}
-											columns={columns}
-											search>
-											{(props) => (
-												<div>
-													<h3>Input something at below input field:</h3>
-													<SearchBar
-														{...props.searchProps}
-														className="custome-search-field"
-														style={{ color: "white" }}
-														delay={500}
-														placeholder="Search Something!!!"
-													/>
-													<hr />
-													<BootstrapTable
-														{...props.baseProps}
-														headerClasses={{ backgroundColor: "red" }}
-														pagination={paginationFactory(options)}
-													/>
-												</div>
-											)}
-										</ToolkitProvider>
+			<h2 className="text-primary bw-bold">Withdrawal Requests</h2>
+
+			{loading ? (
+				<div className="row" style={{ height: "500px" }}>
+					<div className="col-12 text-center my-auto">
+						<ClipLoader color="#136be0" size={100} speedMultiplier={1} />
+					</div>
+				</div>
+			) : (
+				<div className="row">
+					<div className="col-md-12">
+						<div className="row">
+							<div className="col-md-12 grid-margin">
+								<div className="card">
+									<div className="card-body">
+										<div className="table-responsive">
+											<ToolkitProvider
+												keyField="id"
+												data={ittems}
+												columns={columns}
+												search>
+												{(props) => (
+													<div>
+														<h3>Input something at below input field:</h3>
+														<SearchBar
+															{...props.searchProps}
+															className="custome-search-field"
+															style={{ color: "white" }}
+															delay={500}
+															placeholder="Search Something!!!"
+														/>
+														<hr />
+														<BootstrapTable
+															{...props.baseProps}
+															headerClasses={{ backgroundColor: "red" }}
+															pagination={paginationFactory(options)}
+														/>
+													</div>
+												)}
+											</ToolkitProvider>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div className="col-md-4">
+						<div className="row"></div>
+					</div>
 				</div>
-				<div className="col-md-4">
-					<div className="row"></div>
-				</div>
-			</div>
+			)}
 		</div>
 	);
 };

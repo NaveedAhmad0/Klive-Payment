@@ -7,6 +7,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import Edit from "../../../assets/logo/K Live Pay.png";
 import { useHistory } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import API from "../../../backend";
 
 const options = {
@@ -25,6 +26,7 @@ const options = {
 const AdminManageUser = () => {
 	const history = useHistory();
 	const [ittems, setItems] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	console.log("items is", ittems);
 	// const edit = <faCake />;
@@ -45,7 +47,10 @@ const AdminManageUser = () => {
 						});
 					}
 					setItems(sample);
-
+					setLoading(false);
+					setTimeout(() => {
+						setLoading(false);
+					}, 3000);
 					// console.log(response.data[i].id);
 				});
 			} catch (error) {
@@ -61,7 +66,7 @@ const AdminManageUser = () => {
 	const columns = [
 		{
 			dataField: "id",
-			text: "No",
+			text: "Id",
 			sort: true,
 			classes: "deal-row",
 			headerClasses: "deal-header",
@@ -86,11 +91,11 @@ const AdminManageUser = () => {
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
-		{
-			dataField: "branchredeem",
-			text: "Branch redeemed",
-			headerClasses: "deal-header",
-		},
+		// {
+		// 	dataField: "branchredeem",
+		// 	text: "Branch redeemed",
+		// 	headerClasses: "deal-header",
+		// },
 		{
 			dataField: "branchredeem",
 			isDummyField: true,
@@ -105,9 +110,9 @@ const AdminManageUser = () => {
 		return (
 			<h5>
 				{/* <Link to="/admin/getUserProfile"> */}
-				<h6
+				<button
 					alt="issueimageload"
-					className="cursor-pointer"
+					className="btn btn-success"
 					// src={Edit}
 					onClick={() => {
 						// eslint-disable-next-line no-restricted-globals
@@ -118,7 +123,7 @@ const AdminManageUser = () => {
 						// console.log(row.email);
 					}}>
 					view
-				</h6>
+				</button>
 				{/* </Link> */}
 			</h5>
 		);
@@ -129,50 +134,56 @@ const AdminManageUser = () => {
 	return (
 		<div>
 			<h2 className="text-primary bw-bold">Users</h2>
-			{/* {ittems.map((item) => (
-				<AdminTable key={item.id} list={item} />
-			))} */}
-			<div className="row">
-				<div className="col-md-12">
-					<div className="row">
-						<div className="col-md-12 grid-margin">
-							<div className="card">
-								<div className="card-body">
-									<div className="table-responsive">
-										<ToolkitProvider
-											keyField="id"
-											data={ittems}
-											columns={columns}
-											search>
-											{(props) => (
-												<div>
-													<h3>Input something at below input field:</h3>
-													<SearchBar
-														{...props.searchProps}
-														className="custome-search-field"
-														style={{ color: "white" }}
-														delay={500}
-														placeholder="Search Something!!!"
-													/>
-													<hr />
-													<BootstrapTable
-														{...props.baseProps}
-														headerClasses={{ backgroundColor: "red" }}
-														pagination={paginationFactory(options)}
-													/>
-												</div>
-											)}
-										</ToolkitProvider>
+
+			{loading ? (
+				<div className="row" style={{ height: "500px" }}>
+					<div className="col-12 text-center my-auto">
+						<ClipLoader color="#136be0" size={100} speedMultiplier={1} />
+					</div>
+				</div>
+			) : (
+				<div className="row">
+					<div className="col-md-12">
+						<div className="row">
+							<div className="col-md-12 grid-margin">
+								<div className="card">
+									<div className="card-body">
+										<div className="table-responsive">
+											<ToolkitProvider
+												keyField="id"
+												data={ittems}
+												columns={columns}
+												search>
+												{(props) => (
+													<div>
+														<h3>Input something at below input field:</h3>
+														<SearchBar
+															{...props.searchProps}
+															className="custome-search-field"
+															style={{ color: "white" }}
+															delay={500}
+															placeholder="Search Something!!!"
+														/>
+														<hr />
+														<BootstrapTable
+															{...props.baseProps}
+															headerClasses={{ backgroundColor: "red" }}
+															pagination={paginationFactory(options)}
+														/>
+													</div>
+												)}
+											</ToolkitProvider>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div className="col-md-4">
+						<div className="row"></div>
+					</div>
 				</div>
-				<div className="col-md-4">
-					<div className="row"></div>
-				</div>
-			</div>
+			)}
 		</div>
 	);
 };

@@ -87,6 +87,11 @@ const AssignMerchToUser = lazy(() =>
 		"../Admin Panel/Admin-Panel-Pages/Assign-Merchant-To-User/AssignMerchToUser"
 	)
 );
+const TransactionDetails = lazy(() =>
+	import(
+		"../Admin Panel/Admin-Panel-Pages/Admin-Payment_Transaction/TransactionDetails"
+	)
+);
 
 class AppRoutes extends Component {
 	render() {
@@ -131,7 +136,7 @@ class AppRoutes extends Component {
 					/>
 					<Route path="/admin/AdminVoid" component={AdminVoid} />
 					<Route path="/admin/AdminRefund" component={AdminRefund} />
-					<Route path="/admin/edit-AdminProfile" component={AdminProfile} />
+					<Route path="/admin/update-profile" component={AdminProfile} />
 					<Route path="/admin/get-profile" component={GetAdminProfile} />
 					<Route
 						exact
@@ -146,6 +151,10 @@ class AppRoutes extends Component {
 					<Route
 						path="/admin/AdminChangePassword"
 						component={AdminChangePassword}
+					/>
+					<Route
+						path="/admin/TransactionDetails"
+						component={TransactionDetails}
 					/>
 					<Route
 						exact

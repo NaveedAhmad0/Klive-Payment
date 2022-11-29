@@ -5,7 +5,7 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import Edit from "../../../assets/logo/K Live Pay.png";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { useHistory } from "react-router-dom";
 import API from "../../../backend";
@@ -24,6 +24,7 @@ const options = {
 
 const AdminManageRole = () => {
 	const history = useHistory();
+	const [loading, setLoading] = useState(true);
 
 	const [ittems, setItems] = useState([]);
 	console.log("items is", ittems);
@@ -39,7 +40,7 @@ const AdminManageRole = () => {
 							id: response.data[i].id,
 							FirstName: response.data[i].firstName,
 							email: response.data[i].email,
-							status: response.data[i].email,
+							status: response.data[i].mobile,
 							branchredeem: response.data[i].email,
 							merchantId: response.data[i].merchantId,
 						});
@@ -47,7 +48,10 @@ const AdminManageRole = () => {
 					setItems(sample);
 					// }
 					console.log("babla", response.data);
-					// const listItems = response.json();
+					setLoading(false);
+					setTimeout(() => {
+						setLoading(false);
+					}, 3000);
 				});
 			} catch (error) {
 				console.log(error);
@@ -61,14 +65,14 @@ const AdminManageRole = () => {
 	const columns = [
 		{
 			dataField: "id",
-			text: "Order number",
+			text: "Id",
 			sort: true,
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
 		{
 			dataField: "FirstName",
-			text: "Voucher code",
+			text: "First Name",
 			classes: "deal-row-2",
 
 			headerClasses: "deal-header",
@@ -76,13 +80,13 @@ const AdminManageRole = () => {
 
 		{
 			dataField: "email",
-			text: "Purchase date",
+			text: "Email",
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
 		{
 			dataField: "status",
-			text: "Status",
+			text: "Mobile",
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
@@ -110,10 +114,8 @@ const AdminManageRole = () => {
 		return (
 			<h5>
 				{/* <Link to="/admin/getUserProfile"> */}
-				<a
-					href
-					alt="issueimageload"
-					className="cursor-pointer"
+				<button
+					className="btn btn-success"
 					// src={Edit}
 					onClick={() => {
 						// eslint-disable-next-line no-restricted-globals
@@ -127,7 +129,7 @@ const AdminManageRole = () => {
 						console.log("sent email", row.merchantId);
 					}}>
 					view
-				</a>
+				</button>
 				{/* </Link> */}
 			</h5>
 		);
@@ -137,50 +139,56 @@ const AdminManageRole = () => {
 	return (
 		<div>
 			<h2 className="text-primary bw-bold">Merchant List</h2>
-			{/* {ittems.map((item) => (
-				<AdminTable key={item.id} list={item} />
-			))} */}
-			<div className="row">
-				<div className="col-md-12">
-					<div className="row">
-						<div className="col-md-12 grid-margin">
-							<div className="card">
-								<div className="card-body">
-									<div className="table-responsive">
-										<ToolkitProvider
-											keyField="id"
-											data={ittems}
-											columns={columns}
-											search>
-											{(props) => (
-												<div>
-													<h3>Input something at below input field:</h3>
-													<SearchBar
-														{...props.searchProps}
-														className="custome-search-field"
-														style={{ color: "white" }}
-														delay={500}
-														placeholder="Search Something!!!"
-													/>
-													<hr />
-													<BootstrapTable
-														{...props.baseProps}
-														headerClasses={{ backgroundColor: "red" }}
-														pagination={paginationFactory(options)}
-													/>
-												</div>
-											)}
-										</ToolkitProvider>
+
+			{loading ? (
+				<div className="row" style={{ height: "500px" }}>
+					<div className="col-12 text-center my-auto">
+						<ClipLoader color="#136be0" size={100} speedMultiplier={1} />
+					</div>
+				</div>
+			) : (
+				<div className="row">
+					<div className="col-md-12">
+						<div className="row">
+							<div className="col-md-12 grid-margin">
+								<div className="card">
+									<div className="card-body">
+										<div className="table-responsive">
+											<ToolkitProvider
+												keyField="id"
+												data={ittems}
+												columns={columns}
+												search>
+												{(props) => (
+													<div>
+														<h3>Input something at below input field:</h3>
+														<SearchBar
+															{...props.searchProps}
+															className="custome-search-field"
+															style={{ color: "white" }}
+															delay={500}
+															placeholder="Search Something!!!"
+														/>
+														<hr />
+														<BootstrapTable
+															{...props.baseProps}
+															headerClasses={{ backgroundColor: "red" }}
+															pagination={paginationFactory(options)}
+														/>
+													</div>
+												)}
+											</ToolkitProvider>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div className="col-md-4">
+						<div className="row"></div>
+					</div>
 				</div>
-				<div className="col-md-4">
-					<div className="row"></div>
-				</div>
-			</div>
+			)}
 		</div>
 	);
 };

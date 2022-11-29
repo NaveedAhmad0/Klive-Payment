@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Dropdown } from "react-bootstrap";
 import { Trans } from "react-i18next";
 import { useHistory } from "react-router-dom";
-
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Navbar = () => {
 	let history = useHistory();
 	const toggleOffcanvas = () => {
@@ -201,14 +202,15 @@ const Navbar = () => {
 					<li className="nav-item  nav-profile border-0">
 						<Dropdown>
 							<Dropdown.Toggle className="nav-link count-indicator bg-transparent">
-								<img
+								{/* <img
 									className="img-xs rounded-circle"
 									src={require("../../assets/images/faces/face8.jpg")}
 									alt="Profile"
-								/>
+								/> */}
+								<FontAwesomeIcon className="fa-1x" icon={faUser} />
 							</Dropdown.Toggle>
 							<Dropdown.Menu className="preview-list navbar-dropdown pb-3">
-								<Dropdown.Item
+								{/* <Dropdown.Item
 									className="dropdown-item p-0 preview-item d-flex align-items-center border-bottom"
 									href="!#"
 									onClick={(evt) => evt.preventDefault()}>
@@ -223,22 +225,22 @@ const Navbar = () => {
 											<i className="mdi mdi-alarm-check mr-0"></i>
 										</div>
 									</div>
-								</Dropdown.Item>
-								<Dropdown.Item
+								</Dropdown.Item> */}
+								{/* <Dropdown.Item
 									className="dropdown-item preview-item d-flex align-items-center border-0 mt-2"
 									onClick={(evt) => evt.preventDefault()}>
 									<Trans>Manage Accounts</Trans>
-								</Dropdown.Item>
+								</Dropdown.Item> */}
 								<Dropdown.Item
 									className="dropdown-item preview-item d-flex align-items-center border-0"
 									href="/admin/AdminChangePassword">
 									<Trans>Change Password</Trans>
 								</Dropdown.Item>
-								<Dropdown.Item
+								{/* <Dropdown.Item
 									className="dropdown-item preview-item d-flex align-items-center border-0"
 									onClick={(evt) => evt.preventDefault()}>
 									<Trans>Check Inbox</Trans>
-								</Dropdown.Item>
+								</Dropdown.Item> */}
 								<Dropdown.Item
 									className="dropdown-item preview-item d-flex align-items-center border-0"
 									onClick={(evt) => {
