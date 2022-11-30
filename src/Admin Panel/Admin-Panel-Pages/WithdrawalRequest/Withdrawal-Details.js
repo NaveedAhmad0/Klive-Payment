@@ -6,7 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const WithdrawalDetails = () => {
 	const location = useLocation();
-	const [TransactionId, setTransactionId] = useState("");
+	const [PaymentStatus, setPaymentStatus] = useState("");
 	const [loading, setLoading] = useState(true);
 
 	const ReferenceId = location.state.ReferenceId;
@@ -29,13 +29,13 @@ const WithdrawalDetails = () => {
 	//Payment Status
 	async function onSubmit(event) {
 		event.preventDefault();
-		console.log("sdfsdf", showData.ReferalNumber);
+		console.log("sdfsdf", PaymentStatus);
 		try {
 			const response = await axios
 				.post(
 					`${API}/admin/PaymentStatus?ReferenceId=${showData.ReferalNumber}`,
 					JSON.stringify({
-						TransactionId,
+						PaymentStatus,
 					}),
 					{
 						headers: { "Content-Type": "application/json" },
@@ -43,7 +43,7 @@ const WithdrawalDetails = () => {
 					}
 				)
 				.then((res) => {
-					setTransactionId("");
+					setPaymentStatus("");
 					console.log(res.data);
 					if (res.status === 200) {
 						alert("payment Added Succesfully");
@@ -193,17 +193,25 @@ const WithdrawalDetails = () => {
 								<div className="container">
 									<div className="form-group">
 										<label for="inputPassword2" className="">
-											Transaction Id
+											Payment Status
 										</label>
+										<select
+											value={PaymentStatus}
+											onChange={(e) => setPaymentStatus(e.target.value)}>
+											{" "}
+											<option>Select</option>
+											<option value="completed">Complete</option>
+											<option value="reject">Reject</option>
+										</select>
 
-										<input
+										{/* <input
 											type="text"
 											className="form-control"
 											placeholder="Txn Id"
 											id="staticEmail2"
-											onChange={(e) => setTransactionId(e.target.value)}
-											value={TransactionId}
-										/>
+											onChange={(e) => setPaymentStatus(e.target.value)}
+											value={PaymentStatus}
+										/> */}
 									</div>
 									<button className="btn btn-primary" onClick={onSubmit}>
 										Confirm

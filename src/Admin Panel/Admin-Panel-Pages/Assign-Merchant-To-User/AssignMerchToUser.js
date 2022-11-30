@@ -7,8 +7,8 @@ import API from "../../../backend";
 
 const AssignMerchToUser = () => {
 	const [merchList, setMerchList] = useState([]);
-	// const [select, setSelect] = useState(null);
-	const [userEmail, setUserEmail] = useState([]);
+	const [userList, setUserList] = useState([]);
+	const [userEmail, setUserEmail] = useState("");
 	const [merchantEmail, setmerchantEmail] = useState([]);
 	useEffect(() => {
 		axios
@@ -20,6 +20,18 @@ const AssignMerchToUser = () => {
 				}
 				setMerchList(sample);
 				console.log("sample");
+			});
+	}, []);
+	useEffect(() => {
+		axios
+			.get(`https://backend.klivepay.com/api/admin/get-user-list`)
+			.then((res) => {
+				const sampleUser = [];
+				for (let i = 0; i < res.data.length; i++) {
+					sampleUser.push(res.data[i].email);
+				}
+				setUserList(sampleUser);
+				console.log("sampleUser");
 			});
 	}, []);
 
@@ -41,6 +53,15 @@ const AssignMerchToUser = () => {
 		console.log(value);
 		setmerchantEmail(value);
 	};
+	const handleChangeUser = (value, i) => {
+		// let newFormValues = [...value];
+		// newFormValues[i][e.target.name] = e.target.value;
+
+		// const select = [value];
+		// select.push(value);
+		console.log(value);
+		setUserEmail(value);
+	};
 	// }
 
 	const onSubmit = (e) => {
@@ -60,6 +81,8 @@ const AssignMerchToUser = () => {
 				.then((res) => {
 					console.log(res.data);
 					alert("Asssigned sucessfully!");
+					setUserEmail("");
+					setmerchantEmail("");
 				});
 		} catch (error) {
 			if (error) {
@@ -82,11 +105,23 @@ const AssignMerchToUser = () => {
 								<div className="col-md-6">
 									<Form.Group className="row">
 										<div className="col-sm-12">
-											<Form.Control
+											<label>Select User :</label> <br />
+											{/* <Form.Control
 												type="text"
 												placeholder="Users Email"
 												onChange={(e) => setUserEmail(e.target.value)}
 												value={userEmail}
+											/> */}
+											<Select
+												// isMulti={true}
+												// className="basic-multi-select"
+												isClearable={true}
+												// defaultValue={userList}
+												value={[userEmail]}
+												onChange={(value) => handleChangeUser(value)}
+												options={userList}
+												getOptionLabel={(option) => option}
+												getOptionValue={(option) => option}
 											/>
 										</div>
 									</Form.Group>
@@ -95,6 +130,7 @@ const AssignMerchToUser = () => {
 								<div className="col-md-6">
 									<Form.Group className="row">
 										<div className="col-sm-12 ">
+											<label htmlFor="">Select Merchant :</label>
 											{/* <select
 												multiple
 												aria-multiselectable
@@ -112,8 +148,10 @@ const AssignMerchToUser = () => {
 											</select> */}
 											<Select
 												isMulti={true}
-												// className="form-control"
-												value={merchantEmail.item}
+												className="basic-multi-select"
+												isClearable={true}
+												// defaultValue={merchList}
+												value={merchantEmail}
 												onChange={(value) => handleChange(value)}
 												options={merchList}
 												getOptionLabel={(option) => option}

@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import API from "../../../backend";
 import ClipLoader from "react-spinners/ClipLoader";
 import styles from "./GetMercahntProfile.css";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const GetMerchantProfile = () => {
 	const location = useLocation();
@@ -218,10 +220,12 @@ const GetMerchantProfile = () => {
 							src={require("../../../assets/images/faces/face8.jpg")}
 							alt="Profile"
 						/>
+						{/* <FontAwesomeIcon className="fa-5x" icon={faUser} /> */}
+
 						<div className="mt-2 mx-auto">
-							<p className="text-white">
+							{/* <p className="text-white">
 								Merchant Code: <span className="text-warning">M010303</span>
-							</p>
+							</p> */}
 							<p className="text-white">
 								Email: <span className="text-warning">{email}</span>
 							</p>
@@ -639,7 +643,7 @@ const GetMerchantProfile = () => {
 										<label
 											htmlFor="exampleInputUsername1"
 											className="form-label">
-											Transaction Fee :{" "}
+											Transaction Fee (%) :{" "}
 										</label>
 										<input
 											className="form-control"
@@ -651,7 +655,7 @@ const GetMerchantProfile = () => {
 										<label
 											htmlFor="exampleInputUsername1"
 											className="form-label">
-											Withdraw Fee :{" "}
+											Withdraw Fee (%) :{" "}
 										</label>
 										<input
 											className="form-control"
@@ -667,7 +671,7 @@ const GetMerchantProfile = () => {
 										<label
 											htmlFor="exampleInputUsername1"
 											className="form-label">
-											TransactionFee :
+											TransactionFee(%) :
 										</label>
 										<input
 											className="form-control"
@@ -683,7 +687,7 @@ const GetMerchantProfile = () => {
 										<label
 											htmlFor="exampleInputUsername1"
 											className="form-label ">
-											withdrawFee :{" "}
+											withdrawFee (%) :{" "}
 										</label>
 										<input
 											className="form-control"
