@@ -83,13 +83,13 @@ function AdminPaymentTransaction() {
 		},
 		{
 			dataField: "payerAccountNumber",
-			text: "Account no",
+			text: "User Account Number",
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
 		{
 			dataField: "payerName",
-			text: "Sender",
+			text: "Payer Name",
 			classes: "deal-row-2",
 
 			headerClasses: "deal-header",
@@ -110,7 +110,7 @@ function AdminPaymentTransaction() {
 		{
 			dataField: "View",
 			isDummyField: true,
-			text: "View user",
+			text: "Transaction Details",
 			headerClasses: "deal-header",
 			formatter: (cellContent, row) => {
 				return customFunction(cellContent, row);
@@ -186,13 +186,13 @@ function AdminPaymentTransaction() {
 													search>
 													{(props) => (
 														<div>
-															<h3>Input something at below input field:</h3>
+															<h3>Search:</h3>
 															<SearchBar
 																{...props.searchProps}
 																className="custome-search-field"
 																style={{ color: "white" }}
 																delay={500}
-																placeholder="Search Something!!!"
+																placeholder="Search ..."
 															/>
 															<hr />
 															{ittems.length > 0 ? (

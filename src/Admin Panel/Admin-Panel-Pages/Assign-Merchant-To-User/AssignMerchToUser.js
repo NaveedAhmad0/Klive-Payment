@@ -79,8 +79,12 @@ const AssignMerchToUser = () => {
 					}
 				)
 				.then((res) => {
-					console.log(res.data);
-					alert("Asssigned sucessfully!");
+					console.log("res", res.data);
+					if (res.data.code === 200) {
+						alert("Asssigned sucessfully!");
+					} else {
+						alert(res.data.message);
+					}
 					setUserEmail("");
 					setmerchantEmail("");
 				});

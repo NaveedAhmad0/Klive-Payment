@@ -161,13 +161,13 @@ const AdminManageRole = () => {
 												search>
 												{(props) => (
 													<div>
-														<h3>Input something at below input field:</h3>
+														<h3>Search:</h3>
 														<SearchBar
 															{...props.searchProps}
 															className="custome-search-field"
 															style={{ color: "white" }}
 															delay={500}
-															placeholder="Search Something!!!"
+															placeholder="Search ..."
 														/>
 														<hr />
 														<BootstrapTable

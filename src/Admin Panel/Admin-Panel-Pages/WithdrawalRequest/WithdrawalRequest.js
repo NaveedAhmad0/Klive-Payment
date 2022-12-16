@@ -39,7 +39,7 @@ const WithdrawalRequest = () => {
 					for (let i = 0; i < response.data.length; i += 1) {
 						sample.push({
 							id: response.data[i].id,
-							amount: response.data[i].amount,
+							Name: response.data[i].BankDetails.Name,
 							AccountNumber: response.data[i].BankDetails.AccountNumber,
 							status:
 								response.data[i].status === true ? "completed" : "pending",
@@ -53,7 +53,7 @@ const WithdrawalRequest = () => {
 					setTimeout(() => {
 						setLoading(false);
 					}, 3000);
-					// console.log(response.data[i].id);
+					console.log(response.data);
 				});
 			} catch (error) {
 				console.log(error);
@@ -68,14 +68,14 @@ const WithdrawalRequest = () => {
 	const columns = [
 		{
 			dataField: "id",
-			text: "No",
+			text: "ID",
 			sort: true,
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
 		{
-			dataField: "amount",
-			text: "Amount",
+			dataField: "Name",
+			text: "Merchant Name",
 			classes: "deal-row-2",
 
 			headerClasses: "deal-header",
@@ -88,16 +88,17 @@ const WithdrawalRequest = () => {
 			headerClasses: "deal-header",
 		},
 		{
+			dataField: "branchredeem",
+			text: "Bank Name",
+			headerClasses: "deal-header",
+		},
+		{
 			dataField: "status",
 			text: "Status",
 			classes: "deal-row",
 			headerClasses: "deal-header",
 		},
-		{
-			dataField: "branchredeem",
-			text: "Bank Name",
-			headerClasses: "deal-header",
-		},
+
 		{
 			dataField: "branchredeem",
 			isDummyField: true,
@@ -158,13 +159,13 @@ const WithdrawalRequest = () => {
 												search>
 												{(props) => (
 													<div>
-														<h3>Input something at below input field:</h3>
+														<h3>Search</h3>
 														<SearchBar
 															{...props.searchProps}
 															className="custome-search-field"
 															style={{ color: "white" }}
 															delay={500}
-															placeholder="Search Something!!!"
+															placeholder="Search..."
 														/>
 														<hr />
 														<BootstrapTable

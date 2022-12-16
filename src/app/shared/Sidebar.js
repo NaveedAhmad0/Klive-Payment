@@ -97,6 +97,7 @@ function Sidebar() {
 					<h3 className="mt-2">
 						<img
 							className="img-sm "
+							width={60}
 							src={require("../../assets/logo/K Live Pay.png")}
 							alt="profile"
 						/>

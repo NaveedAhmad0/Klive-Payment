@@ -108,27 +108,27 @@ const WithdrawalDetails = () => {
 										<table class="table table-striped table-bordered">
 											<tbody>
 												<tr>
-													<td>Id</td>
+													<td>ID</td>
 													<td>{showData.id}</td>
 												</tr>
 												<tr>
-													<td>ReferalNumber</td>
+													<td>Referal Number</td>
 													<td>{showData.ReferalNumber}</td>
 												</tr>
 												<tr>
-													<td>merchantId</td>
+													<td>Merchant ID</td>
 													<td>{showData.merchantId}</td>
 												</tr>
 												<tr>
-													<td>amount</td>
+													<td>Amount</td>
 													<td>{showData.amount}</td>
 												</tr>
 												<tr>
-													<td>WithdrawCharges</td>
-													<td>{showData.WithdrawCharges}</td>
+													<td>Withdraw Fee</td>
+													<td>{showData.WithdrawCharges}%</td>
 												</tr>
 												<tr>
-													<td>FinalAmount</td>
+													<td>Final Amount</td>
 													<td>{showData.FinalAmount}</td>
 												</tr>
 												<tr>
@@ -136,27 +136,27 @@ const WithdrawalDetails = () => {
 													<td>{showData.Name}</td>
 												</tr>
 												<tr>
-													<td>AccountNumber</td>
+													<td>Account Number</td>
 													<td>{showData.AccountNumber}</td>
 												</tr>
 												<tr>
-													<td>IFSCcode</td>
+													<td>IFSC Code</td>
 													<td>{showData.IFSCcode}</td>
 												</tr>
-												<tr>
-													<td>amount</td>
+												{/* <tr>
+													<td>Amount</td>
 													<td>{showData.amount}</td>
-												</tr>
+												</tr> */}
 												<tr>
-													<td>BankName</td>
+													<td>Bank Name</td>
 													<td>{showData.BankName}</td>
 												</tr>
 												<tr>
-													<td>comments</td>
+													<td>Comments</td>
 													<td>{showData.comments}</td>
 												</tr>
 												<tr>
-													<td>status</td>
+													<td>Status</td>
 													<td>{`${showData.status}`}</td>
 												</tr>
 											</tbody>
@@ -196,12 +196,13 @@ const WithdrawalDetails = () => {
 											Payment Status
 										</label>
 										<select
+											className="form-select"
 											value={PaymentStatus}
 											onChange={(e) => setPaymentStatus(e.target.value)}>
 											{" "}
 											<option>Select</option>
-											<option value="completed">Complete</option>
-											<option value="reject">Reject</option>
+											<option value={true}>Complete</option>
+											<option value={false}>Pending</option>
 										</select>
 
 										{/* <input
