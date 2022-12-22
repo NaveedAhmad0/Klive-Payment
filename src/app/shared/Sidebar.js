@@ -106,7 +106,7 @@ function Sidebar() {
 				<a
 					className="sidebar-brand brand-logo-mini text-white pt-3"
 					href="index.html">
-					<h5>Payment Gateway</h5>
+					<h5>KlivePay</h5>
 				</a>
 			</div>
 			<ul className="nav">
